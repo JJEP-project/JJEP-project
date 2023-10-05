@@ -43,3 +43,5 @@ secrets.yml
 application.yml
 application.properties
 liquibase.properties
+report.html
+report.json
