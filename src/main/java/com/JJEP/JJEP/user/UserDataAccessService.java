@@ -15,7 +15,11 @@ public class UserDataAccessService implements UserDAO {
 
     @Override
     public int insertUser(User user) {
-        throw new UnsupportedOperationException("Not implemented yet.");
+        String sql = """
+                     INSERT INTO users (username, email, password, full_name)
+                     VALUES (?, ?, ?, ?)
+                     """;
+        return jdbcTemplate.update(sql, user.getUsername(), user.getEmail(), user.getPassword(), user.getFullName());
     }
 
     @Override
