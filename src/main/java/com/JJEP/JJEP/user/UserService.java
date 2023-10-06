@@ -10,4 +10,10 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
+    public void addUser(User user) {
+        int result = userDAO.insertUser(user);
+        if (result!=1){
+            throw new IllegalStateException("User not added");
+        }
+    }
 }
