@@ -1,7 +1,10 @@
 package com.JJEP.JJEP.user;
 
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
+@ToString
 public class UserDTO {
     private Long id;
     private String username;
