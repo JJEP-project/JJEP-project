@@ -1,6 +1,6 @@
 package com.JJEP.JJEP.user;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class User {
     private Long id;
@@ -8,8 +8,8 @@ public class User {
     private String password;
     private String email;
     private String fullName;
-    private Timestamp createdAt;
-    private Timestamp updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     private UserRoles role;
 
@@ -53,19 +53,19 @@ public class User {
         this.fullName = fullName;
     }
 
-    public Timestamp getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Timestamp getUpdatedAt() {
+    public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
+    public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
 
@@ -81,8 +81,8 @@ public class User {
                 String password,
                 String email,
                 String fullName,
-                Timestamp createdAt,
-                Timestamp updatedAt,
+                LocalDateTime createdAt,
+                LocalDateTime updatedAt,
                 UserRoles role) {
         this.id = id;
         this.username = username;
@@ -90,29 +90,11 @@ public class User {
         this.email = email;
         this.fullName = fullName;
         this.createdAt = createdAt;
-        this.role = role;
         this.updatedAt = updatedAt;
-    }
-
-    public User(String username,
-                String password,
-                String email,
-                String fullName,
-                UserRoles role) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.fullName = fullName;
         this.role = role;
     }
 
-    public User(String username,
-                String password,
-                String email,
-                String fullName) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.fullName = fullName;
+    public User(){
+
     }
 }
