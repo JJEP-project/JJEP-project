@@ -11,6 +11,7 @@ import java.util.Optional;
 public class UserDataAccessService implements UserDAO {
 
     private final JdbcTemplate jdbcTemplate;
+    @SuppressWarnings("unused")
     private final ModelMapper modelMapper;
 
     public UserDataAccessService(JdbcTemplate jdbcTemplate, ModelMapper modelMapper) {
