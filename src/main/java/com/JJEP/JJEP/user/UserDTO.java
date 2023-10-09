@@ -1,17 +1,38 @@
 package com.JJEP.JJEP.user;
 
+import lombok.ToString;
+
 import java.time.LocalDateTime;
 
-public class User {
+@ToString
+public class UserDTO {
     private Long id;
     private String username;
-    private String password;
     private String email;
     private String fullName;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
     private UserRoles role;
+
+    public UserDTO(String username, String email, String fullName, UserRoles role) {
+        this.username = username;
+        this.email = email;
+        this.fullName = fullName;
+        this.role = role;
+    }
+
+    public UserDTO(Long id, String username, String email, String fullName, LocalDateTime createdAt, LocalDateTime updatedAt, UserRoles role) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.fullName = fullName;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.role = role;
+    }
+
+    public UserDTO() {
+    }
 
     public Long getId() {
         return id;
@@ -27,14 +48,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getEmail() {
@@ -76,25 +89,5 @@ public class User {
     public void setRole(UserRoles role) {
         this.role = role;
     }
-    public User(Long id,
-                String username,
-                String password,
-                String email,
-                String fullName,
-                LocalDateTime createdAt,
-                LocalDateTime updatedAt,
-                UserRoles role) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.fullName = fullName;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.role = role;
-    }
-
-    public User(){
-
-    }
 }
+

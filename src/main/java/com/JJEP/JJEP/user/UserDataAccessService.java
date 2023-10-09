@@ -1,16 +1,21 @@
 package com.JJEP.JJEP.user;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 
 @Repository
 public class UserDataAccessService implements UserDAO {
 
     private final JdbcTemplate jdbcTemplate;
+    private final ModelMapper modelMapper;
 
-    public UserDataAccessService(JdbcTemplate jdbcTemplate) {
+    public UserDataAccessService(JdbcTemplate jdbcTemplate, ModelMapper modelMapper) {
         this.jdbcTemplate = jdbcTemplate;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -23,17 +28,22 @@ public class UserDataAccessService implements UserDAO {
     }
 
     @Override
-    public User selectUserById(int id) {
+    public Optional<User> selectUserById(int id) {
+        String sql = """
+                     SELECT * FROM users
+                     WHERE id = ?
+                     """;
+
+        return jdbcTemplate.query(sql, new UserMapper(), id).stream().findFirst();
+    }
+
+    @Override
+    public Optional<User> selectUserByUsername(String username) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
     @Override
-    public User selectUserByUsername(String username) {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-
-    @Override
-    public User selectUserByEmail(String email) {
+    public Optional<User> selectUserByEmail(String email) {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
