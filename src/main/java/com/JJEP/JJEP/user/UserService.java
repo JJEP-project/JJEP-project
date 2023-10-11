@@ -1,29 +1,42 @@
 package com.JJEP.JJEP.user;
 
+import com.JJEP.JJEP.config.MapperConfig;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public class UserService {
-    private final UserDAO userDAO;
+public class UserService implements IUserService{
+    private final IUserRepository userRepository;
     private final ModelMapper modelMapper;
 
-
-    public UserService(UserDAO userDAO, ModelMapper modelMapper) {
-        this.userDAO = userDAO;
+    @Autowired
+    public UserService(IUserRepository userRepository,
+                       ModelMapper modelMapper)
+    {
+        this.userRepository = userRepository;
         this.modelMapper = modelMapper;
     }
 
-    public void addUser(UserWithPasswordDTO user) {
-        User user1 = modelMapper.map(user, User.class);
-        int result = userDAO.insertUser(user1);
-        if (result!=1){
-            throw new IllegalStateException("User not added");
+    @Override
+    public List<UserResponseDTO> findAllUsers()
+    {
+        List<User> users = userRepository.findAll();
+
+        List<UserResponseDTO> usersDTO = new ArrayList<>();
+        for (User user: users){
+            usersDTO.add(modelMapper.map(user, UserResponseDTO.class));
         }
+        return usersDTO;
     }
 
-    public UserDTO getUserById(int id){
-        User user = userDAO.selectUserById(id).orElseThrow(() -> new IllegalStateException("User not found"));
-        return modelMapper.map(user, UserDTO.class);
+    @Override
+    public void saveUser(UserRegistrationDTO userWithPasswordDTO){
+        User user = modelMapper.map(userWithPasswordDTO, User.class);
+        System.out.println(user);
+        userRepository.save(user);
     }
 }
