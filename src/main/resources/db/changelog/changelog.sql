@@ -20,5 +20,28 @@ CREATE TABLE users (
 -- rollback DROP TABLE users;
 -- rollback DROP TYPE role;
 
+-- changeset entl:alter-users-role-to-enum
+ALTER TABLE users ADD COLUMN temp_column VARCHAR(255);
+
+UPDATE users SET temp_column = CASE
+    WHEN role = 'user' THEN 'user'
+    WHEN role = 'admin' THEN 'admin'
+END;
+
+ALTER TABLE users DROP COLUMN role;
+
+ALTER TABLE users RENAME COLUMN temp_column TO role;
+
+--rollback ALTER TABLE users ADD COLUMN temp_column role;
+--rollback
+--rollback UPDATE users SET temp_column = CASE
+--rollback     WHEN role = 'user' THEN 'user'::role
+--rollback     WHEN role = 'admin' THEN 'admin'::role
+--rollback END;
+--rollback
+--rollback ALTER TABLE users DROP COLUMN role;
+--rollback
+--rollback ALTER TABLE users RENAME COLUMN temp_column TO role;
+
 -- liquibase formatted sql
 

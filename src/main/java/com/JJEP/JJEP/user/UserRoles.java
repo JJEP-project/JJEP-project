@@ -1,8 +1,13 @@
 package com.JJEP.JJEP.user;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 public enum UserRoles {
-    USER("user"),
-    ADMIN("admin");
+    @Enumerated(EnumType.STRING)
+    user("user"),
+    @Enumerated(EnumType.STRING)
+    admin("admin");
 
     public final String value;
 
