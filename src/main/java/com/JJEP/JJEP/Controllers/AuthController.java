@@ -49,7 +49,7 @@ public class AuthController {
             userService.registerUser(user);
             return "redirect:/login";
         } catch (Exception e) {
-            return "error";
+            return "register?error";
         }
     }
 
