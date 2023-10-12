@@ -2,6 +2,8 @@ package com.JJEP.JJEP.Controllers;
 
 import com.JJEP.JJEP.Models.LoginForm;
 import com.JJEP.JJEP.user.User;
+import com.JJEP.JJEP.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +15,8 @@ import javax.validation.Valid;
 
 @Controller
 public class AuthController {
+    @Autowired
+    UserService userService;
 
     @GetMapping("/login")
     public String login(Model model) {
@@ -28,18 +32,25 @@ public class AuthController {
 
     @PostMapping("/login-handler")
     public String loginHandler(@ModelAttribute("loginForm") @Valid LoginForm loginForm, BindingResult result) {
-        if (result.hasErrors()) { return "login"; }
+        if (result.hasErrors()) {
+            return "login";
+        }
 
         return "redirect:/";
-
     }
 
     @PostMapping("/register-handler")
     public String regiserHandler(@ModelAttribute("user") @Valid User user, BindingResult result) {
-        if (result.hasErrors()) { return "register"; }
+        if (result.hasErrors()) {
+            return "register";
+        }
 
-        return "redirect:/";
-
+        try {
+            userService.registerUser(user);
+            return "redirect:/login";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
 }
