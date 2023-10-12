@@ -4,32 +4,13 @@
 
 :root {
     --font-family:  'Gabarito', cursive;
-}
-
-:root {
     --gray-little-transparency: rgba(128, 128, 128, 0.4);
-  }
-
-:root {
     --reference-color: #0000FF;
-}
-
-:root {
     --white: #FFFFFF;
-}
-
-:root {
     --default-font-size: 1vw;
-}
-
-:root {
     --purple: #6135d2;
-}
-
-input::placeholder {
-    font-family: var(--font-family);
-    font-size: var(--default-font-size);
-    color: var(--gray-little-transparency);
+    --error-color: #ff3333;
+    --error-font-size: .9vw;
 }
 
 .container {
@@ -101,4 +82,20 @@ input::placeholder {
 
 .absolute {
     position: absolute;
+}
+
+.input {
+    text-indent: 2.5vw;
+}
+
+.input::placeholder {
+    font-family: var(--font-family);
+    font-size: var(--default-font-size);
+    color: var(--gray-little-transparency);
+}
+
+.error-message {
+    margin-bottom: .8vw;
+    color: var(--error-color);
+    font-size: var(--error-font-size);
 }
