@@ -42,15 +42,7 @@ public class UserService implements IUserService {
     @Override
     public void saveUser(UserRegistrationDTO userWithPasswordDTO) {
         User user = modelMapper.map(userWithPasswordDTO, User.class);
-        System.out.println(user);
-        userRepository.save(user);
-    }
-
-    @Override
-    public void registerUser(User user) {
-        // encode password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        // default role is user
         user.setRole(UserRoles.valueOf("user"));
         userRepository.save(user);
     }

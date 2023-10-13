@@ -7,6 +7,4 @@ import java.util.List;
 public interface IUserService extends UserDetailsService {
     List<UserResponseDTO> findAllUsers();
     void saveUser(UserRegistrationDTO user);
-
-    void registerUser(User user);
 }

@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @ToString
@@ -11,9 +14,17 @@ import java.time.LocalDateTime;
 @SuperBuilder
 public class UserResponseDTO {
     private Long id;
+
+    @NotBlank(message = "Username cannot be blank")
     private String username;
+
+    @NotBlank(message = "Email cannot be blank")
+    @Email(message = "Invalid email")
     private String email;
+
+    @NotBlank(message = "Full name cannot be blank")
     private String fullName;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private UserRoles role;

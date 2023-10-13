@@ -2,6 +2,7 @@ package com.JJEP.JJEP.Controllers;
 
 import com.JJEP.JJEP.Models.LoginForm;
 import com.JJEP.JJEP.user.User;
+import com.JJEP.JJEP.user.UserRegistrationDTO;
 import com.JJEP.JJEP.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class AuthController {
 
     @GetMapping("/register")
     public String register(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
         return "register";
     }
 
@@ -40,13 +41,13 @@ public class AuthController {
     }
 
     @PostMapping("/register-handler")
-    public String regiserHandler(@ModelAttribute("user") @Valid User user, BindingResult result) {
+    public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result) {
         if (result.hasErrors()) {
             return "register";
         }
 
         try {
-            userService.registerUser(user);
+            userService.saveUser(userRegistrationDTO);
             return "redirect:/login";
         } catch (Exception e) {
             return "register?error";
