@@ -52,7 +52,6 @@ public class UserService implements IUserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         // default role is user
         user.setRole(UserRoles.valueOf("user"));
-        System.out.println(user.getPassword());
         userRepository.save(user);
     }
 
