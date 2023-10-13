@@ -12,7 +12,14 @@
     <div class="container h-full">
         <div class="items-center justify-center flex h-full flex-col">
             <h1 class="title form-margin-bottom text">Log In</h1>
-            <form th:object="${loginForm}" method="post" th:action="@{/login-handler}" class="form-style flex flex-col justify-center items-center">
+
+            <!-- error message -->
+            <div th:if="${param.error}">
+                <div>Invalid username or
+                    password.</div>
+            </div>
+
+            <form th:object="${loginForm}" method="post" th:action="@{/login}" class="form-style flex flex-col justify-center items-center">
                 <span class="text error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
                 <div class="form-elements-width flex items-center form-margin-bottom">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 input-icon absolute">
