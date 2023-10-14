@@ -11,6 +11,7 @@
   --purple: #6135d2;
   --error-color: #ff3333;
   --error-font-size: 0.9vw;
+  --admin-button-color: #7d6caa;
 }
 
 .container {
@@ -172,4 +173,47 @@ footer {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 1rem;
+}
+
+
+.relative {
+  position: relative;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.admin-side-bar {
+  background-color: var(--purple);
+  width: 20%;
+}
+
+.z-0 {
+  z-index: 0;
+}
+
+.admin-panel-content {
+  left: 20%;
+  width: calc(80% - 3vw);
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-2\/4 {
+  width: 50%;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.admin-btn {
+  background-color: var(--admin-button-color);
+}
+
+.userBlock {
+  margin-right: 4vw;
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin-layout.html}">
+
+<head>
+    <title>Users</title>
+</head>
+
+<body class="h-full">
+    <div class="container h-full relative admin-panel-content" layout:fragment="content">
+        <div class="flex">
+            <div class="userBlock" th:each="user: ${users}">
+                <h1 class="text" th:text="${user.username}"></h1>
+                <h1 th:text="${user.email}"></h1>
+                <h1 th:text="${user.fullname}"></h1>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

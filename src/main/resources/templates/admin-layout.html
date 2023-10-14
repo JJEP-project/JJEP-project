@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/styles/global.css}">
+    <title>Layout</title>
+</head>
+
+<body>
+    <div class="relative">
+
+        <div class="admin-side-bar h-full fixed z-0 flex flex-col items-center">
+            <H1 class="text title">Admin panel</H1>
+            <button onclick="redirectToUsers()"
+                class="admin-btn btn rounded-md border p-8 text w-2/4 mb-4">Users</button>
+            <button onclick="redirectToApplications()"
+                class="admin-btn btn rounded-md border p-8 text w-2/4">Applications</button>
+        </div>
+
+        <section layout:fragment="content">
+            <p>Page content</p>
+        </section>
+
+    </div>
+
+    <script>
+        function redirectToApplications() {
+            window.location.href = '/applicationsadmin'
+        }
+        function redirectToUsers() {
+            window.location.href = '/usersadmin'
+        }
+    </script>
+
+</body>
+
+</html>
