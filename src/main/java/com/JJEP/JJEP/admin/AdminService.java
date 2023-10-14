@@ -11,7 +11,7 @@ public class AdminService {
     @Autowired
     AdminRepository adminRepository;
 
-    public List<AdminUserModel> getUsers() {
+    public List<String> getUsers() {
         return adminRepository.getUsers();
     }
 

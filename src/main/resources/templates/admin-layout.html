@@ -15,10 +15,8 @@
 
         <div class="admin-side-bar h-full fixed z-0 flex flex-col items-center">
             <H1 class="text title">Admin panel</H1>
-            <button onclick="redirectToUsers()"
-                class="admin-btn btn rounded-md border p-8 text w-2/4 mb-4">Users</button>
-            <button onclick="redirectToApplications()"
-                class="admin-btn btn rounded-md border p-8 text w-2/4">Applications</button>
+            <button class="admin-btn btn rounded-md border p-8 text w-2/4 mb-4">Users</button>
+            <button class="admin-btn btn rounded-md border p-8 text w-2/4">Applications</button>
         </div>
 
         <section layout:fragment="content">
@@ -26,15 +24,6 @@
         </section>
 
     </div>
-
-    <script>
-        function redirectToApplications() {
-            window.location.href = '/applicationsadmin'
-        }
-        function redirectToUsers() {
-            window.location.href = '/usersadmin'
-        }
-    </script>
 
 </body>
 

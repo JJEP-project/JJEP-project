@@ -9,26 +9,21 @@ import java.util.List;
 @Repository
 public class AdminRepository {
 
-    private List<AdminUserModel> listUsers = new ArrayList<>();
+    private List<String> listUsers = new ArrayList<>();
 
     public void addToTheList() {
 
-        AdminUserModel user1 = new AdminUserModel();
-        user1.setUsername("babyka");
-        user1.setEmail("pochtolion@gmail.com");
-        user1.setFullname("Fedor Dostoevsky");
-
-        listUsers.add(user1);
-
-        AdminUserModel user2 = new AdminUserModel();
-        user2.setUsername("kilkavmasle");
-        user2.setEmail("dura@gmail.com");
-        user2.setFullname("Veronika pavlovna");
-        listUsers.add(user2);
+        listUsers.add("Johnatan");
+        listUsers.add("Kylie");
+        listUsers.add("Roberto");
+        listUsers.add("Max");
+        listUsers.add("Yan");
+        listUsers.add("Jalol");
+        listUsers.add("Damir");
 
     }
 
-    public List<AdminUserModel> getUsers() {
+    public List<String> getUsers() {
         return listUsers;
     }
 

@@ -8,14 +8,9 @@
 
 <body class="h-full">
     <div class="container h-full relative admin-panel-content" layout:fragment="content">
-        <div class="flex">
-            <div class="userBlock" th:each="user: ${users}">
-                <h1 class="text" th:text="${user.username}"></h1>
-                <h1 th:text="${user.email}"></h1>
-                <h1 th:text="${user.fullname}"></h1>
-            </div>
+        <div class="userBlock flex" th:each="username: ${usernames}">
+            <h1 class="text" th:text="${username}"></h1>
         </div>
-
     </div>
 </body>
 

@@ -1,5 +1,7 @@
 package com.JJEP.JJEP.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,9 @@ public class AdminController {
             adminService.addToTheList();
             usersAdded = true;
         }
-        model.addAttribute("users", adminService.getUsers());
+
+        List<String> usernames = adminService.getUsers();
+        model.addAttribute("usernames", usernames);
 
         return "admin-users";
     }
