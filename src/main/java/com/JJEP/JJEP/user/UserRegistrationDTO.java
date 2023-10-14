@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Data
-@ToString
-public class UserRegistrationDTO extends UserResponseDTO {
+@ToString(callSuper = true)
+public class UserRegistrationDTO extends UserBaseDTO {
     private String password;
 }
