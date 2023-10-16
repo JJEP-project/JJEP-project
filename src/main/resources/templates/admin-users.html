@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{admin-layout.html}">
+
+<head>
+    <title>Users</title>
+</head>
+
+<body class="h-full">
+    <div class="container h-full relative admin-panel-content" layout:fragment="content">
+        <div class="userBlock flex" th:each="username: ${usernames}">
+            <h1 class="text" th:text="${username}"></h1>
+        </div>
+    </div>
+</body>
+
+</html>
