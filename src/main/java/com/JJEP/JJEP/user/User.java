@@ -1,5 +1,6 @@
 package com.JJEP.JJEP.user;
 
+import com.JJEP.JJEP.application.Application;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -48,4 +49,7 @@ public class User {
     private LocalDateTime updatedAt;
     @Enumerated(EnumType.STRING)
     private UserRoles role;
+
+    @OneToOne(mappedBy = "users")
+    private Application application;
 }
