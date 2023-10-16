@@ -118,10 +118,12 @@ public class UserService implements IUserService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("loadUserByUsername");
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
+        Optional<User> existingUserOptional = userRepository.findByUsername(username);
+        if (existingUserOptional.isEmpty()) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), new ArrayList<>());
+
+        User existingUser = existingUserOptional.get();
+        return new org.springframework.security.core.userdetails.User(existingUser.getEmail(), existingUser.getPassword(), new ArrayList<>());
     }
 }
