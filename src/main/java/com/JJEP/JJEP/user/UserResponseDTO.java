@@ -1,6 +1,7 @@
 package com.JJEP.JJEP.user;
 
-import lombok.*;
+import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
