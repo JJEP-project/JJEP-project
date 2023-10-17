@@ -75,5 +75,45 @@ CREATE TABLE user_application (
 
 --rollback DROP TABLE user_application;
 
+-- changeset entl:update-user-application-updated-at-function splitStatements:false
+CREATE OR REPLACE FUNCTION update_user_application_updated_at()
+    RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+--rollback DROP FUNCTION update_user_application_updated_at();
+
+
+-- changeset entl:update-user-application-updated-at-trigger
+CREATE TRIGGER tr_update_user_application_updated_at
+    BEFORE UPDATE ON user_application
+    FOR EACH ROW
+EXECUTE FUNCTION update_user_application_updated_at();
+
+--rollback DROP TRIGGER tr_update_user_application_updated_at ON user_application;
+
+-- changeset entl:update-users-updated-at-function splitStatements:false
+CREATE OR REPLACE FUNCTION update_users_updated_at()
+    RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+--rollback DROP FUNCTION update_users_updated_at();
+
+
+-- changeset entl:update-users-updated-at-trigger
+CREATE TRIGGER tr_update_users_updated_at
+    BEFORE UPDATE ON users
+    FOR EACH ROW
+EXECUTE FUNCTION update_users_updated_at();
+
+--rollback DROP TRIGGER tr_update_users_updated_at ON users
+
 -- liquibase formatted sql
 
