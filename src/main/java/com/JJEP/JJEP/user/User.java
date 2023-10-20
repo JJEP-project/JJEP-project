@@ -50,6 +50,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRoles role;
 
-    @OneToOne(mappedBy = "users")
+    @OneToOne(mappedBy = "user")
     private Application application;
 }
