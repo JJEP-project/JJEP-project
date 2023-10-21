@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{admin-layout.html}">
+      layout:decorate="~{admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Users</title>
@@ -8,8 +8,23 @@
 
 <body class="h-full">
 <div class="container h-full relative admin-panel-content" layout:fragment="content">
-    <div class="applicationBlock flex" th:each="form: ${forms}">
-        <h1 class="text" th:text="${form}"></h1>
+    <div class="applicationBlock flex flex-col" th:each="form: ${forms}">
+        <div class="flex">
+            <p>application id:&nbsp;</p>
+            <h1 class="text" th:text="${form.id}"></h1>
+        </div>
+        <div class="flex">
+            <p>notes:&nbsp;</p>
+            <h1 class="text" th:text="${form.notes}"></h1>
+        </div>
+        <div class="flex">
+            <p>created at:&nbsp;</p>
+            <h1 class="text" th:text="${form.createdAt}"></h1>
+        </div>
+        <div class="flex">
+            <p>updated at:&nbsp;</p>
+            <h1 class="text" th:text="${form.updatedAt}"></h1>
+        </div>
     </div>
 </div>
 </body>
