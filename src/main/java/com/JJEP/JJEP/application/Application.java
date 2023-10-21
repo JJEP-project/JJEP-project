@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,9 +22,16 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="user_id", referencedColumnName = "id")
-    private User user;
+    @Column(name = "user_id", updatable = false)
+    private Long userId;
+
+//    intentionally commented out because mapping does not work with jpa relations
+//    when mapping dto to entity mapping tries to fill user entity and save to db both user and application
+//    I think that we don't need jpa relations and can work either with 2 queries or with joins
+//    @JoinColumn(name = "user_id")
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @Transient
+//    private User user;
 
     @Column(name = "is_blood_protection")
     private boolean isBloodProtection;
@@ -30,9 +39,11 @@ public class Application {
     @Column(name = "is_generational_iht")
     private boolean isGenerationIht;
 
+    @CreationTimestamp
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
@@ -60,7 +71,7 @@ public class Application {
     @Column(name = "savings_cash")
     private float savingsCash;
 
-    @Column(name = "total")
+    @Column(name = "total", updatable = false, insertable = false)
     private float total;
 
     @Column(name = "personal_life_cover")
