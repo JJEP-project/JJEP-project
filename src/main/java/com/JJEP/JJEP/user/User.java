@@ -1,5 +1,6 @@
 package com.JJEP.JJEP.user;
 
+import com.JJEP.JJEP.application.Application;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name="User")
 @Table(name="users")
 public class User {
     @Id
@@ -48,4 +49,8 @@ public class User {
     private LocalDateTime updatedAt;
     @Enumerated(EnumType.STRING)
     private UserRoles role;
+
+//    intentionally commented out because mapping does not work with jpa relations
+//    @OneToOne(mappedBy = "user")
+//    private Application application;
 }
