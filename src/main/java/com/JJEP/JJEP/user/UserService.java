@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +30,10 @@ public class UserService implements IUserService {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+        this.modelMapper.getConfiguration().setPropertyCondition(ctx -> {
+            // Skip mapping if the source property is null
+            return ctx.getSource() != null;
+        });
     }
 
     @Override
@@ -63,26 +68,18 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @Transactional
     public void updateUser(long id, UserRegistrationDTO userRegistrationDTO){
         Optional<User> existingUserOptional = userRepository.findById(id);
         if (existingUserOptional.isEmpty()) {
             throw new UserNotFoundException("User not found");
         }
         User existingUser = existingUserOptional.get();
-
-        // the only solution I found so far
-        if (userRegistrationDTO.getUsername() != null)
-            existingUser.setUsername(userRegistrationDTO.getUsername());
-        if (userRegistrationDTO.getEmail() != null)
-            existingUser.setEmail(userRegistrationDTO.getEmail());
-        if (userRegistrationDTO.getPassword() != null)
-            existingUser.setPassword(userRegistrationDTO.getPassword());
-        if (userRegistrationDTO.getFullName() != null)
-            existingUser.setFullName(userRegistrationDTO.getFullName());
-        if (userRegistrationDTO.getRole() != null)
-            existingUser.setRole(userRegistrationDTO.getRole());
-
-        userRepository.save(existingUser);
+        User updatedUser = modelMapper.map(userRegistrationDTO, User.class);
+        // update existingUser with updated attributes of updatedUser
+        modelMapper.map(updatedUser, existingUser);
+        // because we updated existingUser, we need to save it
+        userRepository.updateById(id, existingUser);
     }
 
 
