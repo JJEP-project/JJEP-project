@@ -8,23 +8,21 @@ import java.util.List;
 
 @Repository
 public class AdminRepository {
+    private List<String> listApplications = new ArrayList<>();
 
-    private List<String> listUsers = new ArrayList<>();
 
-    public void addToTheList() {
+    public void addToTheApplicationsList() {
 
-        listUsers.add("Johnatan");
-        listUsers.add("Kylie");
-        listUsers.add("Roberto");
-        listUsers.add("Max");
-        listUsers.add("Yan");
-        listUsers.add("Jalol");
-        listUsers.add("Damir");
+        listApplications.add("Application 1");
+        listApplications.add("Application 2");
+        listApplications.add("Application 3");
+        listApplications.add("Application 4");
+        listApplications.add("Application 5");
+        listApplications.add("Application 6");
+
 
     }
 
-    public List<String> getUsers() {
-        return listUsers;
-    }
+    public List<String> getApplications() { return listApplications; }
 
 }

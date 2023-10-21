@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin-layout.html}">
+      layout:decorate="~{admin-layout.html}">
 
 <head>
     <title>Users</title>
 </head>
 
 <body class="h-full">
-    <div class="container h-full relative admin-panel-content" layout:fragment="content">
-        <p>hello world</p>
-
+<div class="container h-full relative admin-panel-content" layout:fragment="content">
+    <div class="applicationBlock flex" th:each="form: ${forms}">
+        <h1 class="text" th:text="${form}"></h1>
     </div>
+</div>
 </body>
 
 </html>

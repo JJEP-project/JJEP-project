@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{admin-layout.html}">
+      layout:decorate="~{admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Users</title>
@@ -8,8 +8,23 @@
 
 <body class="h-full">
     <div class="container h-full relative admin-panel-content" layout:fragment="content">
-        <div class="userBlock flex" th:each="username: ${usernames}">
-            <h1 class="text" th:text="${username}"></h1>
+        <div class="userBlock flex flex-col" th:each="user: ${users}">
+            <div class="flex">
+                <p>username:&nbsp;</p>
+                <h1 class="text" th:text="${user.username}"></h1>
+            </div>
+            <div class="flex">
+                <p>full name:&nbsp;</p>
+                <h1 class="text" th:text="${user.fullName}"></h1>
+            </div>
+            <div class="flex">
+                <p>email:&nbsp;</p>
+                <h1 class="text" th:text="${user.email}"></h1>
+            </div>
+            <div class="flex">
+                <p>created at:&nbsp;</p>
+                <h1 class="text" th:text="${user.createdAt}"></h1>
+            </div>
         </div>
     </div>
 </body>
