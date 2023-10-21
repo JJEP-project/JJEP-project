@@ -8,21 +8,8 @@ import java.util.List;
 
 @Repository
 public class AdminRepository {
-
-    private List<String> listUsers = new ArrayList<>();
     private List<String> listApplications = new ArrayList<>();
 
-    public void addToTheUsersList() {
-
-        listUsers.add("Johnatan");
-        listUsers.add("Kylie");
-        listUsers.add("Roberto");
-        listUsers.add("Max");
-        listUsers.add("Yan");
-        listUsers.add("Jalol");
-        listUsers.add("Damir");
-
-    }
 
     public void addToTheApplicationsList() {
 
@@ -36,9 +23,6 @@ public class AdminRepository {
 
     }
 
-    public List<String> getUsers() {
-        return listUsers;
-    }
     public List<String> getApplications() { return listApplications; }
 
 }

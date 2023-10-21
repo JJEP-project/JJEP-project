@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 
-    private boolean usersAdded = false;
     private boolean applicationsAdded = false;
 
     @Autowired
@@ -23,10 +22,6 @@ public class AdminController {
 
     @GetMapping("/usersadmin")
     public String adminUsers(Model model) {
-        if (!usersAdded) {
-            adminService.addToTheUsersList();
-            usersAdded = true;
-        }
 
         List<UserResponseDTO> users = userService.findAllUsers();
         model.addAttribute("users", users);

@@ -11,14 +11,8 @@ public class AdminService {
     @Autowired
     AdminRepository adminRepository;
 
-    public List<String> getUsers() {
-        return adminRepository.getUsers();
-    }
     public List<String> getApplications() { return adminRepository.getApplications(); }
 
-    public void addToTheUsersList() {
-        adminRepository.addToTheUsersList();
-    }
     public void addToTheApplicationsList() { adminRepository.addToTheApplicationsList(); }
 
 }
