@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name="User")
 @Table(name="users")
 public class User {
     @Id
@@ -50,6 +50,7 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRoles role;
 
-    @OneToOne(mappedBy = "user")
-    private Application application;
+//    intentionally commented out because mapping does not work with jpa relations
+//    @OneToOne(mappedBy = "user")
+//    private Application application;
 }
