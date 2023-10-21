@@ -16,5 +16,6 @@ public class ApplicationResponseDTO extends ApplicationBaseDTO {
     private Long id;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private User user;
+    // need to exclude user from toString to avoid infinite recursion
+    @ToString.Exclude private User user;
 }
