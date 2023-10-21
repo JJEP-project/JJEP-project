@@ -14,9 +14,11 @@ public class AdminService {
     public List<String> getUsers() {
         return adminRepository.getUsers();
     }
+    public List<String> getApplications() { return adminRepository.getApplications(); }
 
-    public void addToTheList() {
-        adminRepository.addToTheList();
+    public void addToTheUsersList() {
+        adminRepository.addToTheUsersList();
     }
+    public void addToTheApplicationsList() { adminRepository.addToTheApplicationsList(); }
 
 }

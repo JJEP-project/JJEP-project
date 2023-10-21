@@ -10,8 +10,9 @@ import java.util.List;
 public class AdminRepository {
 
     private List<String> listUsers = new ArrayList<>();
+    private List<String> listApplications = new ArrayList<>();
 
-    public void addToTheList() {
+    public void addToTheUsersList() {
 
         listUsers.add("Johnatan");
         listUsers.add("Kylie");
@@ -23,8 +24,21 @@ public class AdminRepository {
 
     }
 
+    public void addToTheApplicationsList() {
+
+        listApplications.add("Application 1");
+        listApplications.add("Application 2");
+        listApplications.add("Application 3");
+        listApplications.add("Application 4");
+        listApplications.add("Application 5");
+        listApplications.add("Application 6");
+
+
+    }
+
     public List<String> getUsers() {
         return listUsers;
     }
+    public List<String> getApplications() { return listApplications; }
 
 }
