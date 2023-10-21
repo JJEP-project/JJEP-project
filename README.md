@@ -33,11 +33,11 @@ If you want to connect your own database: Postgresql server
 
 - Install dependencies
 ```bash
-  ./mvnm clean install
+  ./mvnw clean install
 ```
 - Serve application
 ```bash
-  ./mvnm spring-boot:run
+  ./mvnw spring-boot:run
 ```
 
 - If you want to run on your database server - change
