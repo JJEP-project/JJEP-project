@@ -17,7 +17,7 @@ Description: A comprehensive Customer Relationship Management (CRM) system tailo
 
 **Client:** Thymeleaf, tailwind css CDN, javasript configs
 
-**Server:** Spring Boot, spring validation, spring JPBC, spring JPA, spring security, lombok, liquibase, PostgreSQL driver, spring devtools
+**Server:** Spring Boot, spring validation, spring JDBC, spring JPA, spring security, lombok, liquibase, PostgreSQL driver, spring devtools
 
 **Database:** PostgreSQL
 
