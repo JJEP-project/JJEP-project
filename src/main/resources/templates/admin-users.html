@@ -1,41 +1,99 @@
 <!DOCTYPE html>
 <html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
+      layout:decorate="~{layouts/admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <title>Users</title>
 </head>
 
 <body class="h-full">
-    <div class="container h-full relative admin-panel-content" layout:fragment="content">
-        <div class="userBlock flex flex-col" th:each="user: ${users}">
-            <div class="flex">
-                <p>id:&nbsp;</p>
-                <h1 class="text" th:text="${user.id}"></h1>
-            </div>
-            <div class="flex">
-                <p>username:&nbsp;</p>
-                <h1 class="text" th:text="${user.username}"></h1>
-            </div>
-            <div class="flex">
-                <p>full name:&nbsp;</p>
-                <h1 class="text" th:text="${user.fullName}"></h1>
-            </div>
-            <div class="flex">
-                <p>email:&nbsp;</p>
-                <h1 class="text" th:text="${user.email}"></h1>
-            </div>
-            <div class="flex">
-                <p>created at:&nbsp;</p>
-                <h1 class="text" th:text="${user.createdAt}"></h1>
-            </div>
-            <div class="flex">
-                <p>updated at:&nbsp;</p>
-                <h1 class="text" th:text="${user.updatedAt}"></h1>
-            </div>
-            <div class="flex">
-                <p>role:&nbsp;</p>
-                <h1 class="text" th:text="${user.role}"></h1>
+    <div layout:fragment="content">
+        <div class="m-4">
+            <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4">
+                <div class="flex flex-row justify-between items-center">
+                    <h3 class="text-xl">Users</h3>
+                    <div class="flex flex-row justify-end space-x-4">
+                        <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                            Sort
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                            Add User
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Users -->
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full divide-y whitespace-nowrap">
+                        <thead class="h-10">
+                        <tr>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">ID</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Full name</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Username</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Email</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Role</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Created at</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Updated at</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Actions</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                        <tr class="h-10" th:each="user: ${users}">
+                            <td th:text="${user.id}">
+
+                            </td>
+                            <td th:text="${user.fullName}">
+
+                            </td>
+                            <td th:text="${user.username}">
+
+                            </td>
+                            <td th:text="${user.email}">
+
+                            </td>
+                            <td>
+                                <span class="bg-sky-500 py-1 px-2 rounded-full text-white">
+                                    User
+                                </span>
+                            </td>
+                            <td th:text="${user.createdAt}">
+
+                            </td>
+                            <td th:text="${user.updatedAt}">
+
+                            </td>
+                            <td>
+                                <div class="flex flex-row space-x-2">
+                                    <button class="bg-blue-500 py-1 px-2 rounded-full text-white">
+                                        Edit
+                                    </button>
+                                    <button class="bg-red-500 py-1 px-2 rounded-full text-white">
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>

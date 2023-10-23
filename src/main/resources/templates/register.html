@@ -1,66 +1,205 @@
 <!doctype html>
-<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{_layout.html}">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>JJEP</title>
+    <link rel="stylesheet" th:href="@{/styles/global.css}">
+    <script th:src="@{tailwind.config.js}">
+    </script>
 </head>
-<body class="h-full">
-<div class="container h-full" layout:fragment="content">
-    <div class="items-center justify-center flex h-full flex-col">
-        <h1 class="title form-margin-bottom text">Register</h1>
-
-        <div th:if="${param.error}">
-            <div>Something went wrong. Please try again</div>
+<body>
+<!-- navbar -->
+<nav class="px-8 md:px-auto">
+    <div class="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
+        <!-- Logo -->
+        <div class="text-primary text-xl font-semibold md:order-1 flex-1">
+            <a href="form_ui.html">
+                JJEP
+            </a>
         </div>
-        <form th:object="${userRegistrationDTO}" method="post" th:action="@{/register-handler}"
-              class="form-style flex flex-col justify-center items-center">
-            <span class="text error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-            <div class="form-elements-width flex items-center form-margin-bottom">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="w-6 h-6 input-icon absolute">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-                </svg>
-                <input class="input rounded-md border form-elements-width p-8 text" type="text" placeholder="Username"
-                       th:field="*{username}">
-            </div>
-            <span class="text error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-            <div class="form-elements-width flex items-center form-margin-bottom">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="w-6 h-6 input-icon absolute">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
-                </svg>
-                <input class="input rounded-md border form-elements-width p-8 text" type="email" placeholder="Email"
-                       th:field="*{email}">
-            </div>
-            <span class="text error-message" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
-            <div class="form-elements-width flex items-center form-margin-bottom">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="w-6 h-6 input-icon absolute">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
-                </svg>
-                <input class="input rounded-md border form-elements-width p-8 text" type="text" placeholder="Full name"
-                       th:field="*{fullName}">
-            </div>
-            <span class="text error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-            <div class="form-elements-width flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                     stroke="currentColor" class="w-6 h-6 input-icon absolute">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
-                </svg>
-                <input class="input rounded-md border form-elements-width p-8 text" type="password"
-                       placeholder="Password" th:field="*{password}">
-            </div>
-            <div class="form-alternative-margin flex justify-between form-elements-width">
-                <p class="text">Already have an account?</p>
-                <a href="/login" class="text reference">Sign in</a>
-            </div>
-            <button class="btn rounded-md border form-elements-width p-8 text" type="submit">Register</button>
-        </form>
+        <div class="order-3 w-full md:w-auto md:order-2">
+            <ul class="flex flex-wrap justify-between items-center">
+                <!-- Max 4 items with limited symbols -->
+                <!-- active link class: bg-link-back_hover text-link -->
+                <li><a class="px-4 py-2 rounded-xl" href="#">Home</a></li>
+                <li><a class="px-4 py-2 rounded-xl" href="#">About</a></li>
+                <li><a class="px-4 py-2 rounded-xl" href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="order-2 md:order-3">
+            <!-- auth user -->
+            <!-- Only admin can see "Admin" button -->
+            <!--            <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">-->
+            <!--                Admin-->
+            <!--            </button>-->
+            <!--            <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">-->
+            <!--                Logout-->
+            <!--            </button>-->
+            <!-- not auth user -->
+            <a href="register.html" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                Sign up
+            </a>
+            <a href="/login" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                Login
+            </a>
+        </div>
     </div>
+</nav>
+
+<!-- container -->
+<div class="container mx-auto h-full">
+    <!-- content -->
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register new
+                account</h2>
+        </div>
+
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+            <div th:if="${param.error}">-->
+                <div>Something went wrong. Please try again</div>
+            </div>
+
+            <form th:object="${userRegistrationDTO}" method="post" th:action="@{/register-handler}" class="space-y-4">
+
+                <span class="text error-message" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
+                <label for="Full name" class="block text-sm font-medium text-gray-900">Full name</label>
+                <div class="mt-2">
+                    <input
+                            th:field="*{fullName}"
+                            type="text"
+                            name="Full name"
+                            id="Full name"
+                            autocomplete="name"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                </div>
+
+                <span class="text error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                <label for="Email address" class="block text-sm font-medium text-gray-900">Email</label>
+                <div class="mt-2">
+                    <input
+                            th:field="*{email}"
+                            type="email"
+                            name="Email address"
+                            id="Email address"
+                            autocomplete="email"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                </div>
+
+                <span class="text error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                <label for="username" class="block text-sm font-medium text-gray-900">Username</label>
+                <div class="mt-2">
+                    <input
+                            th:field="*{username}"
+                            type="text"
+                            name="username"
+                            id="username"
+                            autocomplete="username"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                </div>
+
+                <span class="text error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
+                <div class="mt-2">
+                    <input
+                            th:field="*{password}"
+                            type="password"
+                            name="password"
+                            id="password"
+                            autocomplete="password"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                </div>
+
+                <div>
+                    <button type="submit"
+                            class="mt-4 px-4 w-full py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                        Submit
+                    </button>
+                </div>
+            </form>
+
+            <p class="mt-10 text-center text-sm text-gray-500">
+                Already have account?
+                <a href="login.html" class="font-semibold leading-6 text-link hover:text-link-hover">Login here</a>
+            </p>
+        </div>
+    </div>
+    <!-- end content -->
 </div>
 </body>
 </html>
+
+
+
+
+<!--<!doctype html>-->
+<!--<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      layout:decorate="~{_layout.html}">-->
+<!--<head>-->
+<!--    <title>Register</title>-->
+<!--</head>-->
+<!--<body class="h-full">-->
+<!--<div class="container h-full" layout:fragment="content">-->
+<!--    <div class="items-center justify-center flex h-full flex-col">-->
+<!--        <h1 class="title form-margin-bottom text">Register</h1>-->
+
+<!--        <div th:if="${param.error}">-->
+<!--            <div>Something went wrong. Please try again</div>-->
+<!--        </div>-->
+<!--        <form th:object="${userRegistrationDTO}" method="post" th:action="@{/register-handler}"-->
+<!--              class="form-style flex flex-col justify-center items-center">-->
+<!--            <span class="text error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>-->
+<!--            <div class="form-elements-width flex items-center form-margin-bottom">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
+<!--                     stroke="currentColor" class="w-6 h-6 input-icon absolute">-->
+<!--                    <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>-->
+<!--                </svg>-->
+<!--                <input class="input rounded-md border form-elements-width p-8 text" type="text" placeholder="Username"-->
+<!--                       th:field="*{username}">-->
+<!--            </div>-->
+<!--            <span class="text error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
+<!--            <div class="form-elements-width flex items-center form-margin-bottom">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
+<!--                     stroke="currentColor" class="w-6 h-6 input-icon absolute">-->
+<!--                    <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                          d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>-->
+<!--                </svg>-->
+<!--                <input class="input rounded-md border form-elements-width p-8 text" type="email" placeholder="Email"-->
+<!--                       th:field="*{email}">-->
+<!--            </div>-->
+<!--            <span class="text error-message" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>-->
+<!--            <div class="form-elements-width flex items-center form-margin-bottom">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
+<!--                     stroke="currentColor" class="w-6 h-6 input-icon absolute">-->
+<!--                    <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                          d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>-->
+<!--                </svg>-->
+<!--                <input class="input rounded-md border form-elements-width p-8 text" type="text" placeholder="Full name"-->
+<!--                       th:field="*{fullName}">-->
+<!--            </div>-->
+<!--            <span class="text error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>-->
+<!--            <div class="form-elements-width flex items-center">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"-->
+<!--                     stroke="currentColor" class="w-6 h-6 input-icon absolute">-->
+<!--                    <path stroke-linecap="round" stroke-linejoin="round"-->
+<!--                          d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>-->
+<!--                </svg>-->
+<!--                <input class="input rounded-md border form-elements-width p-8 text" type="password"-->
+<!--                       placeholder="Password" th:field="*{password}">-->
+<!--            </div>-->
+<!--            <div class="form-alternative-margin flex justify-between form-elements-width">-->
+<!--                <p class="text">Already have an account?</p>-->
+<!--                <a href="/login" class="text reference">Sign in</a>-->
+<!--            </div>-->
+<!--            <button class="btn rounded-md border form-elements-width p-8 text" type="submit">Register</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->
