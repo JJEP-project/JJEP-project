@@ -10,6 +10,10 @@
     <div class="container h-full relative admin-panel-content" layout:fragment="content">
         <div class="userBlock flex flex-col" th:each="user: ${users}">
             <div class="flex">
+                <p>id:&nbsp;</p>
+                <h1 class="text" th:text="${user.id}"></h1>
+            </div>
+            <div class="flex">
                 <p>username:&nbsp;</p>
                 <h1 class="text" th:text="${user.username}"></h1>
             </div>
@@ -24,6 +28,14 @@
             <div class="flex">
                 <p>created at:&nbsp;</p>
                 <h1 class="text" th:text="${user.createdAt}"></h1>
+            </div>
+            <div class="flex">
+                <p>updated at:&nbsp;</p>
+                <h1 class="text" th:text="${user.updatedAt}"></h1>
+            </div>
+            <div class="flex">
+                <p>role:&nbsp;</p>
+                <h1 class="text" th:text="${user.role}"></h1>
             </div>
         </div>
     </div>

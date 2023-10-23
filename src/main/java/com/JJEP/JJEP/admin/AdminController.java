@@ -2,6 +2,9 @@ package com.JJEP.JJEP.admin;
 
 import java.util.List;
 
+import com.JJEP.JJEP.application.Application;
+import com.JJEP.JJEP.application.ApplicationResponseDTO;
+import com.JJEP.JJEP.application.ApplicationService;
 import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 
-    private boolean applicationsAdded = false;
-
     @Autowired
-    AdminService adminService;
+    ApplicationService applicationService;
 
     @Autowired
     UserService userService;
@@ -31,12 +32,9 @@ public class AdminController {
 
     @GetMapping("/applicationsadmin")
     public String adminApplications(Model model) {
-        if (!applicationsAdded) {
-            adminService.addToTheApplicationsList();
-            applicationsAdded = true;
-        }
 
-        List<String> forms = adminService.getApplications();
+
+        List<ApplicationResponseDTO> forms = applicationService.findAllApplications();
         model.addAttribute("forms", forms);
 
         return "admin-applications";
