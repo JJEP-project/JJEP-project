@@ -2,6 +2,8 @@ package com.JJEP.JJEP.user;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.dao.DataIntegrityViolationException;
 
@@ -11,9 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService implements IUserService {
@@ -89,7 +89,7 @@ public class UserService implements IUserService {
         try {
         User user = modelMapper.map(userWithPasswordDTO, User.class);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRole(UserRoles.valueOf("user"));
+            user.setRole(UserRoles.ROLE_USER.toString());
             userRepository.save(user);
 
         }catch (DataIntegrityViolationException e){

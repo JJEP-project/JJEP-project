@@ -47,8 +47,7 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-    @Enumerated(EnumType.STRING)
-    private UserRoles role;
+    private String role;
 
 //    intentionally commented out because mapping does not work with jpa relations
 //    @OneToOne(mappedBy = "user")
