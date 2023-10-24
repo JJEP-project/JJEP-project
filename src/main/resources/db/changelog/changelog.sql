@@ -115,5 +115,10 @@ EXECUTE FUNCTION update_users_updated_at();
 
 --rollback DROP TRIGGER tr_update_users_updated_at ON users
 
+-- changeset entl:drop-pensions-column
+ALTER TABLE user_application DROP COLUMN pensions;
+
+--rollback ALTER TABLE user_application ADD COLUMN pensions FLOAT NOT NULL DEFAULT 0;
+
 -- liquibase formatted sql
 
