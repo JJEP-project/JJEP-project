@@ -1,114 +1,67 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{_layout.html}"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>JJEP</title>
-    <link rel="stylesheet" th:href="@{/styles/global.css}">
-    <script th:src="@{tailwind.config.js}">
-    </script>
+    <title>
+        login
+    </title>
 </head>
 <body>
-<!-- navbar -->
-<nav class="px-8 md:px-auto">
-    <div class="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
-        <!-- Logo -->
-        <div class="text-primary text-xl font-semibold md:order-1 flex-1">
-            <a href="form_ui.html">
-                JJEP
-            </a>
-        </div>
-        <div class="order-3 w-full md:w-auto md:order-2">
-            <ul class="flex flex-wrap justify-between items-center">
-                <!-- Max 4 items with limited symbols -->
-                <!-- active link class: bg-link-back_hover text-link -->
-                <li><a class="px-4 py-2 rounded-xl" href="#">Home</a></li>
-                <li><a class="px-4 py-2 rounded-xl" href="#">About</a></li>
-                <li><a class="px-4 py-2 rounded-xl" href="#">Contact</a></li>
-            </ul>
-        </div>
-        <div class="order-2 md:order-3">
-            <!-- auth user -->
-            <!-- Only admin can see "Admin" button -->
-            <!--            <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">-->
-            <!--                Admin-->
-            <!--            </button>-->
-            <!--            <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">-->
-            <!--                Logout-->
-            <!--            </button>-->
-            <!-- not auth user -->
-            <a href="/register" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
-                Sign up
-            </a>
-            <a href="login.html" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
-                Login
-            </a>
-        </div>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8"  layout:fragment="content">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Login to your
+            account</h2>
     </div>
-</nav>
 
-<!-- container -->
-<div class="container mx-auto h-full">
-    <!-- content -->
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-            <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Login to your
-                account</h2>
-        </div>
-
-                <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <div th:if="${param.error}">
-                        <div>Invalid username
-                            or password.
-                        </div>
-                    </div>
-                    <form class="space-y-4" th:object="${loginForm}" method="post" th:action="@{/login}">
-                        <label for="username" class="block text-sm font-medium text-gray-900">Username</label>
-                        <div class="mt-2">
-                            <span class="text error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
-                            <input
-                                    th:field="*{username}"
-                                    type="text"
-                                    name="username"
-                                    id="username"
-                                    autocomplete="name"
-                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-                        </div>
-
-                        <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
-                        <div class="mt-2">
-                            <span class="text error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-                            <input
-                                    th:field="*{password}"
-                                    type="text"
-                                    name="password"
-                                    id="password"
-                                    autocomplete="password"
-                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-                        </div>
-
-                        <div>
-                            <button type="submit" class="mt-4 px-4 w-full py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
-                                Submit
-                            </button>
-                        </div>
-                    </form>
-
-                    <p class="mt-10 text-center text-sm text-gray-500">
-                        You don't have account?
-                        <a href="/register" class="font-semibold leading-6 text-link hover:text-link-hover">Register here</a>
-                    </p>
-                </div>
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div th:if="${param.error}">
+            <div>Invalid username
+                or password.
             </div>
-            <!-- end content -->
+        </div>
+        <form class="space-y-4" th:object="${loginForm}" method="post" th:action="@{/login}">
+            <label for="username" class="block text-sm font-medium text-gray-900">Username</label>
+            <div class="mt-2">
+                <span class="text error-message" th:if="${#fields.hasErrors('username')}"
+                      th:errors="*{username}"></span>
+                <input
+                        th:field="*{username}"
+                        type="text"
+                        name="username"
+                        id="username"
+                        autocomplete="name"
+                        class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+            </div>
+
+            <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
+            <div class="mt-2">
+                <span class="text error-message" th:if="${#fields.hasErrors('password')}"
+                      th:errors="*{password}"></span>
+                <input
+                        th:field="*{password}"
+                        type="text"
+                        name="password"
+                        id="password"
+                        autocomplete="password"
+                        class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+            </div>
+
+            <div>
+                <button type="submit"
+                        class="mt-4 px-4 w-full py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                    Submit
+                </button>
+            </div>
+        </form>
+
+        <p class="mt-10 text-center text-sm text-gray-500">
+            You don't have account?
+            <a href="/register" class="font-semibold leading-6 text-link hover:text-link-hover">Register here</a>
+        </p>
+    </div>
 </div>
 </body>
 </html>
-
-
 
 <!--<!doctype html>-->
 <!--<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->

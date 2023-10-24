@@ -1,59 +1,13 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{_layout.html}" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>JJEP</title>
-    <link rel="stylesheet" th:href="@{/styles/global.css}">
-    <script th:src="@{tailwind.config.js}">
-    </script>
 </head>
 <body>
 <!-- navbar -->
-<nav class="px-8 md:px-auto">
-    <div class="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
-        <!-- Logo -->
-        <div class="text-primary text-xl font-semibold md:order-1 flex-1">
-            <a href="form_ui.html">
-                JJEP
-            </a>
-        </div>
-        <div class="order-3 w-full md:w-auto md:order-2">
-            <ul class="flex flex-wrap justify-between items-center">
-                <!-- Max 4 items with limited symbols -->
-                <!-- active link class: bg-link-back_hover text-link -->
-                <li><a class="px-4 py-2 rounded-xl" href="#">Home</a></li>
-                <li><a class="px-4 py-2 rounded-xl" href="#">About</a></li>
-                <li><a class="px-4 py-2 rounded-xl" href="#">Contact</a></li>
-            </ul>
-        </div>
-        <div class="order-2 md:order-3">
-            <!-- auth user -->
-            <!-- Only admin can see "Admin" button -->
-            <!--            <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">-->
-            <!--                Admin-->
-            <!--            </button>-->
-            <!--            <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">-->
-            <!--                Logout-->
-            <!--            </button>-->
-            <!-- not auth user -->
-            <a href="register.html" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
-                Sign up
-            </a>
-            <a href="/login" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
-                Login
-            </a>
-        </div>
-    </div>
-</nav>
 
-<!-- container -->
-<div class="container mx-auto h-full">
     <!-- content -->
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8" layout:fragment="content">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register new
                 account</h2>
@@ -130,7 +84,7 @@
         </div>
     </div>
     <!-- end content -->
-</div>
+
 </body>
 </html>
 
