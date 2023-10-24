@@ -10,8 +10,9 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApplicationBaseDTO {
-    private boolean isBloodProtection;
-    private boolean isGenerationIht;
+
+    private Boolean isBloodProtection;
+    private Boolean isGenerationIht;
     private String notes;
     private float primaryProperty;
     private float ukHolidayHome;
