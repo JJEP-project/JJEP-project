@@ -79,7 +79,4 @@ public class Application {
 
     @Column(name = "trust")
     private boolean trust;
-
-    @Column(name = "pensions")
-    private float pensions;
 }

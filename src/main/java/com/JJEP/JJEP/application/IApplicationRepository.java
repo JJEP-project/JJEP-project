@@ -23,8 +23,7 @@ public interface IApplicationRepository extends JpaRepository<Application, Long>
                 a.investment = :#{#application.investment},
                 a.savingsCash = :#{#application.savingsCash},
                 a.personalLifeCover = :#{#application.personalLifeCover},
-                a.trust = :#{#application.trust},
-                a.pensions = :#{#application.pensions}
+                a.trust = :#{#application.trust}
             WHERE\s
                 a.id = :id
             """)
