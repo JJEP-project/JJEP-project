@@ -23,5 +23,4 @@ public class ApplicationBaseDTO {
     private float total;
     private float personalLifeCover;
     private boolean trust;
-    private float pensions;
 }
