@@ -24,9 +24,9 @@
             <ul class="flex flex-wrap justify-between items-center">
                 <!-- Max 4 items with limited symbols -->
                 <!-- active link class: bg-link-back_hover text-link -->
-                <li><a class="px-4 py-2 rounded-xl bg-link-back_hover text-link" href="#">Home</a></li>
-                <li><a class="px-4 py-2 rounded-xl" href="#">About</a></li>
-                <li><a class="px-4 py-2 rounded-xl" href="#">Contact</a></li>
+                <li><a class="px-4 py-2 rounded-xl bg-link-back_hover text-link" th:href="@{/}">Home</a></li>
+                <li><a class="px-4 py-2 rounded-xl" th:href="@{/about}">About</a></li>
+                <li><a class="px-4 py-2 rounded-xl" th:href="@{/contact}">Contact</a></li>
             </ul>
         </div>
         <div class="order-2 md:order-3">
@@ -39,10 +39,10 @@
             <!--                Logout-->
             <!--            </button>-->
             <!-- not auth user -->
-            <a href="register.html" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+            <a th:href="@{/register}" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
                 Sign up
             </a>
-            <a href="login.html" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+            <a th:href="@{/login}" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
                 Login
             </a>
         </div>
@@ -50,8 +50,34 @@
 </nav>
 
 <!-- container -->
-<div class="container mx-auto">
+<div class="container mx-auto min-h-screen">
     <div layout:fragment="content"></div>
 </div>
+<footer class="bg-gradient-to-r from-primary to-black text-white p-12 lg:p-20 rounded-t-[40px] flex flex-col divide-y">
+    <div class="pb-12">
+        <h6 class="text-2xl">Contact us</h6>
+        <div class="flex flex-col justify-start items-start pt-6 gap-1">
+            <p>
+                Address: 1234 Street Name, City Name, England
+            </p>
+            <p>
+                Phone: <a href="tel:+44 234 567 890">
+                +1 234 567 890
+            </a>
+            </p>
+            <p>
+                Email: <a href="mailto:test@test.com">
+                test@test.com
+            </a>
+            </p>
+        </div>
+    </div>
+    <div class="flex flex-row justify-between items-center pt-12 border-t border-white/10">
+        <h5 class="font-bold text-md lg:text-xl">
+            JJEP .
+        </h5>
+        <p>© JJEP Agency Inc. 2023</p>
+    </div>
+</footer>
 </body>
 </html>
