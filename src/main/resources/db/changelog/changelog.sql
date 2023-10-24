@@ -49,7 +49,7 @@ ALTER TABLE users RENAME COLUMN temp_column TO role;
 
 CREATE TABLE user_application (
       id BIGSERIAL,
-      user_id BIGSERIAL NOT NULL ,
+      user_id BIGINT NOT NULL,
       is_blood_protection BOOLEAN NOT NULL DEFAULT FALSE,
       is_generational_iht BOOLEAN NOT NULL DEFAULT FALSE,
       created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -119,6 +119,44 @@ EXECUTE FUNCTION update_users_updated_at();
 ALTER TABLE user_application DROP COLUMN pensions;
 
 --rollback ALTER TABLE user_application ADD COLUMN pensions FLOAT NOT NULL DEFAULT 0;
+
+-- changeset entl:create-application-clients
+
+CREATE TABLE application_clients (
+    id BIGSERIAL,
+    application_id BIGINT NOT NULL,
+    family_name VARCHAR(255) NOT NULL,
+    forename VARCHAR(255) NOT NULL,
+    marital_status VARCHAR(255) NOT NULL,
+    date_of_birth DATE NOT NULL,
+    is_UK_IHT BOOLEAN NOT NULL DEFAULT FALSE,
+    is_spouse_NRB BOOLEAN NOT NULL DEFAULT FALSE,
+    is_LPA BOOLEAN NOT NULL DEFAULT FALSE,
+    primary_property FLOAT NOT NULL DEFAULT 0,
+    UK_holiday_home FLOAT NOT NULL DEFAULT 0,
+    BTL_property FLOAT NOT NULL DEFAULT 0,
+    foreign_property FLOAT NOT NULL DEFAULT 0,
+    foreign_will BOOLEAN NOT NULL DEFAULT FALSE,
+    BRP_assets FLOAT NOT NULL DEFAULT 0,
+    non_BRP_assets FLOAT NOT NULL DEFAULT 0,
+    nature_of_business VARCHAR(255),
+    investments FLOAT NOT NULL DEFAULT 0,
+    savings_cash FLOAT NOT NULL DEFAULT 0,
+    total FLOAT GENERATED ALWAYS AS (
+                 primary_property + UK_holiday_home + BTL_property + foreign_property +
+                 investments + savings_cash + BRP_assets + non_BRP_assets
+             ) STORED,
+    personal_life_cover FLOAT NOT NULL DEFAULT 0,
+    trust BOOLEAN NOT NULL DEFAULT FALSE,
+    death_benefit_trust BOOLEAN NOT NULL DEFAULT FALSE,
+    death_in_service FLOAT NOT NULL DEFAULT 0,
+    pension FLOAT NOT NULL DEFAULT 0,
+    PRIMARY KEY (id),
+    FOREIGN KEY (application_id) REFERENCES user_application (id) ON DELETE CASCADE
+);
+
+-- rollback DROP TABLE application_clients;
+
 
 -- liquibase formatted sql
 
