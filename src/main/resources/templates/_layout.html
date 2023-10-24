@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -30,19 +30,22 @@
             </ul>
         </div>
         <div class="order-2 md:order-3">
-            <!-- auth user -->
             <!-- Only admin can see "Admin" button -->
-            <!--            <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">-->
-            <!--                Admin-->
-            <!--            </button>-->
-            <!--            <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">-->
-            <!--                Logout-->
-            <!--            </button>-->
+            <a sec:authorize="isAuthenticated()" th:href="@{/admin}" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                Admin
+            </a>
+            <!-- auth user -->
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}"
+               class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                Logout
+            </a>
             <!-- not auth user -->
-            <a th:href="@{/register}" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+            <a sec:authorize="!isAuthenticated()" th:href="@{/register}" type="button"
+               class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
                 Sign up
             </a>
-            <a th:href="@{/login}" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+            <a sec:authorize="!isAuthenticated()" th:href="@{/login}"
+               class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
                 Login
             </a>
         </div>
