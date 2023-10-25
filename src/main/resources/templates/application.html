@@ -24,16 +24,16 @@
         <div class="mt-2">
           <input
                   th:field="*{primaryProperty}"
-                  type="text"
+                  type="number"
                   name="property"
                   id="property"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                   min="0"
                   max="3.4028235E38"
-                  required="required"
           >
         </div>
+        <span class="text error-message" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
       </div>
 
       <div class="md:m-0">
@@ -41,16 +41,16 @@
         <div class="mt-2">
           <input
                   th:field="*{ukHolidayHome}"
-                  type="text"
+                  type="number"
                   name="uk-property"
                   id="uk-property"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                   min="0"
                   max="3.4028235E38"
-                  required="required"
           >
         </div>
+        <span class="text error-message" th:if="${#fields.hasErrors('ukHolidayHome')}" th:errors="*{ukHolidayHome}"></span>
       </div>
 
       <div class="md:m-0">
@@ -58,16 +58,16 @@
         <div class="mt-2">
           <input
                   th:field="*{btlProperty}"
-                  type="text"
+                  type="number"
                   name="btl-property"
                   id="btl-property"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                   min="0"
                   max="3.4028235E38"
-                  required="required"
           >
         </div>
+        <span class="text error-message" th:if="${#fields.hasErrors('btlProperty')}" th:errors="*{btlProperty}"></span>
       </div>
 
       <div class="md:m-0">
@@ -75,16 +75,16 @@
         <div class="mt-2">
           <input
                   th:field="*{foreignProperty}"
-                  type="text"
+                  type="number"
                   name="foreign-property"
                   id="foreign-property"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                   min="0"
                   max="3.4028235E38"
-                  required="required"
           >
         </div>
+        <span class="text error-message" th:if="${#fields.hasErrors('foreignProperty')}" th:errors="*{foreignProperty}"></span>
       </div>
 
       <div class="md:m-0 col-span-full">
@@ -107,16 +107,16 @@
         <div class="mt-2">
           <input
                   th:field="*{investment}"
-                  type="text"
+                  type="number"
                   name="investment"
                   id="investment"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                   min="0"
                   max="3.4028235E38"
-                  required="required"
           >
         </div>
+        <span class="text error-message" th:if="${#fields.hasErrors('investment')}" th:errors="*{investment}"></span>
       </div>
 
       <div class="md:m-0">
@@ -124,16 +124,16 @@
         <div class="mt-2">
           <input
                   th:field="*{savingsCash}"
-                  type="text"
+                  type="number"
                   name="savings-cash"
                   id="savings-cash"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                   min="0"
                   max="3.4028235E38"
-                  required="required"
           >
         </div>
+        <span class="text error-message" th:if="${#fields.hasErrors('savingsCash')}" th:errors="*{savingsCash}"></span>
       </div>
 
       <div class="md:m-0 col-span-full">
@@ -141,23 +141,22 @@
         <div class="mt-2">
           <input
                   th:field="*{total}"
-                  type="text"
+                  type="number"
                   name="total-assets"
                   id="total-assets"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                   min="0"
                   max="3.4028235E38"
-                  required="required"
           >
         </div>
+        <span class="text error-message" th:if="${#fields.hasErrors('total')}" th:errors="*{total}"></span>
       </div>
 
       <div class="md:m-0">
-        <span class="text error-message" th:if="${#fields.hasErrors('personalLifeCover')}" th:errors="*{personalLifeCover}"></span>
-        <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
-        <div class="mt-2">
-          <input
+    <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
+    <div class="mt-2">
+        <input
             th:field="*{personalLifeCover}"
             type="number"
             name="personal-live-cover"
@@ -166,10 +165,11 @@
             class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
             min="0"
             max="3.4028235E38"
-            required="required"
         >
-        </div>
-      </div>
+    </div>
+    <span class="text error-message" th:if="${#fields.hasErrors('personalLifeCover')}" th:errors="*{personalLifeCover}"></span>
+</div>
+
 
       <div class="md:m-0">
         <label for="trust" class="block text-sm font-medium text-gray-900">Already in trust?</label>
