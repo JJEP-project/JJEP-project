@@ -1,6 +1,7 @@
 package com.JJEP.JJEP.application;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,26 +14,28 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class ApplicationBaseDTO {
 
-    private float primaryProperty;
+    private Float primaryProperty;
     
-    private float ukHolidayHome;
+    private Float ukHolidayHome;
     
-    private float btlProperty;
+    private Float btlProperty;
     
-    private float foreignProperty;
+    private Float foreignProperty;
     
     private boolean foreignWill;
     
-    private float investment;
+    private Float investment;
     
-    private float savingsCash;
+    private Float savingsCash;
     
-    private float total;
+    private Float total;
     
-    private float personalLifeCover;
+    @NotNull(message = "Personal Life Cover cannot be null")
+    private Float personalLifeCover;
     
     private boolean trust;
     
+    @NotNull(message = "Blood Protection cannot be null")
     private Boolean isBloodProtection;
     
     private Boolean isGenerationIht;
