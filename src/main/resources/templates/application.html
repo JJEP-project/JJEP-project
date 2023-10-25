@@ -7,7 +7,7 @@
 <body>
 <div layout:fragment="content">
 
-  <form method="get" action="/#" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
+  <form method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
     <div class="flex flex-col flex-1 mb-8">
       <h1 class="font-semibold">
         Joint
@@ -195,6 +195,7 @@
       </div>
 
       <div class="md:m-0 col-span-full">
+        <span class="text error-message" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></span>
         <label for="notes" class="block text-sm font-medium text-gray-900">Notes</label>
         <div class="mt-2">
             <textarea
