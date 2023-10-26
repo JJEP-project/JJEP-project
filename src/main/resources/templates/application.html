@@ -32,8 +32,8 @@
                   min="0"
                   max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
         </div>
-        <span class="text error-message" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
       </div>
 
       <div class="md:m-0">
@@ -49,8 +49,8 @@
                   min="0"
                   max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('ukHolidayHome')}" th:errors="*{ukHolidayHome}"></span>
         </div>
-        <span class="text error-message" th:if="${#fields.hasErrors('ukHolidayHome')}" th:errors="*{ukHolidayHome}"></span>
       </div>
 
       <div class="md:m-0">
@@ -66,8 +66,8 @@
                   min="0"
                   max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('btlProperty')}" th:errors="*{btlProperty}"></span>
         </div>
-        <span class="text error-message" th:if="${#fields.hasErrors('btlProperty')}" th:errors="*{btlProperty}"></span>
       </div>
 
       <div class="md:m-0">
@@ -83,8 +83,8 @@
                   min="0"
                   max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('foreignProperty')}" th:errors="*{foreignProperty}"></span>
         </div>
-        <span class="text error-message" th:if="${#fields.hasErrors('foreignProperty')}" th:errors="*{foreignProperty}"></span>
       </div>
 
       <div class="md:m-0 col-span-full">
@@ -99,6 +99,7 @@
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('foreignWill')}" th:errors="*{foreignWill}"></span>
         </div>
       </div>
 
@@ -115,8 +116,8 @@
                   min="0"
                   max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('investment')}" th:errors="*{investment}"></span>
         </div>
-        <span class="text error-message" th:if="${#fields.hasErrors('investment')}" th:errors="*{investment}"></span>
       </div>
 
       <div class="md:m-0">
@@ -132,8 +133,8 @@
                   min="0"
                   max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('savingsCash')}" th:errors="*{savingsCash}"></span>
         </div>
-        <span class="text error-message" th:if="${#fields.hasErrors('savingsCash')}" th:errors="*{savingsCash}"></span>
       </div>
 
       <div class="md:m-0 col-span-full">
@@ -149,27 +150,26 @@
                   min="0"
                   max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('total')}" th:errors="*{total}"></span>
         </div>
-        <span class="text error-message" th:if="${#fields.hasErrors('total')}" th:errors="*{total}"></span>
       </div>
 
       <div class="md:m-0">
-    <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
-    <div class="mt-2">
-        <input
-            th:field="*{personalLifeCover}"
-            type="number"
-            name="personal-live-cover"
-            id="personal-live-cover"
-            autocomplete="name"
-            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
-            min="0"
-            max="3.4028235E38"
-        >
-    </div>
-    <span class="text error-message" th:if="${#fields.hasErrors('personalLifeCover')}" th:errors="*{personalLifeCover}"></span>
-</div>
-
+      <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
+      <div class="mt-2">
+          <input
+              th:field="*{personalLifeCover}"
+              type="number"
+              name="personal-live-cover"
+              id="personal-live-cover"
+              autocomplete="name"
+              class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+              min="0"
+              max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('personalLifeCover')}" th:errors="*{personalLifeCover}"></span>
+          </div>
+      </div>
 
       <div class="md:m-0">
         <label for="trust" class="block text-sm font-medium text-gray-900">Already in trust?</label>
@@ -185,12 +185,12 @@
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
+            <span class="text-xs text-red-500" th:if="${#fields.hasErrors('trust')}" th:errors="*{trust}"></span>
           </div>
         </div>
       </div>
 
       <div class="md:m-0 col-span-full">
-        <span class="text error-message" th:if="${#fields.hasErrors('isBloodProtection')}" th:errors="*{isBloodProtection}"></span>
         <label for="blood-protection" class="block text-sm font-medium text-gray-900">Blood Protection</label>
         <div class="mt-2">
           <select
@@ -202,6 +202,7 @@
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('isBloodProtection')}" th:errors="*{isBloodProtection}"></span>
         </div>
       </div>
 
@@ -217,11 +218,11 @@
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('isGenerationIht')}" th:errors="*{isGenerationIht}"></span>
         </div>
       </div>
 
       <div class="md:m-0 col-span-full">
-        <span class="text error-message" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></span>
         <label for="notes" class="block text-sm font-medium text-gray-900">Notes</label>
         <div class="mt-2">
             <textarea
@@ -231,6 +232,7 @@
                   rows="3"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
           </textarea>
+            <span class="text-xs text-red-500" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></span>
         </div>
       </div>
 

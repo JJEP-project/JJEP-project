@@ -4,6 +4,7 @@ import com.JJEP.JJEP.application.*;
 
 import javax.validation.Valid;
 
+import com.JJEP.JJEP.application.ApplicationRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ApplicationController {
-    IApplicationService applicationService;
-
     @Autowired
-    public ApplicationController(ApplicationService applicationService) {
-        this.applicationService = applicationService;
-    }
+    IApplicationService applicationService;
 
     @GetMapping("/application")
     public String application(Model model) {
