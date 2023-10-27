@@ -121,6 +121,10 @@ public class UserService implements IUserService {
         }
 
         User existingUser = existingUserOptional.get();
-        return new org.springframework.security.core.userdetails.User(existingUser.getEmail(), existingUser.getPassword(), new ArrayList<>());
+        return new org.springframework.security.core.userdetails.User(existingUser.getEmail(), existingUser.getPassword(), getAuthorities(existingUser));
+    }
+
+    private Collection<? extends GrantedAuthority> getAuthorities(User user) {
+        return Collections.singletonList(new SimpleGrantedAuthority(user.getRole().toString()));
     }
 }
