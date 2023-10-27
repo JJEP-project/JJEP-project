@@ -61,6 +61,7 @@ public class ApplicationService implements IApplicationService{
         // because we updated existingApplication, we can save it with updates
         applicationRepository.updateById(id, existingApplication);
     }
+    
     @Override
     public void saveApplication(ApplicationRequestDTO applicationRequestDTO) {
         Application application = modelMapper.map(applicationRequestDTO, Application.class);

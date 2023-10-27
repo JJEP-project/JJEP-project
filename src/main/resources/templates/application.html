@@ -6,7 +6,8 @@
 </head>
 <body>
 <div layout:fragment="content">
-  <form method="get" action="/#" class="flex flex-col md:flex-row p-4 justify-start">
+
+  <form method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
     <div class="flex flex-col flex-1 mb-8">
       <h1 class="font-semibold">
         Joint
@@ -22,12 +23,16 @@
         <label for="property" class="block text-sm font-medium text-gray-900">Primary Property</label>
         <div class="mt-2">
           <input
-                  type="text"
+                  th:field="*{primaryProperty}"
+                  type="number"
                   name="property"
                   id="property"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
         </div>
       </div>
 
@@ -35,12 +40,16 @@
         <label for="uk-property" class="block text-sm font-medium text-gray-900">UK Holiday Home</label>
         <div class="mt-2">
           <input
-                  type="text"
+                  th:field="*{ukHolidayHome}"
+                  type="number"
                   name="uk-property"
                   id="uk-property"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('ukHolidayHome')}" th:errors="*{ukHolidayHome}"></span>
         </div>
       </div>
 
@@ -48,12 +57,16 @@
         <label for="btl-property" class="block text-sm font-medium text-gray-900">BTL Property</label>
         <div class="mt-2">
           <input
-                  type="text"
+                  th:field="*{btlProperty}"
+                  type="number"
                   name="btl-property"
                   id="btl-property"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('btlProperty')}" th:errors="*{btlProperty}"></span>
         </div>
       </div>
 
@@ -61,23 +74,32 @@
         <label for="foreign-property" class="block text-sm font-medium text-gray-900">Foreign Property</label>
         <div class="mt-2">
           <input
-                  type="text"
+                  th:field="*{foreignProperty}"
+                  type="number"
                   name="foreign-property"
                   id="foreign-property"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('foreignProperty')}" th:errors="*{foreignProperty}"></span>
         </div>
       </div>
 
       <div class="md:m-0 col-span-full">
         <label for="foreign-will" class="block text-sm font-medium text-gray-900">Foreign Will</label>
         <div class="mt-2">
-          <select style="-webkit-appearance: none;" id="foreign-will" name="select"
-                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-            <option>Yes</option>
-            <option>No</option>
+          <select
+                  th:field="*{foreignWill}"
+                  style="-webkit-appearance: none;" 
+                  id="foreign-will" name="select"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('foreignWill')}" th:errors="*{foreignWill}"></span>
         </div>
       </div>
 
@@ -85,12 +107,16 @@
         <label for="investment" class="block text-sm font-medium text-gray-900">Investment</label>
         <div class="mt-2">
           <input
-                  type="text"
+                  th:field="*{investment}"
+                  type="number"
                   name="investment"
                   id="investment"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('investment')}" th:errors="*{investment}"></span>
         </div>
       </div>
 
@@ -98,12 +124,16 @@
         <label for="savings-cash" class="block text-sm font-medium text-gray-900">Savings & Cash</label>
         <div class="mt-2">
           <input
-                  type="text"
+                  th:field="*{savingsCash}"
+                  type="number"
                   name="savings-cash"
                   id="savings-cash"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('savingsCash')}" th:errors="*{savingsCash}"></span>
         </div>
       </div>
 
@@ -111,68 +141,98 @@
         <label for="total-assets" class="block text-sm font-medium text-gray-900">Total Assets</label>
         <div class="mt-2">
           <input
-                  type="text"
+                  th:field="*{total}"
+                  type="number"
                   name="total-assets"
                   id="total-assets"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
           >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('total')}" th:errors="*{total}"></span>
         </div>
       </div>
 
       <div class="md:m-0">
-        <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
-        <div class="mt-2">
+      <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
+      <div class="mt-2">
           <input
-                  type="personal-live-cover"
-                  name="personal-live-cover"
-                  id="personal-live-cover"
-                  autocomplete="name"
-                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+              th:field="*{personalLifeCover}"
+              type="number"
+              name="personal-live-cover"
+              id="personal-live-cover"
+              autocomplete="name"
+              class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+              min="0"
+              max="3.4028235E38"
           >
-        </div>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('personalLifeCover')}" th:errors="*{personalLifeCover}"></span>
+          </div>
       </div>
 
       <div class="md:m-0">
         <label for="trust" class="block text-sm font-medium text-gray-900">Already in trust?</label>
         <div class="mt-2">
           <div class="mt-2">
-            <select style="-webkit-appearance: none;" id="trust" name="select"
-                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-              <option>Yes</option>
-              <option>No</option>
+            <select 
+                    th:field="*{trust}"
+                    style="-webkit-appearance: none;" 
+                    id="trust" 
+                    name="select"
+                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
             </select>
+            <span class="text-xs text-red-500" th:if="${#fields.hasErrors('trust')}" th:errors="*{trust}"></span>
           </div>
         </div>
       </div>
 
-      <div class="md:m-0">
+      <div class="md:m-0 col-span-full">
         <label for="blood-protection" class="block text-sm font-medium text-gray-900">Blood Protection</label>
         <div class="mt-2">
-          <select style="-webkit-appearance: none;" id="blood-protection" name="select"
-                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-            <option>Yes</option>
-            <option>No</option>
+          <select
+                  th:field="*{isBloodProtection}"
+                  style="-webkit-appearance: none;" 
+                  id="blood-protection" name="select"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('isBloodProtection')}" th:errors="*{isBloodProtection}"></span>
         </div>
       </div>
 
-      <div class="md:m-0">
-        <label for="generational-iht" class="block text-sm font-medium text-gray-900">Generational IHT</label>
+        <div class="md:m-0 col-span-full">
+        <label for="generation-iht" class="block text-sm font-medium text-gray-900">Generation IHT</label>
         <div class="mt-2">
-          <select style="-webkit-appearance: none;" id="generational-iht" name="select"
-                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-            <option>Yes</option>
-            <option>No</option>
+          <select
+                  th:field="*{isGenerationIht}"
+                  style="-webkit-appearance: none;" 
+                  id="generation-iht" name="select"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
           </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('isGenerationIht')}" th:errors="*{isGenerationIht}"></span>
         </div>
       </div>
 
       <div class="md:m-0 col-span-full">
         <label for="notes" class="block text-sm font-medium text-gray-900">Notes</label>
         <div class="mt-2">
-                        <textarea id="notes" name="about" rows="3"
-                                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"></textarea>
+            <textarea
+                  th:field="*{notes}"
+                  id="notes" 
+                  name="about" 
+                  rows="3"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+          </textarea>
+            <span class="text-xs text-red-500" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></span>
         </div>
       </div>
 
