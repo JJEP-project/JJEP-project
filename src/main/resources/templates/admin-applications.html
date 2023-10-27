@@ -3,34 +3,81 @@
       layout:decorate="~{layouts/admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Users</title>
+    <title>Applications</title>
 </head>
 
 <body class="h-full">
-<div class="container h-full relative admin-panel-content" layout:fragment="content">
-    <div class="applicationBlock flex flex-col" th:each="form: ${forms}">
-        <div class="flex">
-            <p>application id:&nbsp;</p>
-            <h1 class="text" th:text="${form.id}"></h1>
-        </div>
-        <div class="flex">
-            <p>is blood protection:&nbsp;</p>
-            <h1 class="text" th:text="${form.isBloodProtection}"></h1>
-        </div>
-        <div class="flex">
-            <p>notes:&nbsp;</p>
-            <h1 class="text" th:text="${form.notes}"></h1>
-        </div>
-        <div class="flex">
-            <p>created at:&nbsp;</p>
-            <h1 class="text" th:text="${form.createdAt}"></h1>
-        </div>
-        <div class="flex">
-            <p>updated at:&nbsp;</p>
-            <h1 class="text" th:text="${form.updatedAt}"></h1>
+    <div layout:fragment="content">
+        <div class="m-4">
+            <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4">
+                <div class="flex flex-row justify-between items-center">
+                    <h3 class="text-xl">Applications</h3>
+                    <div class="flex flex-row justify-end space-x-4">
+                        <button class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" type="button">
+                            Sort
+                        </button>
+                        <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl"
+                                type="submit">
+                            Add Application
+                        </button>
+                    </div>
+                </div>
+
+                <!-- applications -->
+                <div class="overflow-x-auto">
+                    <table class="table-auto w-full divide-y whitespace-nowrap">
+                        <thead class="h-10">
+                        <tr>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">ID</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">User's name</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Created at</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Updated at</div>
+                            </th>
+                            <th class="whitespace-nowrap">
+                                <div class="font-medium text-left">Actions</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                        <tr class="h-10" th:each="form: ${forms}">
+                            <td th:text="${form.id}">
+
+                            </td>
+                            <td th:text="${form.user.fullName}">
+
+                            </td>
+                            <td th:text="${form.createdAt}">
+
+                            </td>
+                            <td th:text="${form.updatedAt}">
+
+                            </td>
+                            <td>
+                                <div class="flex flex-row space-x-2">
+                                    <button class="bg-blue-500 py-1 px-2 rounded-full text-white">
+                                        Edit
+                                    </button>
+                                    <button class="bg-red-500 py-1 px-2 rounded-full text-white">
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
