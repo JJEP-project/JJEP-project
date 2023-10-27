@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
-public class IndexController {
+public class AdminApplicationController {
 
     @Autowired
     ApplicationService applicationService;

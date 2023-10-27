@@ -80,11 +80,9 @@
                             </td>
                             <td>
                                 <div class="flex flex-row space-x-2">
-                                    <form th:action="@{'/user-edit-admin/' + ${user.id}}" method="post">
-                                        <button type="submit" class="bg-blue-500 py-1 px-2 rounded-full text-white">
-                                            Edit
-                                        </button>
-                                    </form>
+                                    <a th:href="@{'/user-edit-admin/' + ${user.id}}" class="bg-blue-500 py-1 px-2 rounded-full text-white">
+                                        Edit
+                                    </a>
                                     <button class="bg-red-500 py-1 px-2 rounded-full text-white">
                                         Delete
                                     </button>
