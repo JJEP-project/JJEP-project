@@ -158,23 +158,24 @@ CREATE TABLE application_clients (
 -- rollback DROP TABLE application_clients;
 
 -- changeset entl:create-client-children
-
-CREATE TABLE client_children (
+CREATE TABLE child(
     id BIGSERIAL,
-    client_id_1 BIGINT,
-    client_id_2 BIGINT,
     name VARCHAR(255) NOT NULL,
     date_of_birth DATE NOT NULL,
-    CHECK (
-        (client_id_1 IS NOT NULL or client_id_2 IS NOT NULL)
-        AND (client_id_1 IS DISTINCT FROM client_id_2)
-    ),
-    PRIMARY KEY (id),
-    FOREIGN KEY (client_id_1) REFERENCES application_clients (id) ON DELETE CASCADE,
-    FOREIGN KEY (client_id_2) REFERENCES application_clients (id) ON DELETE CASCADE
+    PRIMARY KEY (id)
+);
+
+
+CREATE TABLE client_children (
+     client_id BIGINT NOT NULL,
+     child_id BIGINT NOT NULL,
+     FOREIGN KEY (client_id) REFERENCES application_clients (id) ON DELETE CASCADE,
+     FOREIGN KEY (child_id) REFERENCES child (id) ON DELETE CASCADE,
+     PRIMARY KEY (client_id, child_id)
 );
 
 -- rollback DROP TABLE client_children;
+-- rollback DROP TABLE child;
 
 -- liquibase formatted sql
 
