@@ -2,9 +2,13 @@ package com.JJEP.JJEP.application.client;
 
 import com.JJEP.JJEP.application.ApplicationNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ClientService implements IClientService {
     private final IClientRepository clientRepository;
     private final ModelMapper modelMapper;
@@ -37,9 +41,20 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void saveClient(ClientRequestDTO clientRequestDTO) {
+    public ClientResponseDTO saveClient(ClientRequestDTO clientRequestDTO) {
         Client client = modelMapper.map(clientRequestDTO, Client.class);
-        clientRepository.save(client);
+        return modelMapper.map(clientRepository.save(client), ClientResponseDTO.class);
+    }
+
+    @Override
+    public List<ClientResponseDTO> saveAllClients(List<ClientRequestDTO> clientRequestDTOs) {
+        List<ClientResponseDTO> clientsResponseDTOs = new ArrayList<>();
+        for (ClientRequestDTO clientRequestDTO : clientRequestDTOs) {
+            Client client = modelMapper.map(clientRequestDTO, Client.class);
+            ClientResponseDTO clientResponseDTO = modelMapper.map(clientRepository.save(client), ClientResponseDTO.class);
+            clientsResponseDTOs.add(clientResponseDTO);
+        }
+        return clientsResponseDTOs;
     }
 
     @Override
