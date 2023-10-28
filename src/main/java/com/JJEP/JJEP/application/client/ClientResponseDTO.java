@@ -1,6 +1,6 @@
 package com.JJEP.JJEP.application.client;
 
-import com.JJEP.JJEP.application.client.children.ChildrenBaseDTO;
+import com.JJEP.JJEP.application.client.child.ChildResponseDTO;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -13,5 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClientResponseDTO extends ClientBaseDTO{
-    @ToString.Exclude private List<ChildrenBaseDTO> children;
+    @ToString.Exclude private List<ChildResponseDTO> children;
 }

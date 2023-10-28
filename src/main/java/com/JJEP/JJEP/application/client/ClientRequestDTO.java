@@ -1,7 +1,10 @@
 package com.JJEP.JJEP.application.client;
 
+import com.JJEP.JJEP.application.client.child.ChildRequestDTO;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
@@ -11,4 +14,5 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class ClientRequestDTO extends ClientBaseDTO{
     private Long applicationId;
+    @ToString.Exclude private List<ChildRequestDTO> children;
 }
