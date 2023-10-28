@@ -34,6 +34,6 @@ public class ClientBaseDTO {
     private float personalLifeCover;
     private boolean trust;
     private boolean deathBenefitTrust;
-    private boolean deathInService;
-    private boolean pension;
+    private float deathInService;
+    private float pension;
 }
