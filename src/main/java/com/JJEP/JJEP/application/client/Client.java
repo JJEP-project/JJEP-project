@@ -1,11 +1,9 @@
 package com.JJEP.JJEP.application.client;
 
 import com.JJEP.JJEP.application.Application;
-import com.JJEP.JJEP.application.client.children.Child;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.JJEP.JJEP.application.client.child.Child;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -24,11 +22,6 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "application_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Application application;
 
     @Column(name = "family_name")
     private String familyName;
@@ -94,24 +87,25 @@ public class Client {
     private boolean deathBenefitTrust;
 
     @Column(name = "death_in_service")
-    private boolean deathInService;
+    private float deathInService;
 
     @Column(name = "pension")
-    private boolean pension;
+    private float pension;
 
-    @ManyToMany
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "application_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude private Application application;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(
             name = "client_children",
-            joinColumns = @JoinColumn(name = "client_id_1"),
+            joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "child_id")
     )
-    private Set<Child> childrenAsFirstClient = new HashSet<>();
-
-    @ManyToMany
-    @JoinTable(
-            name = "client_children",
-            joinColumns = @JoinColumn(name = "client_id_2"),
-            inverseJoinColumns = @JoinColumn(name = "child_id")
-    )
-    private Set<Child> childrenAsSecondClient = new HashSet<>();
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude private Set<Child> children = new HashSet<>();
 }
