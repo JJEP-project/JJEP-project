@@ -64,12 +64,12 @@
                 <div class="md:m-0 col-span-full">
                     <label for="select" class="block text-sm font-medium text-gray-900">Role</label>
                     <div class="mt-2">
-                        <select style="-webkit-appearance: none;" id="select" name="select"
-                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-                            <option value="" disabled selected>Select role for user</option>
-                            <option>Admin</option>
-                            <option>User</option>
-                        </select>
+                        <input
+                            th:value="${user.role}"
+                            type="text"
+                            name="role"
+                            id="role"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full" readonly>
                     </div>
                 </div>
 
