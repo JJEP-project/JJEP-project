@@ -74,6 +74,7 @@ public class ApplicationService implements IApplicationService{
         // because we updated existingApplication, we can save it with updates
         applicationRepository.updateById(id, existingApplication);
     }
+    
     @Override
     @Transactional
     public void saveApplication(ApplicationRequestDTO applicationRequestDTO) {

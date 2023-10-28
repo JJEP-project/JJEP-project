@@ -1,205 +1,258 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" th:href="@{/styles/global.css}" />
-    <link rel="stylesheet" th:href="@{/styles/application.css}" />
-    <title>Application</title>
-  </head>
-  <body>
-    <header>
-      <div class="logo-container">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="logo"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          ></path>
-        </svg>
-      </div>
-      <nav>
-        <a href="">Home</a>
-        <a href="">Book Online</a>
-        <a href="">About</a>
-        <a href="">Contact</a>
-      </nav>
-    </header>
+<!doctype html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+  <title>application</title>
+</head>
+<body>
+<div layout:fragment="content">
 
-    <main>
-      <h1 class="intro-text">Application Form</h1>
-      <div class="client-container">
-        <h1>Client 1</h1>
-        <hr />
-          <form action="">
-            <label>Primary Property:</label>
-            <input type="text" /><br /><br />
+  <form method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
+    <div class="flex flex-col flex-1 mb-8">
+      <h1 class="font-semibold">
+        Joint
+      </h1>
+      <p class="text-gray-500">
+        Assets
+      </p>
+    </div>
 
-            <label>UK Holiday Home:</label>
-            <input type="text" /><br /><br />
+    <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
 
-            <label>BTL Property:</label>
-            <input type="text" /><br /><br />
-
-            <label>Overseas Property:</label>
-            <input type="text" /><br /><br />
-
-            <label>BRP qualifying business assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Non BRP business assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Nature of business:</label>
-            <input type="text" /><br /><br />
-
-            <label>Investments:</label>
-            <input type="text" /><br /><br />
-
-            <label>Savings & Cash:</label>
-            <input type="text" /><br /><br />
-
-            <label>Total Assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Personal Life Cover:</label>
-            <input type="text" /><br /><br />
-
-            <label>Already in trust?:</label>
-            <input type="text" /><br /><br />
-
-            <label>Pensions:</label>
-            <input type="text" /><br /><br />
-
-            <label>Death benefit already in trust?:</label>
-            <input type="text" /><br /><br />
-
-            <label>Death in Service:</label>
-            <input type="text" /><br /><br />
-          </form>
-        </form>
+      <div class="md:m-0">
+        <label for="property" class="block text-sm font-medium text-gray-900">Primary Property</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{primaryProperty}"
+                  type="number"
+                  name="property"
+                  id="property"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
+        </div>
       </div>
 
-      <div class="client-container">
-        <h1>Client 2</h1>
-        <hr />
-          <form action="">
-            <label>Primary Property:</label>
-            <input type="text" /><br /><br />
-
-            <label>UK Holiday Home:</label>
-            <input type="text" /><br /><br />
-
-            <label>BTL Property:</label>
-            <input type="text" /><br /><br />
-
-            <label>Overseas Property:</label>
-            <input type="text" /><br /><br />
-
-            <label>BRP qualifying business assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Non BRP business assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Nature of business:</label>
-            <input type="text" /><br /><br />
-
-            <label>Investments:</label>
-            <input type="text" /><br /><br />
-
-            <label>Savings & Cash:</label>
-            <input type="text" /><br /><br />
-
-            <label>Total Assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Personal Life Cover:</label>
-            <input type="text" /><br /><br />
-
-            <label>Already in trust?:</label>
-            <input type="text" /><br /><br />
-
-            <label>Pensions:</label>
-            <input type="text" /><br /><br />
-
-            <label>Death benefit already in trust?:</label>
-            <input type="text" /><br /><br />
-
-            <label>Death in Service:</label>
-            <input type="text" /><br /><br />
-          </form>
-        </form>
+      <div class="md:m-0">
+        <label for="uk-property" class="block text-sm font-medium text-gray-900">UK Holiday Home</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{ukHolidayHome}"
+                  type="number"
+                  name="uk-property"
+                  id="uk-property"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('ukHolidayHome')}" th:errors="*{ukHolidayHome}"></span>
+        </div>
       </div>
 
-      <div class="client-container">
-        <h1>Joint Assets</h1>
-        <hr />
-          <form action="">
-            <label>Primary Property:</label>
-            <input type="text" /><br /><br />
-
-            <label>UK Holiday Home:</label>
-            <input type="text" /><br /><br />
-
-            <label>BTL Property:</label>
-            <input type="text" /><br /><br />
-
-            <label>Overseas Property:</label>
-            <input type="text" /><br /><br />
-
-            <label>BRP qualifying business assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Non BRP business assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Nature of business:</label>
-            <input type="text" /><br /><br />
-
-            <label>Investments:</label>
-            <input type="text" /><br /><br />
-
-            <label>Savings & Cash:</label>
-            <input type="text" /><br /><br />
-
-            <label>Total Assets:</label>
-            <input type="text" /><br /><br />
-
-            <label>Personal Life Cover:</label>
-            <input type="text" /><br /><br />
-
-            <label>Already in trust?:</label>
-            <input type="text" /><br /><br />
-
-            <label>Pensions:</label>
-            <input type="text" /><br /><br />
-
-            <label>Death benefit already in trust?:</label>
-            <input type="text" /><br /><br />
-
-            <label>Death in Service:</label>
-            <input type="text" /><br /><br />
-          </form>
-        </form>
+      <div class="md:m-0">
+        <label for="btl-property" class="block text-sm font-medium text-gray-900">BTL Property</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{btlProperty}"
+                  type="number"
+                  name="btl-property"
+                  id="btl-property"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('btlProperty')}" th:errors="*{btlProperty}"></span>
+        </div>
       </div>
-    </main>
 
-    <footer>
-      James Joseph Estate Planning Ltd<br />
-      &copy; Copyright<br />
-      <a href="mailto:fake@gmail.com">Email</a>
-    </footer>
-  </body>
+      <div class="md:m-0">
+        <label for="foreign-property" class="block text-sm font-medium text-gray-900">Foreign Property</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{foreignProperty}"
+                  type="number"
+                  name="foreign-property"
+                  id="foreign-property"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('foreignProperty')}" th:errors="*{foreignProperty}"></span>
+        </div>
+      </div>
+
+      <div class="md:m-0 col-span-full">
+        <label for="foreign-will" class="block text-sm font-medium text-gray-900">Foreign Will</label>
+        <div class="mt-2">
+          <select
+                  th:field="*{foreignWill}"
+                  style="-webkit-appearance: none;" 
+                  id="foreign-will" name="select"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('foreignWill')}" th:errors="*{foreignWill}"></span>
+        </div>
+      </div>
+
+      <div class="md:m-0">
+        <label for="investment" class="block text-sm font-medium text-gray-900">Investment</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{investment}"
+                  type="number"
+                  name="investment"
+                  id="investment"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('investment')}" th:errors="*{investment}"></span>
+        </div>
+      </div>
+
+      <div class="md:m-0">
+        <label for="savings-cash" class="block text-sm font-medium text-gray-900">Savings & Cash</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{savingsCash}"
+                  type="number"
+                  name="savings-cash"
+                  id="savings-cash"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('savingsCash')}" th:errors="*{savingsCash}"></span>
+        </div>
+      </div>
+
+      <div class="md:m-0 col-span-full">
+        <label for="total-assets" class="block text-sm font-medium text-gray-900">Total Assets</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{total}"
+                  type="number"
+                  name="total-assets"
+                  id="total-assets"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('total')}" th:errors="*{total}"></span>
+        </div>
+      </div>
+
+      <div class="md:m-0">
+      <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
+      <div class="mt-2">
+          <input
+              th:field="*{personalLifeCover}"
+              type="number"
+              name="personal-live-cover"
+              id="personal-live-cover"
+              autocomplete="name"
+              class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+              min="0"
+              max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('personalLifeCover')}" th:errors="*{personalLifeCover}"></span>
+          </div>
+      </div>
+
+      <div class="md:m-0">
+        <label for="trust" class="block text-sm font-medium text-gray-900">Already in trust?</label>
+        <div class="mt-2">
+          <div class="mt-2">
+            <select 
+                    th:field="*{trust}"
+                    style="-webkit-appearance: none;" 
+                    id="trust" 
+                    name="select"
+                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+            >
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+            <span class="text-xs text-red-500" th:if="${#fields.hasErrors('trust')}" th:errors="*{trust}"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:m-0 col-span-full">
+        <label for="blood-protection" class="block text-sm font-medium text-gray-900">Blood Protection</label>
+        <div class="mt-2">
+          <select
+                  th:field="*{isBloodProtection}"
+                  style="-webkit-appearance: none;" 
+                  id="blood-protection" name="select"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('isBloodProtection')}" th:errors="*{isBloodProtection}"></span>
+        </div>
+      </div>
+
+        <div class="md:m-0 col-span-full">
+        <label for="generation-iht" class="block text-sm font-medium text-gray-900">Generation IHT</label>
+        <div class="mt-2">
+          <select
+                  th:field="*{isGenerationIht}"
+                  style="-webkit-appearance: none;" 
+                  id="generation-iht" name="select"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+          >
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('isGenerationIht')}" th:errors="*{isGenerationIht}"></span>
+        </div>
+      </div>
+
+      <div class="md:m-0 col-span-full">
+        <label for="notes" class="block text-sm font-medium text-gray-900">Notes</label>
+        <div class="mt-2">
+            <textarea
+                  th:field="*{notes}"
+                  id="notes" 
+                  name="about" 
+                  rows="3"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+          </textarea>
+            <span class="text-xs text-red-500" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></span>
+        </div>
+      </div>
+
+      <!-- additional any kind of UI -->
+      <div class="md:m-0 col-span-full flex flex-row justify-end items-center space-x-4">
+        <!-- content -->
+        <a href="#" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more application</a>
+      </div>
+
+      <!-- submit or save -->
+      <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
+        <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+          Cancel
+        </button>
+        <button type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+</body>
 </html>
