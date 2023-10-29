@@ -30,7 +30,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/application-handler")
-    public String applicationHandler(@ModelAttribute("formApplication") @Valid ApplicationRequestDTO formApplication, BindingResult result) {
+    public String applicationHandler(@ModelAttribute("formApplication") @Valid ApplicationRequestDTO formApplication, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "application";
         }
@@ -42,7 +42,8 @@ public class ApplicationController {
             applicationService.saveApplication(formApplication);
             return "redirect:/";
         } catch (Exception e) {
-            return "application?error";
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/application?error";
         }
     }
 
