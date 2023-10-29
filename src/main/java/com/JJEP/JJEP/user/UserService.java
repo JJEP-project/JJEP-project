@@ -2,18 +2,19 @@ package com.JJEP.JJEP.user;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Service;
-import org.springframework.dao.DataIntegrityViolationException;
-
 import org.springframework.context.annotation.Lazy;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService implements IUserService {
@@ -37,8 +38,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserResponseDTO findUserById(long id)
-    {
+    public UserResponseDTO findUserById(long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isEmpty()) {
             throw new UserNotFoundException("User not found");
@@ -47,8 +47,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserResponseDTO findUserByEmail(String email)
-    {
+    public UserResponseDTO findUserByEmail(String email) {
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isEmpty()) {
             throw new UserNotFoundException("User not found");
@@ -69,7 +68,7 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public void updateUser(long id, UserRegistrationDTO userRegistrationDTO){
+    public void updateUser(long id, UserRegistrationDTO userRegistrationDTO) {
         Optional<User> existingUserOptional = userRepository.findById(id);
         if (existingUserOptional.isEmpty()) {
             throw new UserNotFoundException("User not found");
@@ -84,15 +83,15 @@ public class UserService implements IUserService {
 
 
     @Override
-    public void saveUser(UserRegistrationDTO userWithPasswordDTO){
+    public void saveUser(UserRegistrationDTO userWithPasswordDTO) {
         // temp solution
         try {
-        User user = modelMapper.map(userWithPasswordDTO, User.class);
+            User user = modelMapper.map(userWithPasswordDTO, User.class);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setRole(UserRoles.ROLE_USER.toString());
             userRepository.save(user);
 
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             System.out.println(e.getMessage());
             if (e.getMessage().contains("users_username_key"))
                 throw new UserAlreadyExistsException("Username already taken");
@@ -104,7 +103,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void deleteUser(long id){
+    public void deleteUser(long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isEmpty()) {
             throw new UserNotFoundException("User not found");
@@ -122,5 +121,16 @@ public class UserService implements IUserService {
 
         User existingUser = existingUserOptional.get();
         return new org.springframework.security.core.userdetails.User(existingUser.getEmail(), existingUser.getPassword(), new ArrayList<>());
+    }
+
+    public UserResponseDTO getAuthenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        if (authentication == null) {
+            throw new RuntimeException("User not authenticated");
+        }
+
+        System.out.println(userDetails);
+        return findUserByEmail(userDetails.getUsername());
     }
 }
