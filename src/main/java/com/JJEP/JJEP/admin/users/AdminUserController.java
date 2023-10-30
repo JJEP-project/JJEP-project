@@ -62,7 +62,7 @@ public class AdminUserController {
             return "redirect:/usersadmin";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "redirect:/users-delete/{id}?error";
+            return "redirect:/user-edit-admin/{id}?error";
         }
 
     }
