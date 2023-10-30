@@ -23,7 +23,7 @@ public class AdminApplicationController {
         List<ApplicationResponseDTO> forms = applicationService.findAllApplications();
         model.addAttribute("forms", forms);
 
-        return "admin-applications";
+        return "admin/admin-applications";
     }
 
     @GetMapping("/application-details-admin/{id}")
@@ -33,7 +33,7 @@ public class AdminApplicationController {
         model.addAttribute("form", form);
 
 
-        return "application-details";
+        return "admin/application-details";
 
     }
 
