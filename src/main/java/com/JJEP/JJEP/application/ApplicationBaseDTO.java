@@ -59,6 +59,5 @@ public class ApplicationBaseDTO {
     @NotNull(message = "Generation IHT cannot be null")
     private Boolean isGenerationIht;
     
-    @NotBlank(message = "Notes cannot be blank")
     private String notes;
 }
