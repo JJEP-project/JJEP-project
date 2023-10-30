@@ -50,7 +50,7 @@ public class AuthController {
             userService.saveUser(userRegistrationDTO);
             return "redirect:/login";
         } catch (Exception e) {
-            return "register?error";
+            return "redirect:register?error";
         }
     }
 
