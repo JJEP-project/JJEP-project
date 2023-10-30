@@ -1,8 +1,6 @@
 package com.JJEP.JJEP.application;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Min;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,39 +14,39 @@ import lombok.experimental.SuperBuilder;
 public class ApplicationBaseDTO {
 
     @NotNull(message = "Primary Property cannot be blank")
-    @Min(value = 0, message = "Primary Property must be greater than or equal to 0")
+    @EnsureNumber(message = "Primary Property must be number.")
     private Float primaryProperty;
     
     @NotNull(message = "UK Holiday Home cannot be blank")
-    @Min(value = 0, message = "UK Holiday Home must be greater than or equal to 0")
+    @EnsureNumber(message = "UK Holiday Home must be number.")
     private Float ukHolidayHome;
     
     @NotNull(message = "BTL Property cannot be blank")
-    @Min(value = 0, message = "BTL Property must be greater than or equal to 0")
+    @EnsureNumber(message = "BTL Property must be number.")
     private Float btlProperty;
     
     @NotNull(message = "Foreign Property cannot be blank")
-    @Min(value = 0, message = "Foreign Property must be greater than or equal to 0")
+    @EnsureNumber(message = "Foreign Property must be number.")
     private Float foreignProperty;
     
-    @NotNull(message = "Foreign Will cannot be null")
-    private boolean foreignWill;
-    
     @NotNull(message = "Investment cannot be blank")
-    @Min(value = 0, message = "Investment must be greater than or equal to 0")
+    @EnsureNumber(message = "Investment must be number.")
     private Float investment;
     
     @NotNull(message = "Savings & Cash cannot be blank")
-    @Min(value = 0, message = "Savings & Cash must be greater than or equal to 0")
+    @EnsureNumber(message = "Savings & Cash must be number.")
     private Float savingsCash;
     
     @NotNull(message = "Total cannot be blank")
-    @Min(value = 0, message = "Total must be greater than or equal to 0")
+    @EnsureNumber(message = "Total must be number.")
     private Float total;
     
     @NotNull(message = "Personal Life Cover cannot be blank")
-    @Min(value = 0, message = "Personal Life Cover must be greater than or equal to 0")
+    @EnsureNumber(message = "Personal Life Cover must be number.")
     private Float personalLifeCover;
+
+    @NotNull(message = "Foreign Will cannot be null")
+    private boolean foreignWill;
     
     @NotNull(message = "Trust cannot be null")
     private boolean trust;
@@ -58,6 +56,6 @@ public class ApplicationBaseDTO {
     
     @NotNull(message = "Generation IHT cannot be null")
     private Boolean isGenerationIht;
-    
+
     private String notes;
 }
