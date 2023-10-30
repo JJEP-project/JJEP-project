@@ -41,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/register-handler")
-    public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result) {
+    public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result,Model model) {
         if (result.hasErrors()) {
             return "register";
         }
@@ -50,6 +50,7 @@ public class AuthController {
             userService.saveUser(userRegistrationDTO);
             return "redirect:/login";
         } catch (Exception e) {
+            model.addAttribute("error", e);
             return "redirect:register?error";
         }
     }

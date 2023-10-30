@@ -14,8 +14,9 @@
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
-        <div th:if="${param.error}">-->
-            <div>Something went wrong. Please try again</div>
+        <div th:if="${param.error}" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-xl" role="alert">
+            <p class="font-bold">Register error</p>
+            <p th:text="${error} ?: 'Something went wrong. Please try again later'"></p>
         </div>
 
         <form th:object="${userRegistrationDTO}" method="post" th:action="@{/register-handler}" class="space-y-4">
