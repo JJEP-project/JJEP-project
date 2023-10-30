@@ -3,8 +3,11 @@ package com.JJEP.JJEP.Controllers;
 import com.JJEP.JJEP.Models.LoginForm;
 import com.JJEP.JJEP.user.User;
 import com.JJEP.JJEP.user.UserRegistrationDTO;
+import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,19 +25,19 @@ public class AuthController {
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("loginForm", new LoginForm());
-        return "login";
+        return "auth/login";
     }
 
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
-        return "register";
+        return "auth/register";
     }
 
     @PostMapping("/login-handler")
     public String loginHandler(@ModelAttribute("loginForm") @Valid LoginForm loginForm, BindingResult result) {
         if (result.hasErrors()) {
-            return "login";
+            return "auth/login";
         }
 
         return "redirect:/";
@@ -43,7 +46,7 @@ public class AuthController {
     @PostMapping("/register-handler")
     public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result,Model model) {
         if (result.hasErrors()) {
-            return "register";
+            return "auth/register";
         }
 
         try {
