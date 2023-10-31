@@ -3,11 +3,13 @@
       layout:decorate="~{layouts/admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Applications</title>
+    <title>User Edit</title>
 </head>
 
 <body class="h-full">
 <div layout:fragment="content">
+    <form th:action="@{'/users-delete/' + *{id}}" method="post" id="delete">
+    </form>
     <form th:action="@{'/user-update/' + ${id}}" method="post" th:object="${user}"
           class="bg-white rounded-xl border flex flex-col md:flex-row p-4 justify-start">
 
@@ -71,8 +73,8 @@
                             name="select"
                             class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                     >
-                        <option value="ROLE_ADMIN" th:selected="${user.role == 'ROLE_ADMIN'}">Admin</option>
                         <option value="ROLE_USER" th:selected="${user.role == 'ROLE_USER'}">User</option>
+                        <option value="ROLE_ADMIN" th:selected="${user.role == 'ROLE_ADMIN'}">Admin</option>
                     </select>
                 </div>
             </div>
@@ -84,11 +86,7 @@
 
             <!-- submit or save -->
             <div class="md:m-0 col-span-full flex flex-row justify-between border-t pt-4 space-x-4">
-                <form th:action="@{'/users-delete/' + *{id}}" method="post">
-                    <button type="submit" class="px-4 py-2 text-red-500 hover:bg-red-100 rounded-xl">
-                        Delete
-                    </button>
-                </form>
+                <input value="Delete" form="delete" type="submit" class="px-4 py-2 text-red-500 hover:bg-red-100 rounded-xl">
                 <div class="flex flex-row justify-end space-x-4">
                     <a th:href="@{'/user-details-admin/' + *{id}}" type="button"
                        class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">

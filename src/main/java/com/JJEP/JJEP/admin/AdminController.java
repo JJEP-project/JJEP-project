@@ -18,4 +18,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class AdminController {
 
+    @Autowired
+    UserService userService;
+
+    @GetMapping("/homeadmin")
+    public String homeAdmin(Model model) {
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        model.addAttribute("authUser", authUser);
+
+        model.addAttribute("currentPage", "home");
+
+        return "admin/home";
+    }
+
 }
