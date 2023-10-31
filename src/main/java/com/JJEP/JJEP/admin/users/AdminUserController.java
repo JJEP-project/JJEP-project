@@ -21,14 +21,22 @@ public class AdminUserController {
     @GetMapping("/usersadmin")
     public String adminUsers(Model model) {
 
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        model.addAttribute("authUser", authUser);
+
         List<UserResponseDTO> users = userService.findAllUsers();
         model.addAttribute("users", users);
+
+        model.addAttribute("currentPage", "users");
 
         return "admin/admin-users";
     }
 
     @GetMapping("/user-details-admin/{id}")
     public String getUserDetails(@PathVariable Long id, Model model) {
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        model.addAttribute("authUser", authUser);
 
         UserResponseDTO user = userService.findUserById(id);
         model.addAttribute("user", user);
@@ -38,7 +46,10 @@ public class AdminUserController {
     }
 
     @GetMapping("/user-create-admin")
-    public String createUser() {
+    public String createUser(Model model) {
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        model.addAttribute("authUser", authUser);
 
         return "admin/user-create";
 
@@ -46,6 +57,9 @@ public class AdminUserController {
 
     @GetMapping("/user-edit-admin/{id}")
     public String editUserDetails(@PathVariable Long id, Model model) {
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        model.addAttribute("authUser", authUser);
 
         UserResponseDTO user = userService.findUserById(id);
         model.addAttribute("user", user);
