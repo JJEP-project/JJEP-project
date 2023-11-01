@@ -21,6 +21,10 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ApplicationService applicationService;
+
+
     @GetMapping("/homeadmin")
     public String homeAdmin(Model model) {
 
@@ -28,6 +32,8 @@ public class AdminController {
         model.addAttribute("authUser", authUser);
 
         model.addAttribute("currentPage", "home");
+        model.addAttribute("usersCount", userService.getCount());
+        model.addAttribute("applicationsCount", applicationService.getCount());
 
         return "admin/home";
     }

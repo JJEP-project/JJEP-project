@@ -11,17 +11,17 @@
     <!-- Replace content -->
     <div>
       <div class="flex flex-col md:flex-row justify-between flex-nowrap md:space-x-4">
-        <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+        <div th:if="${applicationsCount}" class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
           <h3>Total application</h3>
-          <span class="text-2xl font-bold">2,440</span>
+          <span class="text-2xl font-bold" th:text="${applicationsCount}"></span>
         </div>
         <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
           <h3>New Application</h3>
           <span class="text-2xl font-bold">10</span>
         </div>
-        <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+        <div th:if="${usersCount}" class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
           <h3>Total Users</h3>
-          <span class="text-2xl font-bold">129</span>
+          <span class="text-2xl font-bold" th:text="${usersCount}"></span>
         </div>
         <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
           <h3>New Users</h3>

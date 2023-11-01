@@ -17,4 +17,5 @@ public interface IUserRepository extends JpaRepository<User, Long> {
     @Query("UPDATE User u SET u.username = :#{#user.username}, u.fullName = :#{#user.fullName}, u.email = :#{#user.email} WHERE u.id = :id")
     void updateById(@Param("id") Long id, @Param("user") User user);
 
+    long count();
 }

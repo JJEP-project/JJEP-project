@@ -133,4 +133,8 @@ public class UserService implements IUserService {
         System.out.println(userDetails);
         return findUserByEmail(userDetails.getUsername());
     }
+
+    public long getCount() {
+        return userRepository.count();
+    }
 }

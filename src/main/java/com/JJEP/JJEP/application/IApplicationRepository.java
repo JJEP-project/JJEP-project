@@ -28,4 +28,7 @@ public interface IApplicationRepository extends JpaRepository<Application, Long>
                 a.id = :id
             """)
     void updateById(@Param("id") Long id, @Param("application") Application application);
+
+    long count();
+
 }
