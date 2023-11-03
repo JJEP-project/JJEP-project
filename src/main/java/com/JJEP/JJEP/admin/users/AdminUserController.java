@@ -27,7 +27,7 @@ public class AdminUserController {
         List<UserResponseDTO> users = userService.findAllUsers();
         model.addAttribute("users", users);
 
-        model.addAttribute("currentPage", "users    ");
+        model.addAttribute("currentPage", "users");
 
         return "admin/admin-users";
     }
