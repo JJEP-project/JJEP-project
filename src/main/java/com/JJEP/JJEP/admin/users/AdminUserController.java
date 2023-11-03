@@ -27,7 +27,7 @@ public class AdminUserController {
         List<UserResponseDTO> users = userService.findAllUsers();
         model.addAttribute("users", users);
 
-        model.addAttribute("currentPage", "users");
+        model.addAttribute("currentPage", "users    ");
 
         return "admin/admin-users";
     }
@@ -50,6 +50,9 @@ public class AdminUserController {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
         model.addAttribute("authUser", authUser);
+
+
+        model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
 
         return "admin/user-create";
 
@@ -82,7 +85,7 @@ public class AdminUserController {
     }
 
     @PostMapping("/user-update/{id}")
-    public String updateUserDetails( @Valid UserRegistrationDTO user, @PathVariable Long id, Model model, BindingResult result) {
+    public String updateUserDetails(@Valid UserRegistrationDTO user, @PathVariable Long id, Model model, BindingResult result) {
 
         if (result.hasErrors()) {
             model.addAttribute("user", user);
@@ -97,6 +100,21 @@ public class AdminUserController {
             return "redirect:/users-delete/{id}?error";
         }
 
+    }
+
+    @PostMapping("/create-user-handler")
+    public String createUserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return "admin/user-create";
+        }
+
+        try {
+            userService.saveUser(userRegistrationDTO);
+            return "redirect:/usersadmin";
+        } catch (Exception e) {
+            return "register?error";
+        }
     }
 
 }
