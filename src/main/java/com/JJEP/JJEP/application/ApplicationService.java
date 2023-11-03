@@ -77,4 +77,9 @@ public class ApplicationService implements IApplicationService{
         }
         applicationRepository.deleteById(id);
     }
+
+    public long getCount() {
+        return applicationRepository.count();
+    }
+
 }

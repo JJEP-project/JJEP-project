@@ -7,7 +7,7 @@
 </head>
 
 <body class="h-full">
-    <div layout:fragment="content">
+    <form th:object="${userRegistrationDTO}" method="post" th:action="@{/create-user-handler}" layout:fragment="content">
         <div class="bg-white rounded-xl border flex flex-col md:flex-row p-4 justify-start">
 
             <div class="flex flex-col flex-1 mb-8">
@@ -26,22 +26,28 @@
                     <label class="block text-sm font-medium text-gray-900">Full name</label>
                     <div class="mt-2">
                         <input
+                                th:field="*{fullName}"
                                 type="text"
                                 name="fullName"
                                 id="fullName"
                                 autocomplete="fullName"
                                 class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('fullName')}"
+                              th:errors="*{fullName}"></span>
                     </div>
                 </div>
                 <div class="md:m-0">
                     <label class="block text-sm font-medium text-gray-900">Username</label>
                     <div class="mt-2">
                         <input
+                                th:field="*{username}"
                                 type="text"
                                 name="username"
                                 id="username"
                                 autocomplete="username"
                                 class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('username')}"
+                              th:errors="*{username}"></span>
                     </div>
                 </div>
 
@@ -50,11 +56,14 @@
                     <label class="block text-sm font-medium text-gray-900">Email</label>
                     <div class="mt-2">
                         <input
+                                th:field="*{email}"
                                 type="email"
                                 name="email"
                                 id="email"
                                 autocomplete="email"
                                 class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('email')}"
+                              th:errors="*{email}"></span>
                     </div>
                 </div>
 
@@ -63,31 +72,22 @@
                     <label class="block text-sm font-medium text-gray-900">Password</label>
                     <div class="mt-2">
                         <input
+                                th:field="*{password}"
                                 type="password"
                                 name="password"
                                 id="password"
                                 autocomplete="password"
                                 class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-                    </div>
-                </div>
-
-                <div class="md:m-0 col-span-full">
-                    <label for="select" class="block text-sm font-medium text-gray-900">Role</label>
-                    <div class="mt-2">
-                        <select style="-webkit-appearance: none;" id="select" name="select"
-                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
-                            <option value="" disabled selected>Select role for user</option>
-                            <option>Admin</option>
-                            <option>User</option>
-                        </select>
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('password')}"
+                              th:errors="*{password}"></span>
                     </div>
                 </div>
 
                 <!-- submit or save -->
                 <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
-                    <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                    <a th:href="@{/usersadmin}" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
                         Cancel
-                    </button>
+                    </a>
                     <button type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
                         Create
                     </button>
@@ -95,7 +95,7 @@
 
             </div>
         </div>
-    </div>
+    </form>
 </body>
 
 </html>
