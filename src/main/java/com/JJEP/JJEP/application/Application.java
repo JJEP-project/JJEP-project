@@ -1,11 +1,12 @@
 package com.JJEP.JJEP.application;
 
+import com.JJEP.JJEP.application.client.Client;
 import com.JJEP.JJEP.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -22,17 +23,6 @@ public class Application {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id", updatable = false)
-    private Long userId;
-
-//    intentionally commented out because mapping does not work with jpa relations
-//    when mapping dto to entity mapping tries to fill user entity and save to db both user and application
-//    I think that we don't need jpa relations and can work either with 2 queries or with joins
-//    @JoinColumn(name = "user_id")
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @Transient
-//    private User user;
-
     @Column(name = "is_blood_protection")
     private boolean isBloodProtection;
 
@@ -40,7 +30,7 @@ public class Application {
     private boolean isGenerationIht;
 
     @CreationTimestamp
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
@@ -79,4 +69,13 @@ public class Application {
 
     @Column(name = "trust")
     private boolean trust;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ToString.Exclude private User user;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "application", fetch = FetchType.LAZY)
+    @ToString.Exclude private java.util.List<Client> clients;
 }

@@ -1,10 +1,8 @@
 package com.JJEP.JJEP.user;
 
 import com.JJEP.JJEP.application.Application;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -49,7 +47,7 @@ public class User {
     private LocalDateTime updatedAt;
     private String role;
 
-//    intentionally commented out because mapping does not work with jpa relations
-//    @OneToOne(mappedBy = "user")
-//    private Application application;
+    @JsonIgnore
+    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ToString.Exclude private Application application;
 }

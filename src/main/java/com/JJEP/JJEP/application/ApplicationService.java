@@ -1,5 +1,10 @@
 package com.JJEP.JJEP.application;
 
+import com.JJEP.JJEP.application.client.ClientRequestDTO;
+import com.JJEP.JJEP.application.client.ClientService;
+import com.JJEP.JJEP.application.client.child.ChildRequestDTO;
+import com.JJEP.JJEP.application.client.child.ChildService;
+import com.JJEP.JJEP.user.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +17,20 @@ import java.util.Optional;
 public class ApplicationService implements IApplicationService{
     private final IApplicationRepository applicationRepository;
     private final ModelMapper modelMapper;
+    private final ClientService clientService;
+    private final ChildService childService;
 
+    // temporary added client service and children service
+    // have to think about the desing of the application
     public ApplicationService(IApplicationRepository applicationRepository,
-                              ModelMapper modelMapper) {
+                              ModelMapper modelMapper,
+                              ClientService clientService,
+                              ChildService childService) {
         this.applicationRepository = applicationRepository;
         this.modelMapper = modelMapper;
+        this.clientService = clientService;
+        this.childService = childService;
+
         this.modelMapper.getConfiguration().setPropertyCondition(ctx -> {
             // Skip mapping if the source property is null
             return ctx.getSource() != null;
@@ -25,10 +39,11 @@ public class ApplicationService implements IApplicationService{
 
     @Override
     public ApplicationResponseDTO findApplicationById(long id) {
-        Optional<Application> application = applicationRepository.findById(id);
-        if (application.isEmpty()) {
+        Optional<Application> applicationOptional = applicationRepository.findById(id);
+        if (applicationOptional.isEmpty()) {
             throw new ApplicationNotFoundException("Application not found");
         }
+        Application application = applicationOptional.get();
         return modelMapper.map(application, ApplicationResponseDTO.class);
     }
 
@@ -63,10 +78,24 @@ public class ApplicationService implements IApplicationService{
     }
     
     @Override
+    @Transactional
     public void saveApplication(ApplicationRequestDTO applicationRequestDTO) {
         Application application = modelMapper.map(applicationRequestDTO, Application.class);
-        System.out.println(application);
-        applicationRepository.save(application);
+        Application applicationSaved = applicationRepository.save(application);
+        List<ClientRequestDTO> clientRequestDTOS = applicationRequestDTO.getClients();
+        if (!clientRequestDTOS.isEmpty()) {
+            for (ClientRequestDTO clientRequestDTO : clientRequestDTOS) {
+                clientRequestDTO.setApplicationId(applicationSaved.getId());
+                clientService.saveClient(clientRequestDTO);
+                List<ChildRequestDTO> childRequestDTOS = clientRequestDTO.getChildren();
+                if (childRequestDTOS != null) {
+                    for (ChildRequestDTO childRequestDTO : childRequestDTOS) {
+                        childRequestDTO.setClientId(clientRequestDTO.getId());
+                        childService.saveChild(childRequestDTO);
+                    }
+                }
+            }
+        }
     }
 
     @Override
