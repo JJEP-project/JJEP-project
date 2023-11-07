@@ -70,12 +70,12 @@ public class Application {
     @Column(name = "trust")
     private boolean trust;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude private User user;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "application", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "application", fetch = FetchType.LAZY)
     @ToString.Exclude private java.util.List<Client> clients;
 }
