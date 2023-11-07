@@ -181,5 +181,13 @@ CREATE TABLE client_children (
 ALTER TABLE user_application DROP CONSTRAINT IF EXISTS user_application_user_id_fkey;
 ALTER TABLE user_application ADD CONSTRAINT user_application_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
 
+
+-- rollback ALTER TABLE user_application DROP CONSTRAINT user_application_user_id_fkey;
+-- rollback ALTER TABLE user_application ADD CONSTRAINT user_application_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id);
+
+-- changeset entl:add-unique-to-user-application
+ALTER TABLE user_application ADD CONSTRAINT user_application_user_id_unique UNIQUE (user_id);
+
+-- rollback ALTER TABLE user_application DROP CONSTRAINT user_application_user_id_unique;
 -- liquibase formatted sql
 
