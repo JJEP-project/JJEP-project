@@ -8,9 +8,9 @@
 
 <body class="h-full">
 <div layout:fragment="content">
-    <form th:action="@{'/users-delete/' + *{id}}" method="post" id="delete">
+    <form th:action="@{'/admin/users/' + *{id} + '/delete'}" method="post" id="delete">
     </form>
-    <form th:action="@{'/user-update/' + ${id}}" method="post" th:object="${user}"
+    <form th:action="@{'/admin/user-update/' + ${id}}" method="post" th:object="${user}"
           class="bg-white rounded-xl border flex flex-col md:flex-row p-4 justify-start">
 
         <div class="flex flex-col flex-1 mb-8">
@@ -88,7 +88,7 @@
             <div class="md:m-0 col-span-full flex flex-row justify-between border-t pt-4 space-x-4">
                 <input value="Delete" form="delete" type="submit" class="px-4 py-2 text-red-500 hover:bg-red-100 rounded-xl">
                 <div class="flex flex-row justify-end space-x-4">
-                    <a th:href="@{'/user-details-admin/' + *{id}}" type="button"
+                    <a th:href="@{'/admin/users/' + *{id}}" type="button"
                        class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
                         Cancel
                     </a>

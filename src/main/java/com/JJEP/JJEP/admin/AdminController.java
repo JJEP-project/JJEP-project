@@ -25,7 +25,7 @@ public class AdminController {
     ApplicationService applicationService;
 
 
-    @GetMapping("/homeadmin")
+    @GetMapping("/admin")
     public String homeAdmin(Model model) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();

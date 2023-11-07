@@ -21,7 +21,7 @@ public class AdminApplicationController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/applicationsadmin")
+    @GetMapping("/admin/applications")
     public String adminApplications(Model model) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
@@ -35,7 +35,7 @@ public class AdminApplicationController {
         return "admin/admin-applications";
     }
 
-    @GetMapping("/application-details-admin/{id}")
+    @GetMapping("/admin/application/{id}")
     public String getApplicationDetails(@PathVariable int id, Model model) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
