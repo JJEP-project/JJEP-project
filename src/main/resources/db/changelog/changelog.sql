@@ -177,5 +177,9 @@ CREATE TABLE client_children (
 -- rollback DROP TABLE client_children;
 -- rollback DROP TABLE child;
 
+-- changeset entl:add-on-delete-cascade-to-user-application
+ALTER TABLE user_application DROP CONSTRAINT IF EXISTS user_application_user_id_fkey;
+ALTER TABLE user_application ADD CONSTRAINT user_application_user_id_fkey FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
 -- liquibase formatted sql
 
