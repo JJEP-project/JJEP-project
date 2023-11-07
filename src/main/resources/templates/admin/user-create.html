@@ -7,7 +7,7 @@
 </head>
 
 <body class="h-full">
-    <form th:object="${userRegistrationDTO}" method="post" th:action="@{/create-user-handler}" layout:fragment="content">
+    <form th:object="${userRegistrationDTO}" method="post" th:action="@{/admin/create-user-handler}" layout:fragment="content">
         <div class="bg-white rounded-xl border flex flex-col md:flex-row p-4 justify-start">
 
             <div class="flex flex-col flex-1 mb-8">
@@ -85,7 +85,7 @@
 
                 <!-- submit or save -->
                 <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
-                    <a th:href="@{/usersadmin}" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                    <a th:href="@{/admin/users}" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
                         Cancel
                     </a>
                     <button type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
