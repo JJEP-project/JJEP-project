@@ -32,7 +32,7 @@ public class AdminUserController {
         return "admin/admin-users";
     }
 
-    @GetMapping("/admin/user-details/{id}")
+    @GetMapping("/admin/users/{id}")
     public String getUserDetails(@PathVariable Long id, Model model) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
@@ -45,7 +45,7 @@ public class AdminUserController {
 
     }
 
-    @GetMapping("/admin/user-create")
+    @GetMapping("/admin/users/create")
     public String createUser(Model model) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
@@ -58,7 +58,7 @@ public class AdminUserController {
 
     }
 
-    @GetMapping("/admin/user-edit/{id}")
+    @GetMapping("/admin/users/{id}/edit")
     public String editUserDetails(@PathVariable Long id, Model model) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
@@ -71,7 +71,7 @@ public class AdminUserController {
 
     }
 
-    @PostMapping("/admin/user-delete/{id}")
+    @PostMapping("/admin/users/{id}/delete")
     public String deleteUser(@PathVariable Long id, Model model) {
 
         try {
@@ -79,12 +79,12 @@ public class AdminUserController {
             return "redirect:/admin/users";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "redirect:/admin/user-edit/{id}?error";
+            return "redirect:/admin/users/{id}/edit?error";
         }
 
     }
 
-    @PostMapping("/admin/user-update/{id}")
+    @PostMapping("/admin/users/{id}/update")
     public String updateUserDetails(@Valid UserRegistrationDTO user, @PathVariable Long id, Model model, BindingResult result) {
 
         if (result.hasErrors()) {
@@ -94,15 +94,15 @@ public class AdminUserController {
 
         try {
             userService.updateUser(id, user);
-            return "redirect:/admin/user-details/{id}";
+            return "redirect:/admin/users/{id}";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "redirect:/admin/user-delete/{id}?error";
+            return "redirect:/admin/users/{id}/delete?error";
         }
 
     }
 
-    @PostMapping("/admin/create-user-handler")
+    @PostMapping("/admin/users/create/handler")
     public String createUserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result) {
 
         if (result.hasErrors()) {

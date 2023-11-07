@@ -35,7 +35,7 @@ public class AdminApplicationController {
         return "admin/admin-applications";
     }
 
-    @GetMapping("/admin/application-details/{id}")
+    @GetMapping("/admin/application/{id}")
     public String getApplicationDetails(@PathVariable int id, Model model) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();

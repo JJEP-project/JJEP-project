@@ -7,7 +7,7 @@
 </head>
 
 <body class="h-full">
-    <form th:object="${userRegistrationDTO}" method="post" th:action="@{/admin/create-user-handler}" layout:fragment="content">
+    <form th:object="${userRegistrationDTO}" method="post" th:action="@{/admin/users/create/handler}" layout:fragment="content">
         <div class="bg-white rounded-xl border flex flex-col md:flex-row p-4 justify-start">
 
             <div class="flex flex-col flex-1 mb-8">

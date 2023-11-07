@@ -16,7 +16,7 @@
                         <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
                             Sort
                         </button>
-                        <a th:href="@{/admin/user-create}" type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                        <a th:href="@{/admin/users/create}" type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
                             Add User
                         </a>
                     </div>
@@ -80,10 +80,10 @@
                             </td>
                             <td>
                                 <div class="flex flex-row space-x-2">
-                                    <a th:href="@{'/admin/user-edit/' + ${user.id}}" class="bg-blue-500 py-1 px-2 rounded-full text-white">
+                                    <a th:href="@{'/admin/users/' + ${user.id} + '/edit'}" class="bg-blue-500 py-1 px-2 rounded-full text-white">
                                         Edit
                                     </a>
-                                    <a th:href="@{'/admin/user-details/' + ${user.id}}" class="bg-blue-500 py-1 px-2 rounded-full text-white">
+                                    <a th:href="@{'/admin/users/' + ${user.id}}" class="bg-blue-500 py-1 px-2 rounded-full text-white">
                                         Show
                                     </a>
                                 </div>
