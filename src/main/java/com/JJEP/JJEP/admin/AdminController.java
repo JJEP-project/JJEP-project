@@ -37,6 +37,9 @@ public class AdminController {
         model.addAttribute("newUsersLastWeek", userService.getNewUsersLastWeek());
         model.addAttribute("newApplicationsLastWeek", applicationService.getNewApplicationsLastWeek());
 
+        List<User> users = userService.getLastFiveUsers();
+        model.addAttribute("users", users);
+
         return "admin/home";
     }
 

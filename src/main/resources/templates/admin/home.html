@@ -57,70 +57,22 @@
           </tr>
           </thead>
           <tbody class="divide-y">
-          <tr class="h-10">
-            <td>
-              Yan
-            </td>
-            <td>
-              Yan
-            </td>
-            <td>
-              Yan@gmail.com
-            </td>
-            <td>
-                                  <span class="bg-sky-500 py-1 px-2 rounded-full text-white">
-                                      User
-                                  </span>
-            </td>
-          </tr>
-          <tr class="h-10">
-            <td>
-              Damir Valiev
-            </td>
-            <td>
-              Damir
-            </td>
-            <td>
-              damir@gmail.com
-            </td>
-            <td>
-                                  <span class="bg-green-500 py-1 px-2 rounded-full text-white">
-                                      Admin
-                                  </span>
-            </td>
-          </tr>
-          <tr class="h-10">
-            <td>
-              Max
-            </td>
-            <td>
-              Max
-            </td>
-            <td>
-              max@gmail.com
-            </td>
-            <td>
-                                  <span class="bg-green-500 py-1 px-2 rounded-full text-white w-full">
-                                      Admin
-                                  </span>
-            </td>
-          </tr>
-          <tr class="h-10">
-            <td>
-              Jalol
-            </td>
-            <td>
-              private_user
-            </td>
-            <td>
-              jalol@gmail.com
-            </td>
-            <td>
-                                  <span class="bg-sky-500 py-1 px-2 rounded-full text-white">
-                                      User
-                                  </span>
-            </td>
-          </tr>
+            <tr th:each="user: ${users}" class="h-10">
+              <td th:text="${user.fullName}">
+
+              </td>
+              <td th:text="${user.username}">
+
+              </td>
+              <td th:text="${user.email}">
+
+              </td>
+              <td th:switch="${user.role.toString()}">
+                <span class="bg-green-500 py-1 px-2 rounded-full text-white" th:case="'ROLE_ADMIN'">Admin</span>
+                <span class="bg-sky-500 py-1 px-2 rounded-full text-white" th:case="'ROLE_USER'">User</span>
+                <span class="bg-gray-600 py-1 px-2 rounded-full text-white" th:case="*">Anon</span>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

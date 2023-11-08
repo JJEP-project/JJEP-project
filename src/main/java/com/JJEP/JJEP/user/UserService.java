@@ -144,5 +144,6 @@ public class UserService implements IUserService {
     public long getNewUsersLastWeek() {
         return userRepository.countNewUsersLastWeek();
     }
+    public List<User> getLastFiveUsers() { return userRepository.findTop5ByOrderByCreatedAtDesc(); }
 
 }
