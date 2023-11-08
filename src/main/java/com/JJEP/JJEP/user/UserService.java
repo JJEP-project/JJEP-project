@@ -141,4 +141,8 @@ public class UserService implements IUserService {
     public long getCount() {
         return userRepository.count();
     }
+    public long getNewUsersLastWeek() {
+        return userRepository.countNewUsersLastWeek();
+    }
+
 }

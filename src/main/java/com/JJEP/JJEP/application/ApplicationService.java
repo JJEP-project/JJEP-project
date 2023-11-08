@@ -110,5 +110,9 @@ public class ApplicationService implements IApplicationService{
     public long getCount() {
         return applicationRepository.count();
     }
+    public long getNewApplicationsLastWeek() {
+        return applicationRepository.countNewApplicationsLastWeek();
+    }
+
 
 }

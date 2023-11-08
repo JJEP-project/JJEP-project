@@ -17,5 +17,8 @@ public interface IUserRepository extends JpaRepository<User, Long> {
     @Query("UPDATE User u SET u.username = :#{#user.username}, u.fullName = :#{#user.fullName}, u.email = :#{#user.email} WHERE u.id = :id")
     void updateById(@Param("id") Long id, @Param("user") User user);
 
+    @Query("SELECT COUNT(u) FROM User u WHERE date_trunc('week', u.createdAt) = date_trunc('week', current_date)")
+    long countNewUsersLastWeek();
+
     long count();
 }
