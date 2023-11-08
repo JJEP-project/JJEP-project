@@ -72,10 +72,10 @@
                                 <span class="bg-sky-500 py-1 px-2 rounded-full text-white" th:case="'ROLE_USER'">User</span>
                                 <span class="bg-gray-600 py-1 px-2 rounded-full text-white" th:case="*">Anon</span>
                             </td>
-                            <td th:text="${user.createdAt}">
+                            <td th:text="${#temporals.format(user.createdAt, 'yyyy-MM-dd HH:mm')}">
 
                             </td>
-                            <td th:text="${user.updatedAt}">
+                            <td th:text="${#temporals.format(user.updatedAt, 'yyyy-MM-dd HH:mm')}">
 
                             </td>
                             <td>
