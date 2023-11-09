@@ -5,6 +5,7 @@ import com.JJEP.JJEP.application.client.ClientService;
 import com.JJEP.JJEP.application.client.child.ChildRequestDTO;
 import com.JJEP.JJEP.application.client.child.ChildService;
 import com.JJEP.JJEP.user.User;
+import com.JJEP.JJEP.user.UserResponseDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -114,5 +115,15 @@ public class ApplicationService implements IApplicationService{
         return applicationRepository.countNewApplicationsLastWeek();
     }
 
+    @Override
+    public List<ApplicationResponseDTO> getLastFiveApplications() {
+        List<Application> applications = applicationRepository.findTop5ByOrderByCreatedAtDesc();
+
+        List<ApplicationResponseDTO> applicationsDTO = new ArrayList<>();
+        for (Application application : applications) {
+            applicationsDTO.add(modelMapper.map(application, ApplicationResponseDTO.class));
+        }
+        return applicationsDTO;
+    }
 
 }
