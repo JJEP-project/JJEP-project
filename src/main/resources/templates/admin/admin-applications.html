@@ -32,7 +32,7 @@
                                 <div class="font-medium text-left">ID</div>
                             </th>
                             <th class="whitespace-nowrap">
-                                <div class="font-medium text-left">User's name</div>
+                                <div class="font-medium text-left">Username</div>
                             </th>
                             <th class="whitespace-nowrap">
                                 <div class="font-medium text-left">Created at</div>
@@ -50,7 +50,7 @@
                             <td th:text="${form.id}">
 
                             </td>
-                            <td th:text="${form.user.fullName}">
+                            <td th:text="${form.user.username}">
 
                             </td>
                             <td th:text="${#temporals.format(form.createdAt, 'yyyy-MM-dd HH:mm')}">
