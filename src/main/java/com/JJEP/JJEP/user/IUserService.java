@@ -15,4 +15,6 @@ public interface IUserService extends UserDetailsService {
     void saveUser(UserRegistrationDTO user);
 
     void deleteUser(long id);
+
+    List<UserResponseDTO> getLastFiveUsers();
 }
