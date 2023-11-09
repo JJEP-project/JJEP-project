@@ -53,10 +53,10 @@
                             <td th:text="${form.user.fullName}">
 
                             </td>
-                            <td th:text="${form.createdAt}">
+                            <td th:text="${#temporals.format(form.createdAt, 'yyyy-MM-dd HH:mm')}">
 
                             </td>
-                            <td th:text="${form.updatedAt}">
+                            <td th:text="${#temporals.format(form.createdAt, 'yyyy-MM-dd HH:mm')}">
 
                             </td>
                             <td>

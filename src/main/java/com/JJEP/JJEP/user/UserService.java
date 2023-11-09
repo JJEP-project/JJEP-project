@@ -141,4 +141,20 @@ public class UserService implements IUserService {
     public long getCount() {
         return userRepository.count();
     }
+    public long getNewUsersLastWeek() {
+        return userRepository.countNewUsersLastWeek();
+    }
+//    public List<UserResponseDTO> getLastFiveUsers() { return userRepository.findTop5ByOrderByCreatedAtDesc(); }
+
+    @Override
+    public List<UserResponseDTO> getLastFiveUsers() {
+        List<User> users = userRepository.findTop5ByOrderByCreatedAtDesc();
+
+        List<UserResponseDTO> usersDTO = new ArrayList<>();
+        for (User user : users) {
+            usersDTO.add(modelMapper.map(user, UserResponseDTO.class));
+        }
+        return usersDTO;
+    }
+
 }
