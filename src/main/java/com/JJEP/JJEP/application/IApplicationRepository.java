@@ -37,6 +37,9 @@ public interface IApplicationRepository extends JpaRepository<Application, Long>
     long countNewApplicationsLastWeek();
 
     List<Application> findTop5ByOrderByCreatedAtDesc();
+
+    List<Application> findAllByOrderByCreatedAtDesc();
+    List<Application> findAllByOrderByCreatedAtAsc();
     long count();
 
 }

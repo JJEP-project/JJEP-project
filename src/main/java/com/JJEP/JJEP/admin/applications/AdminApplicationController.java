@@ -1,5 +1,6 @@
 package com.JJEP.JJEP.admin.applications;
 
+import com.JJEP.JJEP.application.Application;
 import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import com.JJEP.JJEP.application.ApplicationService;
 import com.JJEP.JJEP.user.UserResponseDTO;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -22,14 +24,18 @@ public class AdminApplicationController {
     UserService userService;
 
     @GetMapping("/admin/applications")
-    public String adminApplications(Model model) {
+    public String adminApplications(Model model, @RequestParam(name = "sortBy", defaultValue = "default") String sortBy) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
         model.addAttribute("authUser", authUser);
 
-        List<ApplicationResponseDTO> forms = applicationService.findAllApplications();
-        model.addAttribute("forms", forms);
+        List<ApplicationResponseDTO> forms = switch (sortBy) {
+            case "oldest" -> applicationService.findAllApplicationsOldestFirst();
+            case "newest" -> applicationService.findAllApplicationsNewestFirst();
+            default -> applicationService.findAllApplications();
+        };
 
+        model.addAttribute("forms", forms);
         model.addAttribute("currentPage", "applications");
 
         return "admin/admin-applications";

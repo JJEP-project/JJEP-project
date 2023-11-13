@@ -13,9 +13,12 @@
                 <div class="flex flex-row justify-between items-center">
                     <h3 class="text-xl">Applications</h3>
                     <div class="flex flex-row justify-end space-x-4">
-                        <button class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" type="button">
-                            Sort
-                        </button>
+                        <a th:href="@{/admin/applications?sortBy=newest}" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" type="button">
+                            Sort Newest
+                        </a>
+                        <a th:href="@{/admin/applications?sortBy=oldest}" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" type="button">
+                            Sort Oldest
+                        </a>
                         <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl"
                                 type="submit">
                             Add Application

@@ -13,4 +13,7 @@ public interface IApplicationService {
         void deleteApplication(long id);
 
         List<ApplicationResponseDTO> getLastFiveApplications();
+
+        List<ApplicationResponseDTO> findAllApplicationsNewestFirst();
+        List<ApplicationResponseDTO> findAllApplicationsOldestFirst();
 }
