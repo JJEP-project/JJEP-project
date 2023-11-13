@@ -4,6 +4,7 @@ import com.JJEP.JJEP.application.ApplicationNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +29,7 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    @Transactional
     public void updateClient(long id, ClientResponseDTO clientResponseDTO) {
         Optional<Client> existingClientOptional = clientRepository.findById(id);
         if (existingClientOptional.isEmpty()) {
