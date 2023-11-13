@@ -2,6 +2,7 @@ package com.JJEP.JJEP.application;
 
 import com.JJEP.JJEP.application.client.ClientResponseDTO;
 import com.JJEP.JJEP.user.User;
+import com.JJEP.JJEP.user.UserResponseDTO;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -19,6 +20,6 @@ public class ApplicationResponseDTO extends ApplicationBaseDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     // need to exclude user from toString to avoid infinite recursion
-    @ToString.Exclude private User user;
+    @ToString.Exclude private UserResponseDTO user;
     @ToString.Exclude private List<ClientResponseDTO> clients;
 }
