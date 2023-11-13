@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}">
+<head>
+    <title>Applications</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+<div class="container mx-auto min-h-screen">
+    
+    <div class="flex flex-col md:flex-row p-4 justify-start mt-12">
+        <div class="flex flex-col flex-1 mb-8">
+            <h1 class="font-semibold">
+                Applications
+            </h1>
+            <p class="text-gray-500 md:w-2/3">
+                Here you can create new application and edit your existing applications that not accepted yet.
+            </p>
+
+            <div class="flex flex-row justify-center lg:justify-start my-8">
+                <a class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl" href="applications.html">
+                    Create
+                </a>
+            </div>
+        </div>
+
+        <div class="flex flex-col space-y-2 flex-1">
+            <!--      Foreach application      -->
+            <div class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
+                <h3>#12321</h3>
+                <div class="flex flex-col justify center items-end">
+                    <h5 class="text-sm">Requested</h5>
+                    <p class="text-xs text-gray-500">2023-12-22</p>
+                </div>
+            </div>
+            <div class="flex flex-row justify-between p-5 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
+                <h3>#12321</h3>
+                <div class="flex flex-col justify center items-end">
+                    <h5 class="text-sm">In progress</h5>
+                    <p class="text-xs text-gray-500">2023-12-22</p>
+                </div>
+            </div>
+            <div class="flex flex-row justify-between p-5 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
+                <h3>#12321</h3>
+                <div class="flex flex-col justify center items-end">
+                    <h5 class="text-sm">Completed</h5>
+                    <p class="text-xs text-gray-500">2023-12-22</p>
+                </div>
+            </div>
+            <div class="flex flex-row justify-between p-5 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
+                <h3>#12321</h3>
+                <div class="flex flex-col justify center items-end">
+                    <h5 class="text-sm">Cancelled</h5>
+                    <p class="text-xs text-gray-500">2023-12-22</p>
+                </div>
+            </div>
+
+            <!--      if there is no application      -->
+            <!--            <div class="border rounded-xl py-24 px-8 text-center">-->
+            <!--                <h3 class="font-semibold">No results found</h3>-->
+            <!--                <p class="text-gray-500">-->
+            <!--                    Create your first application!-->
+            <!--                </p>-->
+            <!--            </div>-->
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
