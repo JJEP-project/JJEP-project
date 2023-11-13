@@ -32,8 +32,13 @@ public class AdminController {
         model.addAttribute("authUser", authUser);
 
         model.addAttribute("currentPage", "home");
+
         model.addAttribute("usersCount", userService.getCount());
         model.addAttribute("applicationsCount", applicationService.getCount());
+        model.addAttribute("newUsersLastWeek", userService.getNewUsersLastWeek());
+        model.addAttribute("newApplicationsLastWeek", applicationService.getNewApplicationsLastWeek());
+        model.addAttribute("users", userService.getLastFiveUsers());
+        model.addAttribute("forms", applicationService.getLastFiveApplications());
 
         return "admin/home";
     }

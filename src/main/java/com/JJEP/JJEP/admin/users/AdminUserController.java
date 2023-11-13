@@ -19,14 +19,18 @@ public class AdminUserController {
     UserService userService;
 
     @GetMapping("/admin/users")
-    public String adminUsers(Model model) {
+    public String adminUsers(Model model, @RequestParam(name = "sortBy", defaultValue = "default") String sortBy) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
         model.addAttribute("authUser", authUser);
 
-        List<UserResponseDTO> users = userService.findAllUsers();
-        model.addAttribute("users", users);
+        List<UserResponseDTO> users = switch (sortBy) {
+            case "oldest" -> userService.findAllUsersOldestFirst();
+            case "newest" -> userService.findAllUsersNewestFirst();
+            default -> userService.findAllUsers();
+        };
 
+        model.addAttribute("users", users);
         model.addAttribute("currentPage", "users");
 
         return "admin/admin-users";
@@ -97,7 +101,7 @@ public class AdminUserController {
             return "redirect:/admin/users/{id}";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "redirect:/admin/users/{id}/delete?error";
+            return "redirect:/admin/users/{id}/edit?error";
         }
 
     }

@@ -10,7 +10,7 @@
 <div layout:fragment="content">
     <form th:action="@{'/admin/users/' + *{id} + '/delete'}" method="post" id="delete">
     </form>
-    <form th:action="@{'/admin/user-update/' + ${id}}" method="post" th:object="${user}"
+    <form th:action="@{'/admin/users/' + ${id} + '/update'}" method="post" th:object="${user}"
           class="bg-white rounded-xl border flex flex-col md:flex-row p-4 justify-start">
 
         <div class="flex flex-col flex-1 mb-8">

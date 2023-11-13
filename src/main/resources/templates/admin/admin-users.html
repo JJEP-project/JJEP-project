@@ -13,9 +13,12 @@
                 <div class="flex flex-row justify-between items-center">
                     <h3 class="text-xl">Users</h3>
                     <div class="flex flex-row justify-end space-x-4">
-                        <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
-                            Sort
-                        </button>
+                        <a th:href="@{/admin/users?sortBy=newest}" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                            Sort Newest
+                        </a>
+                        <a th:href="@{/admin/users?sortBy=oldest}" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                            Sort Oldest
+                        </a>
                         <a th:href="@{/admin/users/create}" type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
                             Add User
                         </a>
@@ -72,10 +75,10 @@
                                 <span class="bg-sky-500 py-1 px-2 rounded-full text-white" th:case="'ROLE_USER'">User</span>
                                 <span class="bg-gray-600 py-1 px-2 rounded-full text-white" th:case="*">Anon</span>
                             </td>
-                            <td th:text="${user.createdAt}">
+                            <td th:text="${#temporals.format(user.createdAt, 'yyyy-MM-dd HH:mm')}">
 
                             </td>
-                            <td th:text="${user.updatedAt}">
+                            <td th:text="${#temporals.format(user.updatedAt, 'yyyy-MM-dd HH:mm')}">
 
                             </td>
                             <td>
