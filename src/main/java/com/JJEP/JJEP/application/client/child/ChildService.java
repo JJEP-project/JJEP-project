@@ -1,8 +1,11 @@
 package com.JJEP.JJEP.application.client.child;
 
+import com.JJEP.JJEP.application.ApplicationNotFoundException;
+import com.JJEP.JJEP.application.client.Client;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -56,8 +59,19 @@ public class ChildService implements IChildService{
     }
 
     @Override
-    public void updateChild(long id, ChildRequestDTO childRequestDTO) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    @Transactional
+    public void updateChild(long id, ChildResponseDTO childResponseDTO) {
+        Optional<Child> existingChildOptional = childRepository.findById(id);
+        if (existingChildOptional.isEmpty()) {
+            throw new ChildNotFoundException("Child not found");
+        }
+        Child existingChild = existingChildOptional.get();
+        Child updatedChild = modelMapper.map(childResponseDTO, Child.class);
+
+        // update existingChild with updated attributes of updatedClient
+        modelMapper.map(updatedChild, existingChild);
+        childRepository.updateById(id, existingChild);
+
     }
 
     @Override
