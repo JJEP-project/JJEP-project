@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface IApplicationRepository extends JpaRepository<Application, Long> {
 
     @Modifying
@@ -28,6 +30,8 @@ public interface IApplicationRepository extends JpaRepository<Application, Long>
                 a.id = :id
             """)
     void updateById(@Param("id") Long id, @Param("application") Application application);
+
+    Optional<Application> getApplicationByUserId(long id);
 
     long count();
 

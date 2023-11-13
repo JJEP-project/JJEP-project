@@ -9,4 +9,5 @@ public interface IApplicationService {
         void updateApplication(long id, ApplicationResponseDTO applicationResponseDTO);
         void saveApplication(ApplicationRequestDTO applicationRequestDTO);
         void deleteApplication(long id);
+        ApplicationResponseDTO findApplicationByUserId(long id);
 }

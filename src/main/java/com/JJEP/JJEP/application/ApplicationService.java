@@ -107,6 +107,16 @@ public class ApplicationService implements IApplicationService{
         applicationRepository.deleteById(id);
     }
 
+    @Override
+    public ApplicationResponseDTO findApplicationByUserId(long id) {
+        Optional<Application> applicationOptional = applicationRepository.getApplicationByUserId(id);
+        if (applicationOptional.isEmpty()) {
+            throw new ApplicationNotFoundException("Application not found");
+        }
+        Application application = applicationOptional.get();
+        return modelMapper.map(application, ApplicationResponseDTO.class);
+    }
+
     public long getCount() {
         return applicationRepository.count();
     }
