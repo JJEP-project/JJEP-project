@@ -126,4 +126,26 @@ public class ApplicationService implements IApplicationService{
         return applicationsDTO;
     }
 
+    @Override
+    public List<ApplicationResponseDTO> findAllApplicationsNewestFirst() {
+        List<Application> applications = applicationRepository.findAllByOrderByCreatedAtDesc();
+
+        List<ApplicationResponseDTO> applicationsDTO = new ArrayList<>();
+        for (Application application : applications) {
+            applicationsDTO.add(modelMapper.map(application, ApplicationResponseDTO.class));
+        }
+        return applicationsDTO;
+    }
+
+    @Override
+    public List<ApplicationResponseDTO> findAllApplicationsOldestFirst() {
+        List<Application> applications = applicationRepository.findAllByOrderByCreatedAtAsc();
+
+        List<ApplicationResponseDTO> applicationsDTO = new ArrayList<>();
+        for (Application application : applications) {
+            applicationsDTO.add(modelMapper.map(application, ApplicationResponseDTO.class));
+        }
+        return applicationsDTO;
+    }
+
 }
