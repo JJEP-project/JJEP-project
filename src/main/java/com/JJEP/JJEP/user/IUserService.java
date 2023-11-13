@@ -10,6 +10,9 @@ public interface IUserService extends UserDetailsService {
 
     List<UserResponseDTO> findAllUsers();
 
+    List<UserResponseDTO> findAllUsersNewestFirst();
+    List<UserResponseDTO> findAllUsersOldestFirst();
+
     void updateUser(long id, UserRegistrationDTO user);
 
     void saveUser(UserRegistrationDTO user);
