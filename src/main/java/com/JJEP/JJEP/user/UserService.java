@@ -157,4 +157,28 @@ public class UserService implements IUserService {
         return usersDTO;
     }
 
+    @Override
+    public List<UserResponseDTO> findAllUsersNewestFirst() {
+        List<User> users = userRepository.findAllByOrderByCreatedAtDesc();
+
+        List<UserResponseDTO> usersDTO = new ArrayList<>();
+        for (User user : users) {
+            usersDTO.add(modelMapper.map(user, UserResponseDTO.class));
+        }
+        return usersDTO;
+    }
+
+    @Override
+    public List<UserResponseDTO> findAllUsersOldestFirst() {
+        List<User> users = userRepository.findAllByOrderByCreatedAtAsc();
+
+        List<UserResponseDTO> usersDTO = new ArrayList<>();
+        for (User user : users) {
+            usersDTO.add(modelMapper.map(user, UserResponseDTO.class));
+        }
+        return usersDTO;
+    }
+
+
+
 }

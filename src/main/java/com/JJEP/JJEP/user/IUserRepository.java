@@ -24,5 +24,8 @@ public interface IUserRepository extends JpaRepository<User, Long> {
 
     List<User> findTop5ByOrderByCreatedAtDesc();
 
+    List<User> findAllByOrderByCreatedAtDesc();
+    List<User> findAllByOrderByCreatedAtAsc();
+
     long count();
 }
