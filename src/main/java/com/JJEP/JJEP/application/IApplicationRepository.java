@@ -8,6 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+import java.util.Optional;
+
 public interface IApplicationRepository extends JpaRepository<Application, Long> {
 
     @Modifying
@@ -40,6 +42,8 @@ public interface IApplicationRepository extends JpaRepository<Application, Long>
 
     List<Application> findAllByOrderByCreatedAtDesc();
     List<Application> findAllByOrderByCreatedAtAsc();
+    Optional<Application> getApplicationByUserId(long id);
+
     long count();
 
 }
