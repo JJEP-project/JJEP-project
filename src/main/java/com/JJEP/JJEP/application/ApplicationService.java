@@ -4,8 +4,6 @@ import com.JJEP.JJEP.application.client.ClientRequestDTO;
 import com.JJEP.JJEP.application.client.ClientService;
 import com.JJEP.JJEP.application.client.child.ChildRequestDTO;
 import com.JJEP.JJEP.application.client.child.ChildService;
-import com.JJEP.JJEP.user.User;
-import com.JJEP.JJEP.user.UserResponseDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
