@@ -15,47 +15,34 @@
                 <p class="text-gray-500 md:w-2/3">
                     Here you can create new applications and edit your existing applications that have not been accepted yet.
                 </p>
-                <div class="flex flex-row justify-center lg:justify-start my-8" th:unless="${not #strings.isEmpty(applications.id)}">
-                    <a class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl" href="applications.html">
-                        Create
-                    </a>
-                </div>
             </div>
 
-            <div class="flex flex-col space-y-2 flex-1">
-                <div class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
-                    <h3 th:text="'#' + ${applications.id}">Id</h3>
-                    <div class="flex flex-col justify center items-end">
-                        <h5 class="text-sm">
-                            <span th:switch="${applications.status}">
-                                <span th:case="0">Requested</span>
-                                <span th:case="1">In Progress</span>
-                                <span th:case="2">Completed</span>
-                                <span th:case="3">Cancelled</span>
-                            </span>
-                        </h5>
-                        <p th:text="${#temporals.format(applications.createdAt, 'yyyy-MM-dd')}" class="text-xs text-gray-500">Date</p>
-                    </div>
-                </div>
-
-                <div th:if="${applications.status == 0}" class="flex flex-row justify-end mt-2">
-                    <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
-                        Update
-                    </button>
-                    <button class="px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded-xl ml-2">
-                        Delete
-                    </button>
-                </div>
-
-                <!-- if there is no application -->
-                <!-- <div class="border rounded-xl py-24 px-8 text-center">
-                    <h3 class="font-semibold">No results found</h3>
-                    <p class="text-gray-500">
-                        Create your first application!
-                    </p>
-                </div> -->
-
+    <div class="flex flex-col space-y-2 flex-1">
+        <div th:if="${applications}" class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
+            <h3 th:text="'#' + ${applications.id}">Id</h3>
+            <div class="flex flex-col justify center items-end">
+                <h5 class="text-sm">
+                    <span th:switch="${applications.status}">
+                        <span th:case="0">Requested</span>
+                        <span th:case="1">In Progress</span>
+                        <span th:case="2">Completed</span>
+                        <span th:case="3">Cancelled</span>
+                    </span>
+                </h5>
+                <p th:text="${#temporals.format(applications.createdAt, 'yyyy-MM-dd')}" class="text-xs text-gray-500">Date</p>
             </div>
+        </div>
+
+        <div th:unless="${applications}" class="border rounded-xl py-24 px-8 text-center">
+            <h3 class="font-semibold">No results found</h3>
+            <p class="text-gray-500">
+                Create your first application!
+            </p>
+        </div>
+        
+    </div>
+    </div>
+
         </div>
     </div>
 </div>

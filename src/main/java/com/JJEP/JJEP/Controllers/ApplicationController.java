@@ -5,6 +5,8 @@ import com.JJEP.JJEP.application.ApplicationRequestDTO;
 import com.JJEP.JJEP.application.IApplicationService;
 import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
+
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,6 +54,7 @@ public class ApplicationController {
         model.addAttribute("formApplication", new ApplicationBaseDTO());
 
         UserResponseDTO currentUser = userService.getAuthenticatedUser();
+        
         model.addAttribute("applications", applicationService.findApplicationByUserId(currentUser.getId()));
 
         return "applications";
