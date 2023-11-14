@@ -24,22 +24,23 @@ public class ApplicationService implements IApplicationService{
     private final ModelMapper modelMapper;
     private final ClientService clientService;
     private final ChildService childService;
-    private final ActivityService activityService;
 
+    @Autowired
+    ActivityService activityService;
 
+    @Autowired
+    UserService userService;
 
     // temporary added client service and children service
     // have to think about the desing of the application
     public ApplicationService(IApplicationRepository applicationRepository,
                               ModelMapper modelMapper,
                               ClientService clientService,
-                              ChildService childService,
-                              ActivityService activityService) {
+                              ChildService childService) {
         this.applicationRepository = applicationRepository;
         this.modelMapper = modelMapper;
         this.clientService = clientService;
         this.childService = childService;
-        this.activityService = activityService;
 
         this.modelMapper.getConfiguration().setPropertyCondition(ctx -> {
             // Skip mapping if the source property is null
@@ -87,14 +88,13 @@ public class ApplicationService implements IApplicationService{
         // because we updated existingApplication, we can save it with updates
         applicationRepository.updateById(id, existingApplication);
 
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
         activityService.saveActivity(ActivityRequestDTO
                 .builder()
-                .userId(applicationResponseDTO
-                        .getUser()
-                        .getId()
-                )
-                .activityMessage("updated application")
-                .build());
+                .userId(authUser.getId())
+                .activityMessage("Has updated an application")
+                .build()
+        );
     }
     
     @Override
@@ -116,6 +116,15 @@ public class ApplicationService implements IApplicationService{
                 }
             }
         }
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        activityService.saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(authUser.getId())
+                .activityMessage("Has created an application")
+                .build()
+        );
+
     }
 
     @Override
@@ -126,8 +135,13 @@ public class ApplicationService implements IApplicationService{
         }
         applicationRepository.deleteById(id);
 
-
-
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        activityService.saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(authUser.getId())
+                .activityMessage("Has deleted an application")
+                .build()
+        );
 
     }
 

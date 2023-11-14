@@ -106,6 +106,13 @@ public class UserService implements IUserService {
             user.setRole(UserRoles.ROLE_USER.toString());
             userRepository.save(user);
 
+            activityService.saveActivity(ActivityRequestDTO
+                    .builder()
+                    .userId(user.getId())
+                    .activityMessage("Has created an account")
+                    .build()
+            );
+
         } catch (DataIntegrityViolationException e) {
             System.out.println(e.getMessage());
             if (e.getMessage().contains("users_username_key"))
@@ -115,6 +122,15 @@ public class UserService implements IUserService {
             else
                 throw new RuntimeException("Error saving user");
         }
+
+        UserResponseDTO authUser = getAuthenticatedUser();
+        activityService.saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(authUser.getId())
+                .activityMessage("Has created new user")
+                .build()
+        );
+
     }
 
     @Override
@@ -129,7 +145,7 @@ public class UserService implements IUserService {
         activityService.saveActivity(ActivityRequestDTO
                 .builder()
                 .userId(authUser.getId())
-                .activityMessage("Deleted user")
+                .activityMessage("Deleted user with id " + id)
                 .build()
         );
     }
