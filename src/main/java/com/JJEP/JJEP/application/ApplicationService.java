@@ -2,7 +2,6 @@ package com.JJEP.JJEP.application;
 
 import com.JJEP.JJEP.application.client.ClientRequestDTO;
 import com.JJEP.JJEP.application.client.ClientService;
-import com.JJEP.JJEP.application.client.child.ChildRequestDTO;
 import com.JJEP.JJEP.application.client.child.ChildService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -86,13 +85,6 @@ public class ApplicationService implements IApplicationService{
             for (ClientRequestDTO clientRequestDTO : clientRequestDTOS) {
                 clientRequestDTO.setApplicationId(applicationSaved.getId());
                 clientService.saveClient(clientRequestDTO);
-                List<ChildRequestDTO> childRequestDTOS = clientRequestDTO.getChildren();
-                if (childRequestDTOS != null) {
-                    for (ChildRequestDTO childRequestDTO : childRequestDTOS) {
-                        childRequestDTO.setClientId(clientRequestDTO.getId());
-                        childService.saveChild(childRequestDTO);
-                    }
-                }
             }
         }
     }
