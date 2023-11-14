@@ -197,3 +197,16 @@ ALTER TABLE user_application ADD COLUMN status SMALLINT NOT NULL DEFAULT 0;
 
 --rollback ALTER TABLE user_application DROP COLUMN status;
 
+--changeset entl:create-activity-table
+
+CREATE TABLE activity (
+    id BIGSERIAL,
+    user_id BIGINT NOT NULL,
+    activity_message VARCHAR(255) NOT NULL,
+    activity_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+--rollback DROP TABLE activity;
+
