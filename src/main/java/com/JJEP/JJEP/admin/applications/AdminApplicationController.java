@@ -50,7 +50,6 @@ public class AdminApplicationController {
         ApplicationResponseDTO form = applicationService.findApplicationById(id);
         model.addAttribute("form", form);
 
-
         return "admin/application-details";
 
     }

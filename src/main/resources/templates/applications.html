@@ -26,33 +26,11 @@
         </div>
 
         <div class="flex flex-col space-y-2 flex-1">
-            <!--      Foreach application      -->
             <div class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
-                <h3>#12321</h3>
+                <h3 th:text="${applications.id}">Id</h3>
                 <div class="flex flex-col justify center items-end">
-                    <h5 class="text-sm">Requested</h5>
-                    <p class="text-xs text-gray-500">2023-12-22</p>
-                </div>
-            </div>
-            <div class="flex flex-row justify-between p-5 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
-                <h3>#12321</h3>
-                <div class="flex flex-col justify center items-end">
-                    <h5 class="text-sm">In progress</h5>
-                    <p class="text-xs text-gray-500">2023-12-22</p>
-                </div>
-            </div>
-            <div class="flex flex-row justify-between p-5 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
-                <h3>#12321</h3>
-                <div class="flex flex-col justify center items-end">
-                    <h5 class="text-sm">Completed</h5>
-                    <p class="text-xs text-gray-500">2023-12-22</p>
-                </div>
-            </div>
-            <div class="flex flex-row justify-between p-5 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
-                <h3>#12321</h3>
-                <div class="flex flex-col justify center items-end">
-                    <h5 class="text-sm">Cancelled</h5>
-                    <p class="text-xs text-gray-500">2023-12-22</p>
+                    <h5 th:text="${applications.status}" class="text-sm">Status</h5>
+                    <p th:text="${#temporals.format(applications.createdAt, 'yyyy-MM-dd')}" class="text-xs text-gray-500">Date</p>
                 </div>
             </div>
 

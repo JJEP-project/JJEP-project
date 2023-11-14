@@ -50,7 +50,10 @@ public class ApplicationController {
     @GetMapping("/applications")
     public String applications(Model model) {
         model.addAttribute("formApplication", new ApplicationBaseDTO());
+
+        UserResponseDTO currentUser = userService.getAuthenticatedUser();
+        model.addAttribute("applications", applicationService.findApplicationByUserId(currentUser.getId()));
+
         return "applications";
     }
-
 }
