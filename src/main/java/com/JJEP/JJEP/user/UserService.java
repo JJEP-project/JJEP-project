@@ -155,7 +155,6 @@ public class UserService implements IUserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("loadUserByUsername");
         Optional<User> existingUserOptional = userRepository.findByUsername(username);
         if (existingUserOptional.isEmpty()) {
             throw new UsernameNotFoundException("Invalid username or password.");
@@ -176,7 +175,6 @@ public class UserService implements IUserService {
             throw new RuntimeException("User not authenticated");
         }
 
-        System.out.println(userDetails);
         return findUserByEmail(userDetails.getUsername());
     }
 
