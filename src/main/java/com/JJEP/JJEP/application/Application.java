@@ -70,6 +70,9 @@ public class Application {
     @Column(name = "trust")
     private boolean trust;
 
+    @Column(name = "status")
+    private Integer status;
+
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
     @OnDelete(action = OnDeleteAction.CASCADE)
