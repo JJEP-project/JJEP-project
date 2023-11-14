@@ -73,6 +73,17 @@
                     >
                         <span>Applications</span>
                     </a>
+                    <a
+                            th:class="
+                    ${currentPage.equals('activities')}
+                    ?
+                    'bg-primary text-white rounded-xl my-2 flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-primary-hover'
+                    :
+                    'rounded-xl my-2 flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-200'"
+                            href="/admin/activities"
+                    >
+                        <span>Activities</span>
+                    </a>
                 </div>
                 <div th:unless="${currentPage}">
                     <a
@@ -92,6 +103,12 @@
                             href="/admin/applications"
                     >
                         <span>Applications</span>
+                    </a>
+                    <a
+                            class="rounded-xl my-2 flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-200"
+                            href="/admin/activities"
+                    >
+                        <span>Activities</span>
                     </a>
                 </div>
             </nav>
