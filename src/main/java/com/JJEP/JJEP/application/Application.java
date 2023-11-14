@@ -71,7 +71,7 @@ public class Application {
     private boolean trust;
 
     @Column(name = "status")
-    private Integer status;
+    private Integer status = ApplicationStatus.REQUESTED.status;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false, unique = true)
