@@ -18,7 +18,7 @@
                 Here you can create new application and edit your existing applications that not accepted yet.
             </p>
 
-            <div class="flex flex-row justify-center lg:justify-start my-8">
+            <div class="flex flex-row justify-center lg:justify-start my-8" th:unless="${not #strings.isEmpty(applications.id)}">
                 <a class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl" href="applications.html">
                     Create
                 </a>
