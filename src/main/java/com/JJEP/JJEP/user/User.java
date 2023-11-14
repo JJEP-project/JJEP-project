@@ -1,5 +1,6 @@
 package com.JJEP.JJEP.user;
 
+import com.JJEP.JJEP.activity.Activity;
 import com.JJEP.JJEP.application.Application;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -11,6 +12,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -50,4 +53,7 @@ public class User {
     @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @ToString.Exclude private Application application;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @ToString.Exclude private Set<Activity> activities = new HashSet<>();
 }
