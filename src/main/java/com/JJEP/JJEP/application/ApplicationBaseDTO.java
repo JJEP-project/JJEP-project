@@ -57,5 +57,7 @@ public class ApplicationBaseDTO {
     @NotNull(message = "Generation IHT cannot be null")
     private Boolean isGenerationIht;
 
+    private Integer status;
+
     private String notes;
 }
