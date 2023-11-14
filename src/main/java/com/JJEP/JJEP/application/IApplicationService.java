@@ -16,4 +16,5 @@ public interface IApplicationService {
 
         List<ApplicationResponseDTO> findAllApplicationsNewestFirst();
         List<ApplicationResponseDTO> findAllApplicationsOldestFirst();
+        ApplicationResponseDTO findApplicationByUserId(long id);
 }

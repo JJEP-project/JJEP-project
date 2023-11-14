@@ -33,7 +33,7 @@
         </div>
         <div class="order-2 md:order-3">
             <!-- Only admin can see "Admin" button -->
-            <a sec:authorize="isAuthenticated()" th:href="@{/admin}"
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"
                class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
                 Admin
             </a>

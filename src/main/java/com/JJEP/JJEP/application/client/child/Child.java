@@ -28,7 +28,7 @@ public class Child {
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "client_children",
             joinColumns = {@JoinColumn(name = "child_id")},

@@ -98,7 +98,7 @@ public class Client {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude private Application application;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.MERGE)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinTable(
             name = "client_children",

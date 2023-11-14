@@ -18,7 +18,7 @@
     <header class="flex justify-between md:hidden" data-dev-hint="mobile menu bar">
         <span></span>
         <label for="menu-open" id="mobile-menu-button"
-               class="mr-4 mt-2 p-2 shadow-lg rounded-full p-2 text-gray-600 md:hidden text-primary">
+               class="mr-4 mt-2 p-2 border rounded-full p-2 text-gray-600 md:hidden text-primary">
             <svg id="menu-open-icon" class="h-6 w-6 transition duration-200 ease-in-out"
                  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -97,7 +97,7 @@
         </div>
     </aside>
 
-    <main class="flex-1 w-full bg-gray-50 h-screen">
+    <main class="flex-1 w-full bg-gray-50 min-h-screen">
         <div class="border-b p-4 bg-white flex flex-row justify-between items-center text-primary">
             <h1 th:text="${currentPage}" class="font-medium text-2xl capitalize"></h1>
             <h5 th:if="${authUser}">Hi, <span th:text="${authUser.fullName}"></span></h5>

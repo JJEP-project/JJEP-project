@@ -7,7 +7,7 @@ public interface IChildService {
     ChildResponseDTO findChildById(long id);
     List<ChildResponseDTO> findAllChildren();
     List<ChildResponseDTO> findAllChildrenByClientId(long clientId);
-    void updateChild(long id, ChildRequestDTO childRequestDTO);
+    void updateChild(long id, ChildResponseDTO childResponseDTO);
     ChildResponseDTO saveChild(ChildRequestDTO childRequestDTO);
     List<ChildResponseDTO> saveAllChildren(List<ChildRequestDTO> childRequestDTO);
     void deleteChild(long id);
