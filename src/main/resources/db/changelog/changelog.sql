@@ -191,3 +191,9 @@ ALTER TABLE user_application ADD CONSTRAINT user_application_user_id_unique UNIQ
 -- rollback ALTER TABLE user_application DROP CONSTRAINT user_application_user_id_unique;
 -- liquibase formatted sql
 
+-- changeset entl:add-status-to-user-application
+
+ALTER TABLE user_application ADD COLUMN status SMALLINT NOT NULL DEFAULT 0;
+
+--rollback ALTER TABLE user_application DROP COLUMN status;
+
