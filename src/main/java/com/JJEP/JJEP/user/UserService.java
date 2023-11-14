@@ -1,5 +1,8 @@
 package com.JJEP.JJEP.user;
 
+import com.JJEP.JJEP.activity.ActivityRequestDTO;
+import com.JJEP.JJEP.activity.ActivityService;
+import liquibase.pro.packaged.A;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -21,6 +24,10 @@ public class UserService implements IUserService {
     private final IUserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+
+
+    @Autowired
+    ActivityService activityService;
 
     @Autowired
     public UserService(
@@ -79,6 +86,14 @@ public class UserService implements IUserService {
         modelMapper.map(updatedUser, existingUser);
         // because we updated existingUser, we need to save it
         userRepository.updateById(id, existingUser);
+
+        UserResponseDTO authUser = getAuthenticatedUser();
+        activityService.saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(authUser.getId())
+                .activityMessage("Has updated user with id: " + id)
+                .build()
+        );
     }
 
 
@@ -109,6 +124,14 @@ public class UserService implements IUserService {
             throw new UserNotFoundException("User not found");
         }
         userRepository.deleteById(id);
+
+        UserResponseDTO authUser = getAuthenticatedUser();
+        activityService.saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(authUser.getId())
+                .activityMessage("Deleted user")
+                .build()
+        );
     }
 
     @Override

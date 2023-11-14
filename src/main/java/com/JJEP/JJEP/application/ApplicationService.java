@@ -1,12 +1,16 @@
 package com.JJEP.JJEP.application;
 
+import com.JJEP.JJEP.activity.ActivityRequestDTO;
+import com.JJEP.JJEP.activity.ActivityService;
 import com.JJEP.JJEP.application.client.ClientRequestDTO;
 import com.JJEP.JJEP.application.client.ClientService;
 import com.JJEP.JJEP.application.client.child.ChildRequestDTO;
 import com.JJEP.JJEP.application.client.child.ChildService;
 import com.JJEP.JJEP.user.User;
 import com.JJEP.JJEP.user.UserResponseDTO;
+import com.JJEP.JJEP.user.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -20,17 +24,22 @@ public class ApplicationService implements IApplicationService{
     private final ModelMapper modelMapper;
     private final ClientService clientService;
     private final ChildService childService;
+    private final ActivityService activityService;
+
+
 
     // temporary added client service and children service
     // have to think about the desing of the application
     public ApplicationService(IApplicationRepository applicationRepository,
                               ModelMapper modelMapper,
                               ClientService clientService,
-                              ChildService childService) {
+                              ChildService childService,
+                              ActivityService activityService) {
         this.applicationRepository = applicationRepository;
         this.modelMapper = modelMapper;
         this.clientService = clientService;
         this.childService = childService;
+        this.activityService = activityService;
 
         this.modelMapper.getConfiguration().setPropertyCondition(ctx -> {
             // Skip mapping if the source property is null
@@ -60,6 +69,7 @@ public class ApplicationService implements IApplicationService{
         for (Application application : applications) {
             applicationResponseDTOS.add(modelMapper.map(application, ApplicationResponseDTO.class));
         }
+
         return applicationResponseDTOS;
     }
 
@@ -76,6 +86,15 @@ public class ApplicationService implements IApplicationService{
         modelMapper.map(updatedApplication, existingApplication);
         // because we updated existingApplication, we can save it with updates
         applicationRepository.updateById(id, existingApplication);
+
+        activityService.saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(applicationResponseDTO
+                        .getUser()
+                        .getId()
+                )
+                .activityMessage("updated application")
+                .build());
     }
     
     @Override
@@ -106,6 +125,10 @@ public class ApplicationService implements IApplicationService{
             throw new ApplicationNotFoundException("Application not found");
         }
         applicationRepository.deleteById(id);
+
+
+
+
     }
 
     @Override

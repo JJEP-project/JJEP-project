@@ -69,4 +69,21 @@ public class ActivityService implements IActivityService{
 
         return activityResponseDTOS;
     }
+
+    @Override
+    public List<ActivityResponseDTO> getLastFiveActivities() {
+        List<Activity> activities = activityRepository.findTop5ByOrderByActivityDateDesc();
+        List<ActivityResponseDTO> activityResponseDTOS = new ArrayList<>();
+
+        if (activities.isEmpty()) {
+            throw new ActivityNotFoundException("No activities found");
+        }
+
+        for (Activity activity : activities) {
+            activityResponseDTOS.add(modelMapper.map(activity, ActivityResponseDTO.class));
+        }
+
+        return activityResponseDTOS;
+    }
+
 }
