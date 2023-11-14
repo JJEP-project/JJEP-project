@@ -112,7 +112,7 @@ public class ApplicationService implements IApplicationService{
     public ApplicationResponseDTO findApplicationByUserId(long id) {
         Optional<Application> applicationOptional = applicationRepository.getApplicationByUserId(id);
         if (applicationOptional.isEmpty()) {
-            throw new ApplicationNotFoundException("Application not found");
+            return null;
         }
         Application application = applicationOptional.get();
         return modelMapper.map(application, ApplicationResponseDTO.class);

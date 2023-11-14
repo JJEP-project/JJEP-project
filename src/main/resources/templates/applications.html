@@ -6,6 +6,7 @@
 </head>
 <body>
 <div layout:fragment="content">
+    
     <div class="container mx-auto min-h-screen">
         <div class="flex flex-col md:flex-row p-4 justify-start mt-12">
             <div class="flex flex-col flex-1 mb-8">
@@ -18,22 +19,22 @@
             </div>
 
     <div class="flex flex-col space-y-2 flex-1">
-        <div th:if="${applications}" class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
-            <h3 th:text="'#' + ${applications.id}">Id</h3>
+        <div th:if="${app}" class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
+            <h3 th:text="'#' + ${app.id}">Id</h3>
             <div class="flex flex-col justify center items-end">
                 <h5 class="text-sm">
-                    <span th:switch="${applications.status}">
+                    <span th:switch="${app.status}">
                         <span th:case="0">Requested</span>
                         <span th:case="1">In Progress</span>
                         <span th:case="2">Completed</span>
                         <span th:case="3">Cancelled</span>
                     </span>
                 </h5>
-                <p th:text="${#temporals.format(applications.createdAt, 'yyyy-MM-dd')}" class="text-xs text-gray-500">Date</p>
+                <p th:text="${#temporals.format(app.createdAt, 'yyyy-MM-dd')}" class="text-xs text-gray-500">Date</p>
             </div>
         </div>
 
-        <div th:unless="${applications}" class="border rounded-xl py-24 px-8 text-center">
+        <div th:unless="${app}" class="border rounded-xl py-24 px-8 text-center">
             <h3 class="font-semibold">No results found</h3>
             <p class="text-gray-500">
                 Create your first application!

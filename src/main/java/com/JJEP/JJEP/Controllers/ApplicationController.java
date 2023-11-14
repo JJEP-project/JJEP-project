@@ -2,6 +2,7 @@ package com.JJEP.JJEP.Controllers;
 
 import com.JJEP.JJEP.application.ApplicationBaseDTO;
 import com.JJEP.JJEP.application.ApplicationRequestDTO;
+import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import com.JJEP.JJEP.application.IApplicationService;
 import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
@@ -14,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.ArrayList;
 
 import javax.validation.Valid;
 
@@ -54,9 +57,11 @@ public class ApplicationController {
         model.addAttribute("formApplication", new ApplicationBaseDTO());
 
         UserResponseDTO currentUser = userService.getAuthenticatedUser();
+        ApplicationResponseDTO application = applicationService.findApplicationByUserId(currentUser.getId());
         
-        model.addAttribute("applications", applicationService.findApplicationByUserId(currentUser.getId()));
+        model.addAttribute("app", application);
 
+    
         return "applications";
     }
 }
