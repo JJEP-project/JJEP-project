@@ -86,4 +86,8 @@ public class ActivityService implements IActivityService{
         return activityResponseDTOS;
     }
 
+    public void deleteActivitiesByUserId(long userId) {
+        activityRepository.deleteByUserId(userId);
+    }
+
 }

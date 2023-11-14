@@ -109,7 +109,7 @@ public class UserService implements IUserService {
             activityService.saveActivity(ActivityRequestDTO
                     .builder()
                     .userId(user.getId())
-                    .activityMessage("Has created an account")
+                    .activityMessage("Has signed up")
                     .build()
             );
 
@@ -123,13 +123,13 @@ public class UserService implements IUserService {
                 throw new RuntimeException("Error saving user");
         }
 
-        UserResponseDTO authUser = getAuthenticatedUser();
-        activityService.saveActivity(ActivityRequestDTO
-                .builder()
-                .userId(authUser.getId())
-                .activityMessage("Has created new user")
-                .build()
-        );
+//        UserResponseDTO authUser = getAuthenticatedUser();
+//        activityService.saveActivity(ActivityRequestDTO
+//                .builder()
+//                .userId(authUser.getId())
+//                .activityMessage("Has created new user")
+//                .build()
+//        );
 
     }
 
@@ -139,6 +139,9 @@ public class UserService implements IUserService {
         if (user.isEmpty()) {
             throw new UserNotFoundException("User not found");
         }
+
+        activityService.deleteActivitiesByUserId(id);
+
         userRepository.deleteById(id);
 
         UserResponseDTO authUser = getAuthenticatedUser();
