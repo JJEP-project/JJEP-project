@@ -29,9 +29,17 @@
             <div class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
                 <h3 th:text="${applications.id}">Id</h3>
                 <div class="flex flex-col justify center items-end">
-                    <h5 th:text="${applications.status}" class="text-sm">Status</h5>
-                    <p th:text="${#temporals.format(applications.createdAt, 'yyyy-MM-dd')}" class="text-xs text-gray-500">Date</p>
-                </div>
+                <h5 class="text-sm">
+                    <span th:switch="${applications.status}">
+                        <span th:case="0">Request</span>
+                        <span th:case="1">In Progress</span>
+                        <span th:case="2">Completed</span>
+                        <span th:case="3">Cancelled</span>
+                    </span>
+                </h5>
+                <p th:text="${#temporals.format(applications.createdAt, 'yyyy-MM-dd')}" class="text-xs text-gray-500">Date</p>
+            </div>
+
             </div>
 
             <!--      if there is no application      -->
