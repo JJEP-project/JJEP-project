@@ -39,13 +39,8 @@ public class AdminActivityController {
     @PostMapping("/admin/activities/delete")
     public String deleteActivities(Model model) {
 
-        try {
-            activityService.deleteActivitiesOlderThanAWeek();
-            return "redirect:/admin/activities";
-        } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-            return "redirect:/admin/activities/delete?error";
-        }
+        activityService.deleteActivitiesOlderThanAWeek();
+        return "redirect:/admin/activities";
 
     }
 
