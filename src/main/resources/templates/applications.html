@@ -17,9 +17,9 @@
                     Here you can create new applications and edit your existing applications that have not been accepted yet.
                 </p>
                 <div th:unless="${app}" class="flex flex-row  mt-2">
-                    <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                    <a th:href="@{/application}" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
                         Create
-                    </button>
+                    </a>
                 </div>
             </div>
             
