@@ -13,6 +13,9 @@
       <div class="flex flex-row justify-between items-center">
         <h3 class="text-xl">Activities</h3>
         <div class="flex flex-row justify-end space-x-4">
+          <form th:action="@{/admin/activities/delete}" method="post">
+            <button class="px-4 py-2 text-red-500 hover:bg-red-100 rounded-xl">Delete</button>
+          </form>
           <a th:href="@{/admin/activities?sortBy=newest}" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
             Sort Newest
           </a>
@@ -31,9 +34,6 @@
               <div class="font-medium text-left">Activity ID</div>
             </th>
             <th class="whitespace-nowrap">
-              <div class="font-medium text-left">Username</div>
-            </th>
-            <th class="whitespace-nowrap">
               <div class="font-medium text-left">Message</div>
             </th>
             <th class="whitespace-nowrap">
@@ -46,11 +46,17 @@
             <td th:text="${activity.id}">
 
             </td>
-            <td th:text="${activity.User.username}">
-
-            </td>
-            <td th:text="${activity.activityMessage}">
-
+            <td>
+              <a
+                      th:href="@{'/admin/users/' + ${activity.User.id}}"
+                      th:text="${activity.User.username + ' '}"
+                      class="text-link cursor-pointer"
+              >
+              </a>
+              <span
+                      th:text="${activity.activityMessage}"
+              >
+              </span>
             </td>
             <td th:text="${#temporals.format(activity.activityDate, 'yyyy-MM-dd HH:mm')}">
 

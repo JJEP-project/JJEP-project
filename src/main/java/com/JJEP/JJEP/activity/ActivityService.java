@@ -3,6 +3,7 @@ package com.JJEP.JJEP.activity;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -88,6 +89,11 @@ public class ActivityService implements IActivityService{
 
     public void deleteActivitiesByUserId(long userId) {
         activityRepository.deleteByUserId(userId);
+    }
+
+    public void deleteActivitiesOlderThanAWeek() {
+        LocalDateTime oneWeekAgo = LocalDateTime.now().minusWeeks(1);
+        activityRepository.deleteByActivityDateBefore(oneWeekAgo);
     }
 
 }
