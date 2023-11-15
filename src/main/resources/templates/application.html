@@ -143,6 +143,64 @@
         </div>
       </div>
 
+      <div class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">
+            <a href="#" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+            <a href="#" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more application</a>
+      </div>
+
+      <!-- submit or save -->
+      <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">        
+      </div>
+    </div>
+  </form>
+
+  <form method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
+    <div class="flex flex-col flex-1 mb-8">
+      <h1 class="font-semibold">
+        Child
+      </h1>
+      <p class="text-gray-500">
+        Assets
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+
+      <div class="md:m-0">
+        <label for="property" class="block text-sm font-medium text-gray-900">Name</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{primaryProperty}"
+                  type="number"
+                  name="property"
+                  id="property"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
+        </div>
+      </div>
+
+      <div class="md:m-0">
+        <label for="property" class="block text-sm font-medium text-gray-900">Age</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{primaryProperty}"
+                  type="number"
+                  name="property"
+                  id="property"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
+        </div>
+      </div>
+  
+
       <!-- submit or save -->
       <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">        
       </div>
@@ -280,8 +338,66 @@
         </div>
       </div>
 
+      <div class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">
+            <a href="#" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+            <a href="#" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more application</a>
+      </div>
+
       <!-- submit or save -->
       <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
+      </div>
+    </div>
+  </form>
+
+  <form method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
+    <div class="flex flex-col flex-1 mb-8">
+      <h1 class="font-semibold">
+        Child
+      </h1>
+      <p class="text-gray-500">
+        Assets
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+
+      <div class="md:m-0">
+        <label for="property" class="block text-sm font-medium text-gray-900">Name</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{primaryProperty}"
+                  type="number"
+                  name="property"
+                  id="property"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
+        </div>
+      </div>
+
+      <div class="md:m-0">
+        <label for="property" class="block text-sm font-medium text-gray-900">Age</label>
+        <div class="mt-2">
+          <input
+                  th:field="*{primaryProperty}"
+                  type="number"
+                  name="property"
+                  id="property"
+                  autocomplete="name"
+                  class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                  min="0"
+                  max="3.4028235E38"
+          >
+          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
+        </div>
+      </div>
+  
+
+      <!-- submit or save -->
+      <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">        
       </div>
     </div>
   </form>
@@ -495,12 +611,6 @@
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
           </textarea>
         </div>
-      </div>
-
-      <!-- additional any kind of UI -->
-      <div class="md:m-0 col-span-full flex flex-row justify-end items-center space-x-4">
-        <!-- content -->
-        <a href="#" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more application</a>
       </div>
 
       <!-- submit or save -->
