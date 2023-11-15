@@ -1,5 +1,8 @@
 package com.JJEP.JJEP.admin.users;
 
+import com.JJEP.JJEP.application.ApplicationNotFoundException;
+import com.JJEP.JJEP.application.ApplicationResponseDTO;
+import com.JJEP.JJEP.application.ApplicationService;
 import com.JJEP.JJEP.user.UserRegistrationDTO;
 import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
@@ -17,6 +20,9 @@ public class AdminUserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ApplicationService applicationService;
 
     @GetMapping("/admin/users")
     public String adminUsers(Model model, @RequestParam(name = "sortBy", defaultValue = "default") String sortBy) {
@@ -45,6 +51,13 @@ public class AdminUserController {
         UserResponseDTO user = userService.findUserById(id);
         model.addAttribute("user", user);
 
+        try {
+            ApplicationResponseDTO form = applicationService.findApplicationByUserId(id);
+            model.addAttribute("form", form);
+        } catch (ApplicationNotFoundException e) {
+
+        }
+
         return "admin/user-details";
 
     }
@@ -70,6 +83,13 @@ public class AdminUserController {
 
         UserResponseDTO user = userService.findUserById(id);
         model.addAttribute("user", user);
+
+        try {
+            ApplicationResponseDTO form = applicationService.findApplicationByUserId(id);
+            model.addAttribute("form", form);
+        } catch (ApplicationNotFoundException e) {
+
+        }
 
         return "admin/user-edit";
 
