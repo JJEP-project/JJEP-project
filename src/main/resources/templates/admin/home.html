@@ -128,7 +128,7 @@
     <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
       <div class="flex flex-row justify-between items-center">
         <h3 class="text-xl">Activity</h3>
-        <a class="text-link rounded-xl transition duration-200 hover:text-link-hover hover:bg-link-back_hover py-2 px-3 hover:cursor-pointer">View
+        <a th:href="@{/admin/activities}" class="text-link rounded-xl transition duration-200 hover:text-link-hover hover:bg-link-back_hover py-2 px-3 hover:cursor-pointer">View
           All</a>
       </div>
 
@@ -146,30 +146,20 @@
           </tr>
           </thead>
           <tbody class="divide-y">
-          <tr class="h-10">
-            <td><span class="text-link cursor-pointer">Damir</span> has deleted application <span
-                    class="text-link cursor-pointer">#123</span></td>
+          <tr th:each="activity: ${activities}" class="h-10">
             <td>
-              14:00 12/12/2023
-            </td>
-          </tr>
-          <tr class="h-10">
-            <td><span class="text-link cursor-pointer">blablabla</span> has created application <span
-                    class="text-link cursor-pointer">#322</span></td>
-            <td>
-              13:12 12/12/2023
-            </td>
-          </tr>
-          <tr class="h-12">
-            <td><span class="text-link cursor-pointer">lksdjfl</span> has created account as user</td>
-            <td>
-              12:23 12/12/2023
-            </td>
-          </tr>
-          <tr class="h-10">
-            <td><span class="text-link cursor-pointer">Max</span> has set damir as admin</td>
-            <td>
-              11:24 12/12/2023
+              <a
+                      th:href="@{'/admin/users/' + ${activity.User.id}}"
+                      th:text="${activity.User.username + ' '}"
+                      class="text-link cursor-pointer"
+              >
+              </a>
+              <span
+                      th:text="${activity.activityMessage}"
+              >
+              </span>
+            <td th:text="${#temporals.format(activity.activityDate, 'yyyy-MM-dd HH:mm')}">
+
             </td>
           </tr>
           </tbody>
