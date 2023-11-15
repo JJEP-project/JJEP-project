@@ -4,10 +4,10 @@ import com.JJEP.JJEP.application.ApplicationBaseDTO;
 import com.JJEP.JJEP.application.ApplicationRequestDTO;
 import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import com.JJEP.JJEP.application.IApplicationService;
+import com.JJEP.JJEP.application.client.ClientRequestDTO;
 import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
 
-import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -30,7 +31,12 @@ public class ApplicationController {
 
     @GetMapping("/application")
     public String application(Model model) {
-        model.addAttribute("formApplication", new ApplicationBaseDTO());
+        ApplicationRequestDTO formApplication = new ApplicationRequestDTO();
+        List<ClientRequestDTO> clients = new ArrayList<ClientRequestDTO>();
+        // ClientRequestDTO client1 = new ClientRequestDTO();
+        // ClientRequestDTO client2 = new ClientRequestDTO();
+        formApplication.setClients(clients);
+        model.addAttribute("formApplication", formApplication);
         return "application";
     }
 

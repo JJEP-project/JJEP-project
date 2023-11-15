@@ -24,20 +24,19 @@
 
     <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
 
-            <div class="md:m-0">
-        <label for="property" class="block text-sm font-medium text-gray-900">Family name</label>
+      <div class="md:m-0">
+        <label for="primaryProperty" class="block text-sm font-medium text-gray-900">Family name</label>
         <div class="mt-2">
           <input
                   th:field="*{primaryProperty}"
                   type="number"
-                  name="property"
-                  id="property"
+                  name="primaryProperty"
+                  id="primaryProperty"
                   autocomplete="name"
                   class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
                   min="0"
                   max="3.4028235E38"
           >
-          <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
         </div>
       </div>
 
