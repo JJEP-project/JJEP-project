@@ -6,6 +6,7 @@ import com.JJEP.JJEP.activity.ActivityResponseDTO;
 import com.JJEP.JJEP.activity.ActivityService;
 import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import com.JJEP.JJEP.user.UserResponseDTO;
+import com.JJEP.JJEP.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ public class AdminActivityController {
     @Autowired
     ActivityService activityService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/admin/activities")
     public String adminActivities(Model model, @RequestParam(name = "sortBy", defaultValue = "default") String sortBy) {
 
@@ -30,8 +34,11 @@ public class AdminActivityController {
             default -> activityService.findAllActivities();
         };
 
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+
         model.addAttribute("activities", activities);
         model.addAttribute("currentPage", "activities");
+        model.addAttribute("authUser", authUser);
 
         return "admin/activities";
     }
