@@ -118,7 +118,7 @@
     <main class="flex-1 w-full bg-gray-50 min-h-screen">
         <div class="border-b p-4 bg-white flex flex-row justify-between items-center text-primary">
             <div class="flex items-center">
-                <a class="rounded-xl p-2 transition duration-200 hover:bg-gray-200 border mr-2" th:href="${#httpServletRequest.getHeader('Referer')}">
+                <a th:unless="${currentPage}" class="rounded-xl p-2 transition duration-200 hover:bg-gray-200 border mr-2" th:href="${'javascript:history.back();'}">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
                     </svg>
