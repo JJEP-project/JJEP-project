@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -40,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/register-handler")
-    public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result, Model model) {
+    public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "auth/register";
         }
@@ -53,6 +54,7 @@ public class AuthController {
 
         try {
             userService.saveUser(userRegistrationDTO);
+            redirectAttributes.addFlashAttribute("successMessage", "Registration successful!");
             return "redirect:/login";
         } catch (Exception e) {
             model.addAttribute("error", e);

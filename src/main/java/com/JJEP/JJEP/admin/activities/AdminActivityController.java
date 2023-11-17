@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -44,9 +45,10 @@ public class AdminActivityController {
     }
 
     @PostMapping("/admin/activities/delete")
-    public String deleteActivities(Model model) {
-
+    public String deleteActivities(Model model, RedirectAttributes redirectAttributes) {
         activityService.deleteActivitiesOlderThanAWeek();
+
+        redirectAttributes.addFlashAttribute("successMessage", "Activities older than a week have been deleted.");
         return "redirect:/admin/activities";
 
     }

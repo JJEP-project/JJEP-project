@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -30,7 +31,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/application-handler")
-    public String applicationHandler(@ModelAttribute("formApplication") @Valid ApplicationRequestDTO formApplication, BindingResult result, Model model) {
+    public String applicationHandler(@ModelAttribute("formApplication") @Valid ApplicationRequestDTO formApplication, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {
             return "application";
         }
@@ -40,6 +41,7 @@ public class ApplicationController {
         try {
             formApplication.setUserId(currentUser.getId());
             applicationService.saveApplication(formApplication);
+            redirectAttributes.addFlashAttribute("successMessage", "Application submitted successfully!");
             return "redirect:/";
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
