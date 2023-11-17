@@ -83,6 +83,22 @@
                     </div>
                 </div>
 
+                <!-- full block input: col-span-full -->
+                <div class="md:m-0 col-span-full">
+                    <label class="block text-sm font-medium text-gray-900">Password confirmation</label>
+                    <div class="mt-2">
+                        <input
+                                th:field="*{confirmPassword}"
+                                type="password"
+                                name="confirmPassword"
+                                id="confirmPassword"
+                                autocomplete="confirmPassword"
+                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('confirmPassword')}"
+                              th:errors="*{confirmPassword}"></span>
+                    </div>
+                </div>
+
                 <!-- submit or save -->
                 <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
                     <a th:href="@{/admin/users}" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
