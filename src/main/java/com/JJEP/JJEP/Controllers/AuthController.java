@@ -1,13 +1,9 @@
 package com.JJEP.JJEP.Controllers;
 
 import com.JJEP.JJEP.Models.LoginForm;
-import com.JJEP.JJEP.user.User;
 import com.JJEP.JJEP.user.UserRegistrationDTO;
-import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,8 +40,14 @@ public class AuthController {
     }
 
     @PostMapping("/register-handler")
-    public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result,Model model) {
+    public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            return "auth/register";
+        }
+
+        if (!userRegistrationDTO.getPassword().equals(userRegistrationDTO.getConfirmPassword())) {
+            model.addAttribute("error", "Password mismatch");
+            model.addAttribute("userRegistrationDTO", userRegistrationDTO);
             return "auth/register";
         }
 
