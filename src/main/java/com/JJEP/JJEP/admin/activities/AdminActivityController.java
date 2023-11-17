@@ -6,12 +6,14 @@ import com.JJEP.JJEP.activity.ActivityResponseDTO;
 import com.JJEP.JJEP.activity.ActivityService;
 import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import com.JJEP.JJEP.user.UserResponseDTO;
+import com.JJEP.JJEP.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ public class AdminActivityController {
 
     @Autowired
     ActivityService activityService;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/admin/activities")
     public String adminActivities(Model model, @RequestParam(name = "sortBy", defaultValue = "default") String sortBy) {
@@ -30,16 +35,20 @@ public class AdminActivityController {
             default -> activityService.findAllActivities();
         };
 
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+
         model.addAttribute("activities", activities);
         model.addAttribute("currentPage", "activities");
+        model.addAttribute("authUser", authUser);
 
         return "admin/activities";
     }
 
     @PostMapping("/admin/activities/delete")
-    public String deleteActivities(Model model) {
-
+    public String deleteActivities(Model model, RedirectAttributes redirectAttributes) {
         activityService.deleteActivitiesOlderThanAWeek();
+
+        redirectAttributes.addFlashAttribute("successMessage", "Activities older than a week have been deleted.");
         return "redirect:/admin/activities";
 
     }

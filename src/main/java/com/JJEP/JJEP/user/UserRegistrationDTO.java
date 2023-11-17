@@ -14,4 +14,7 @@ import javax.validation.constraints.Size;
 public class UserRegistrationDTO extends UserBaseDTO {
     @Size(min = 8, message = "Password should contain at least 8 characters")
     private String password;
+
+    @Size(min = 8, message = "Password confirmation should contain at least 8 characters")
+    private String confirmPassword;
 }

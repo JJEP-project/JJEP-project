@@ -28,7 +28,8 @@
                 <!-- active link class: bg-link-back_hover text-link -->
                 <li><a class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" th:href="@{/}">Home</a></li>
                 <li><a class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" th:href="@{/about}">About</a></li>
-                <li><a class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" th:href="@{/contact}">Contact</a></li>
+                <li><a class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" th:href="@{/contact}">Contact</a>
+                </li>
             </ul>
         </div>
         <div class="order-2 md:order-3">
@@ -56,6 +57,23 @@
 </nav>
 
 <!-- container -->
+
+<div th:if="${successMessage}" class="container transition-all m-4" id="alert">
+    <div class="lg:w-1/2 w-4/5 shadow-xl top-4 left-1 right-1 mx-auto fixed z-50">
+        <div class="relative py-3 pl-4 pr-10 leading-normal text-green-700 bg-green-100 rounded-lg" role="alert">
+            <p th:text="${successMessage}"></p>
+            <button class="absolute inset-y-0 right-0 flex items-center mr-4" onclick="hideAlert()">
+                <svg class="w-4 h-4 fill-current" role="button" viewBox="0 0 20 20">
+                    <path
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+
+    </div>
+</div>
+
 <div class="container mx-auto min-h-screen">
     <div layout:fragment="content"></div>
 </div>
@@ -85,5 +103,21 @@
         <p>© JJEP Agency Inc. 2023</p>
     </div>
 </footer>
+
+<script>
+    let alert = document.getElementById("alert");
+
+    const hideAlert = () => {
+        if (alert.style.display === "none") {
+            alert.style.display = "block";
+        } else {
+            alert.style.display = "none";
+        }
+    }
+
+    setTimeout(function () {
+        alert.style.display = "none";
+    }, 5000);
+</script>
 </body>
 </html>
