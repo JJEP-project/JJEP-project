@@ -1,16 +1,24 @@
 package com.JJEP.JJEP.activity;
 
+import com.JJEP.JJEP.user.UserResponseDTO;
+import com.JJEP.JJEP.user.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
-public class ActivityService implements IActivityService{
+public class ActivityService implements IActivityService {
     private final IActivityRepository activityRepository;
     private final ModelMapper modelMapper;
+
+    @Autowired
+    @Lazy
+    UserService userService;
 
     public ActivityService(IActivityRepository activityRepository, ModelMapper modelMapper) {
         this.activityRepository = activityRepository;
@@ -94,6 +102,14 @@ public class ActivityService implements IActivityService{
     public void deleteActivitiesOlderThanAWeek() {
         LocalDateTime oneWeekAgo = LocalDateTime.now().minusWeeks(1);
         activityRepository.deleteByActivityDateBefore(oneWeekAgo);
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(authUser.getId())
+                .activityMessage("Has deleted an activities older than a week")
+                .build()
+        );
     }
 
 }
