@@ -14,9 +14,9 @@
 
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
-        <div th:if="${param.error}" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-xl" role="alert">
-            <p class="font-bold">Register error</p>
-            <p th:text="${error} ?: 'Something went wrong. Please try again later'"></p>
+        <div th:if="${error}" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-xl" role="alert">
+            <p th:if="${error}" th:text="${error}"></p>
+            <p th:unless="${error}">Something went wrong. Please try again later</p>
         </div>
 
         <form th:object="${userRegistrationDTO}" method="post" th:action="@{/register-handler}" class="space-y-4">
@@ -71,6 +71,19 @@
                         autocomplete="password"
                         class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
                 <span class="text-xs text-red-500" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+
+            </div>
+
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-900">Password confirmation</label>
+            <div class="mt-2">
+                <input
+                        th:field="*{confirmPassword}"
+                        type="password"
+                        name="confirmPassword"
+                        id="confirmPassword"
+                        autocomplete="confirmPassword"
+                        class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                <span class="text-xs text-red-500" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
 
             </div>
 

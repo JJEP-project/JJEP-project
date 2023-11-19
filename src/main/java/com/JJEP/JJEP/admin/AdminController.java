@@ -1,5 +1,9 @@
 package com.JJEP.JJEP.admin;
 
+import java.util.List;
+import com.JJEP.JJEP.activity.ActivityService;
+import com.JJEP.JJEP.application.Application;
+import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import com.JJEP.JJEP.application.ApplicationService;
 import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
@@ -17,6 +21,8 @@ public class AdminController {
     @Autowired
     ApplicationService applicationService;
 
+    @Autowired
+    ActivityService activityService;
 
     @GetMapping("/admin")
     public String homeAdmin(Model model) {
@@ -32,6 +38,7 @@ public class AdminController {
         model.addAttribute("newApplicationsLastWeek", applicationService.getNewApplicationsLastWeek());
         model.addAttribute("users", userService.getLastFiveUsers());
         model.addAttribute("forms", applicationService.getLastFiveApplications());
+        model.addAttribute("activities", activityService.getLastFiveActivities());
 
         return "admin/home";
     }

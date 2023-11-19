@@ -49,9 +49,6 @@
                                 <div class="font-medium text-left">Created at</div>
                             </th>
                             <th class="whitespace-nowrap">
-                                <div class="font-medium text-left">Updated at</div>
-                            </th>
-                            <th class="whitespace-nowrap">
                                 <div class="font-medium text-left">Actions</div>
                             </th>
                         </tr>
@@ -76,9 +73,6 @@
                                 <span class="bg-gray-600 py-1 px-2 rounded-full text-white" th:case="*">Anon</span>
                             </td>
                             <td th:text="${#temporals.format(user.createdAt, 'yyyy-MM-dd HH:mm')}">
-
-                            </td>
-                            <td th:text="${#temporals.format(user.updatedAt, 'yyyy-MM-dd HH:mm')}">
 
                             </td>
                             <td>
