@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+// jpa repository is used to reduce boilerplate code
+// as it provides the implementation for the standard CRUD operations
 public interface IActivityRepository extends JpaRepository<Activity, Long> {
     List<Activity> findAllByOrderByActivityDateDesc();
     List<Activity> findAllByOrderByActivityDateAsc();
