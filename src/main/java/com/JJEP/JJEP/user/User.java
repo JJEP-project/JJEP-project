@@ -14,7 +14,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -57,7 +56,7 @@ public class User {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude private Application application;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @ToString.Exclude private Set<Activity> activities = new HashSet<>();
+    @ToString.Exclude private Set<Activity> activities;
 }
