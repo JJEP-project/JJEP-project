@@ -5,6 +5,9 @@ import com.JJEP.JJEP.application.ApplicationRequestDTO;
 import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import com.JJEP.JJEP.application.IApplicationService;
 import com.JJEP.JJEP.application.client.ClientRequestDTO;
+import com.JJEP.JJEP.application.client.child.Child;
+import com.JJEP.JJEP.application.client.child.ChildRequestDTO;
+import com.JJEP.JJEP.application.client.child.ChildResponseDTO;
 import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
 
@@ -15,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -31,12 +35,31 @@ public class ApplicationController {
     UserService userService;
 
     @GetMapping("/application")
-    public String application(Model model) {
+    public String application(Model model, @RequestParam(name = "doubledClients", defaultValue = "false") String doubledClients,
+                              @RequestParam(name = "client1children", defaultValue = "0") Integer client1children,
+                              @RequestParam(name = "client2children", defaultValue = "0") Integer client2children) {
+
         ApplicationRequestDTO formApplication = new ApplicationRequestDTO();
         List<ClientRequestDTO> clients = new ArrayList<ClientRequestDTO>();
-        // ClientRequestDTO client1 = new ClientRequestDTO();
-        // ClientRequestDTO client2 = new ClientRequestDTO();
+        clients.add(new ClientRequestDTO());
+
+        if (client1children != 0) {
+            List<ChildRequestDTO> children = new ArrayList<>();
+            for (int i = 0; i < client1children; i++) {
+                children.add(ChildRequestDTO.builder().build());
+            }
+            clients.get(0).setChildren(children);
+        }
+
+        if (doubledClients.equals("true")) {
+            clients.add(new ClientRequestDTO());
+        }
+
         formApplication.setClients(clients);
+
+        model.addAttribute("client1children", client1children);
+        model.addAttribute("client2children", client2children);
+        model.addAttribute("doubledClients", doubledClients);
         model.addAttribute("formApplication", formApplication);
         return "application";
     }
@@ -66,10 +89,10 @@ public class ApplicationController {
 
         UserResponseDTO currentUser = userService.getAuthenticatedUser();
         ApplicationResponseDTO application = applicationService.findApplicationByUserId(currentUser.getId());
-        
+
         model.addAttribute("app", application);
 
-    
+
         return "applications";
     }
 }
