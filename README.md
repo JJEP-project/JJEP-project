@@ -1,5 +1,5 @@
 
-# JJ CRM System
+# JJEP CRM System
 
 Description: A comprehensive Customer Relationship Management (CRM) system tailored for JJEP, built using Spring Boot for the backend and Thymeleaf for the frontend. The system leverages PostgreSQL as its database, delivering a beautiful and user-friendly UI design to enhance the overall user experience. Security is a top priority, with Spring Boot Security ensuring robust authentication and middleware services, making the application highly secure. User role-based authentication is implemented, granting admin users full access, regular users access to authenticated and guest sections, and guests restricted to guest-specific pages. The admin dashboard empowers administrators with full control over Create, Read, Update, and Delete (CRUD) operations. Key database models include Users, Applications (for storing form data), and Activity (to manage system activities).
 
