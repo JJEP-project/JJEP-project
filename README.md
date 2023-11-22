@@ -8,16 +8,16 @@ Description: A comprehensive Customer Relationship Management (CRM) system tailo
 
 - Role-based authentication for admin, user, and guest access
 - Admin dashboard for full CRUD operations
-- Secure Spring Boot Security for heightened protection
+- Spring Boot Security for heightened protection
 - Beautiful and intuitive UI design
 - Database models: Users, Applications, and Activity
 
 
 ## Tech Stack
 
-**Client:** Thymeleaf, tailwind css CDN, javasript configs
+**Client:** Thymeleaf, Tailwind CSS CDN, JavaScript configs
 
-**Server:** Spring Boot, spring validation, spring JDBC, spring JPA, spring security, lombok, liquibase, PostgreSQL driver, spring devtools
+**Server:** Spring Boot, Spring Validation, Spring JDBC, Spring JPA, Spring Security, Lombok, Liquibase, PostgreSQL driver, Spring devtools
 
 **Database:** PostgreSQL
 
