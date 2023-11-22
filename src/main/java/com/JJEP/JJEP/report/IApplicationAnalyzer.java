@@ -1,5 +1,6 @@
 package com.JJEP.JJEP.report;
 
+import com.JJEP.JJEP.application.ApplicationRequestDTO;
 import com.JJEP.JJEP.application.ApplicationResponseDTO;
 
 import java.util.List;
@@ -31,5 +32,5 @@ public interface IApplicationAnalyzer {
             """;
 
 
-    List<ReportResponseDTO> analyzeApplication(ApplicationResponseDTO applicationResponseDTO);
+    List<ReportResponseDTO> analyzeApplication(ApplicationRequestDTO applicationRequestDTO);
 }
