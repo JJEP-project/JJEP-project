@@ -51,8 +51,16 @@ public class ApplicationController {
             clients.get(0).setChildren(children);
         }
 
+
         if (doubledClients.equals("true")) {
             clients.add(new ClientRequestDTO());
+            if (client2children != 0) {
+                List<ChildRequestDTO> children = new ArrayList<>();
+                for (int i = 0; i < client2children; i++) {
+                    children.add(ChildRequestDTO.builder().build());
+                }
+                clients.get(1).setChildren(children);
+            }
         }
 
         formApplication.setClients(clients);

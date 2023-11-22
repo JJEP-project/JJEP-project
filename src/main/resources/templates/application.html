@@ -12,7 +12,7 @@
     <p th:text="${error} ?: 'Something went wrong. Please try again later'"></p>
   </div>
 
-  <form method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
+  <div class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
     <div class="flex flex-col flex-1 mb-8">
       <h1 class="font-semibold">
         Client 1
@@ -142,20 +142,24 @@
         </div>
       </div>
 
-<!--      <div th:with="client1children=${param.client1children} ? ${toInt(param.client1children)} : 0"-->
-<!--           class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">-->
-<!--        <a th:href="@{?(client1children=${client1children + 1})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>-->
-<!--        <a th:if="!${param.doubledClients}" th:href="@{?doubledClients=true}"-->
-<!--           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more application</a>-->
-<!--      </div>-->
+      <div
+           class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">
+        <a th:if="${#strings.equals(param.doubledClients, 'true')}" th:href="@{/application(doubledClients=true, client1children=${client1children + 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+        <a th:if="${#strings.equals(param.doubledClients, 'false')}" th:href="@{/application(doubledClients=false, client1children=${client1children + 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+        <a th:if="!${param.doubledClients}" th:href="@{/application(doubledClients=false, client1children=${client1children + 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+        <a th:if="!${param.doubledClients}" th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children})}"
+           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more application</a>
+        <a th:if="${#strings.equals(param.doubledClients, 'false')}" th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children})}"
+           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more client</a>
+      </div>
 
       <!-- submit or save -->
       <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">        
       </div>
     </div>
-  </form>
+  </div>
 
-  <div class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
+  <div th:if="${client1children > 0}" th:each="childIndex : ${#numbers.sequence(0, client1children - 1)}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
       <div class="flex flex-col flex-1 mb-8">
         <h1 class="font-semibold">
           Child
@@ -200,6 +204,10 @@
             <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
           </div>
         </div>
+        <div class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">
+          <a th:if="${client1children >= 1 and #strings.equals(param.doubledClients, 'true')}" th:href="@{/application(doubledClients=true, client1children=${client1children - 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>
+          <a th:if="${client1children >= 1 and #strings.equals(param.doubledClients, 'false')}" th:href="@{/application(doubledClients=false, client1children=${client1children - 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>
+        </div>
 
 
       <!-- submit or save -->
@@ -208,7 +216,7 @@
     </div>
   </div>
 
-  <form th:if="${param.doubledClients}" method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
+  <form th:if="${#strings.equals(param.doubledClients, 'true')}" method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
     <div class="flex flex-col flex-1 mb-8">
       <h1 class="font-semibold">
         Client 2
@@ -340,7 +348,8 @@
       </div>
 
       <div class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">
-            <a th:href="@{?}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove second client</a>
+        <a th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children + 1})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+        <a th:href="@{/application(doubledClients=false, client1children=${client1children}, client2children=${client2children - client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove second client</a>
       </div>
 
       <!-- submit or save -->
@@ -349,7 +358,7 @@
     </div>
   </form>
 
-  <form method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
+  <div th:if="${client2children > 0}" th:each="child : ${#numbers.sequence(0, client2children - 1)}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
     <div class="flex flex-col flex-1 mb-8">
       <h1 class="font-semibold">
         Child
@@ -376,6 +385,9 @@
           >
           <span class="text-xs text-red-500" th:if="${#fields.hasErrors('primaryProperty')}" th:errors="*{primaryProperty}"></span>
         </div>
+        <div class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">
+          <a th:if="${client2children >= 1}" th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children - 1})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>
+        </div>
       </div>
 
       <div class="md:m-0">
@@ -400,7 +412,7 @@
       <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">        
       </div>
     </div>
-  </form>
+  </div>
 
   <form method="post" th:action="@{/application-handler}" class="flex flex-col md:flex-row p-4 justify-start" th:object="${formApplication}">
     <div class="flex flex-col flex-1 mb-8">
