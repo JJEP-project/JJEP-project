@@ -1,6 +1,8 @@
 package com.JJEP.JJEP.report;
 
+import com.JJEP.JJEP.application.ApplicationRequestDTO;
 import com.JJEP.JJEP.application.ApplicationResponseDTO;
+import com.JJEP.JJEP.application.client.ClientRequestDTO;
 import com.JJEP.JJEP.application.client.ClientResponseDTO;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +12,11 @@ import java.util.List;
 @Service
 public class ApplicationAnalyzer implements IApplicationAnalyzer{
     @Override
-    public List<ReportResponseDTO> analyzeApplication(ApplicationResponseDTO applicationResponseDTO) {
+    public List<ReportResponseDTO> analyzeApplication(ApplicationRequestDTO applicationRequestDTO) {
         List<ReportResponseDTO> reportResponseDTOList = new ArrayList<>();
 
         //analyze joint life cover
-        if (applicationResponseDTO.getPersonalLifeCover() == 0 || applicationResponseDTO.isTrust()) {
+        if (applicationRequestDTO.getPersonalLifeCover() == 0 || applicationRequestDTO.isTrust()) {
             reportResponseDTOList.add(ReportResponseDTO.builder()
                     .firstName("Joint")
                     .lifeCover(jointLifeCoverGood)
@@ -23,12 +25,12 @@ public class ApplicationAnalyzer implements IApplicationAnalyzer{
         else {
             reportResponseDTOList.add(ReportResponseDTO.builder()
                     .firstName("Joint")
-                    .lifeCover(String.format(jointLifeCoverConcern, applicationResponseDTO.getPersonalLifeCover()))
+                    .lifeCover(String.format(jointLifeCoverConcern, applicationRequestDTO.getPersonalLifeCover()))
                     .build());
         }
 
         //analyze clients
-        for (ClientResponseDTO client: applicationResponseDTO.getClients()) {
+        for (ClientRequestDTO client: applicationRequestDTO.getClients()) {
             ReportResponseDTO reportResponseDTO = ReportResponseDTO.builder()
                     .firstName(client.getForename())
                     .build();
