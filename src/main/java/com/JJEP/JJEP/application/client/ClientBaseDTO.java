@@ -17,9 +17,9 @@ public class ClientBaseDTO {
     private String forename;
     private String maritalStatus;
     private LocalDate dateOfBirth;
-    private boolean isUkIht;
-    private boolean isSpouseNrb;
-    private boolean isLpa;
+    private Boolean isUkIht;
+    private Boolean isSpouseNrb;
+    private Boolean isLpa;
     private float primaryProperty;
     private float ukHolidayHome;
     private float btlProperty;

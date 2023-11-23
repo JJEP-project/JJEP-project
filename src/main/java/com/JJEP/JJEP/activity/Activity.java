@@ -24,8 +24,7 @@ public class Activity {
     @Column(name = "activity_message", nullable = false)
     private String activityMessage;
 
-    @Column(name = "activity_date", nullable = false, insertable = false)
-    @CreationTimestamp
+    @Column(name = "activity_date", insertable = false, updatable = false)
     private LocalDateTime activityDate;
 
     @ManyToOne(fetch = FetchType.LAZY)

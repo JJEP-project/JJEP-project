@@ -12,15 +12,16 @@ import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class ApplicationController {
         if (client1children != 0) {
             List<ChildRequestDTO> children = new ArrayList<>();
             for (int i = 0; i < client1children; i++) {
-                children.add(ChildRequestDTO.builder().build());
+                children.add(new ChildRequestDTO());
             }
             clients.get(0).setChildren(children);
         }
@@ -57,7 +58,7 @@ public class ApplicationController {
             if (client2children != 0) {
                 List<ChildRequestDTO> children = new ArrayList<>();
                 for (int i = 0; i < client2children; i++) {
-                    children.add(ChildRequestDTO.builder().build());
+                    children.add(new ChildRequestDTO());
                 }
                 clients.get(1).setChildren(children);
             }
@@ -73,10 +74,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/application-handler")
-    public String applicationHandler(@ModelAttribute("formApplication") @Valid ApplicationRequestDTO formApplication, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
-        if (result.hasErrors()) {
-            return "application";
-        }
+    public String applicationHandler(@ModelAttribute("formApplication") ApplicationRequestDTO formApplication, Model model, RedirectAttributes redirectAttributes) {
 
         UserResponseDTO currentUser = userService.getAuthenticatedUser();
 
@@ -102,5 +100,15 @@ public class ApplicationController {
 
 
         return "applications";
+    }
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException {
+                setValue(LocalDate.parse(text));
+            }
+        });
     }
 }
