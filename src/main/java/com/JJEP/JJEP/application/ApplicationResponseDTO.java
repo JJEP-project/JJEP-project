@@ -6,6 +6,7 @@ import com.JJEP.JJEP.user.UserResponseDTO;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -17,6 +18,11 @@ import java.util.List;
 @AllArgsConstructor
 public class ApplicationResponseDTO extends ApplicationBaseDTO {
     private Long id;
+
+    @NotNull(message = "Total cannot be blank")
+    @EnsureNumber(message = "Total must be a valid number.")
+    private Float total;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     // need to exclude user from toString to avoid infinite recursion

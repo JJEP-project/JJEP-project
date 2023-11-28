@@ -36,11 +36,7 @@ public class ApplicationBaseDTO {
     @NotNull(message = "Savings & Cash cannot be blank")
     @EnsureNumber(message = "Savings & Cash must be a valid number.")
     private Float savingsCash;
-    
-    @NotNull(message = "Total cannot be blank")
-    @EnsureNumber(message = "Total must be a valid number.")
-    private Float total;
-    
+
     @NotNull(message = "Personal Life Cover cannot be blank")
     @EnsureNumber(message = "Personal Life Cover must be a valid number.")
     private Float personalLifeCover;
