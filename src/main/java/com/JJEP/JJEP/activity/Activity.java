@@ -7,13 +7,14 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+// annotations from lombok to remove boilerplate code
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+// annotations from JPA to map Java objects to database tables
 @Entity(name="Activity")
 @Table(name="activity")
 public class Activity {
@@ -27,6 +28,8 @@ public class Activity {
     @Column(name = "activity_date", insertable = false, updatable = false)
     private LocalDateTime activityDate;
 
+    // many-to-one relationship with user table
+    // lazy fetch to avoid fetching all users when fetching an activity
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

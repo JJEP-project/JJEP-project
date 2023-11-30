@@ -1,7 +1,5 @@
 package com.JJEP.JJEP.application.client.child;
 
-import com.JJEP.JJEP.application.ApplicationNotFoundException;
-import com.JJEP.JJEP.application.client.Client;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

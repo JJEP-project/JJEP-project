@@ -2,7 +2,6 @@ package com.JJEP.JJEP.application;
 
 import com.JJEP.JJEP.application.client.Client;
 import com.JJEP.JJEP.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
@@ -78,7 +77,6 @@ public class Application {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @ToString.Exclude private User user;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "application", fetch = FetchType.LAZY)
     @ToString.Exclude private java.util.List<Client> clients;
 }
