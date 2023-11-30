@@ -36,13 +36,13 @@ public class Client {
     private LocalDate dateOfBirth;
 
     @Column(name = "is_uk_iht")
-    private boolean isUkIht;
+    private Boolean isUkIht;
 
     @Column(name = "is_spouse_nrb")
-    private boolean isSpouseNrb;
+    private Boolean isSpouseNrb;
 
     @Column(name = "is_lpa")
-    private boolean isLpa;
+    private Boolean isLpa;
 
     @Column(name = "primary_property")
     private float primaryProperty;
