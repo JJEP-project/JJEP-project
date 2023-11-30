@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>User Edit</title>
+</head>
+
+<body class="h-full">
+<div layout:fragment="content">
+    <form th:action="@{'/admin/users/' + *{id} + '/delete'}" method="post" id="delete">
+    </form>
+    <form th:action="@{'/admin/users/' + ${id} + '/update'}" method="post" th:object="${user}"
+          class="bg-white rounded-xl border flex flex-col md:flex-row p-4 justify-start">
+
+        <div class="flex flex-col flex-1 mb-8">
+            <h1 class="font-semibold">
+                User edit
+            </h1>
+            <p class="text-gray-500">
+                Description
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+
+            <h3 th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></h3>
+
+            <!-- 2 columns in 1 row -->
+            <div class="md:m-0">
+                <label class="block text-sm font-medium text-gray-900">Full name</label>
+                <div class="mt-2">
+                    <input
+                            th:value="*{fullName}"
+                            type="text"
+                            name="fullName"
+                            id="fullName"
+                            autocomplete="fullName"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                </div>
+            </div>
+            <div class="md:m-0">
+                <label class="block text-sm font-medium text-gray-900">Username</label>
+                <div class="mt-2">
+                    <input
+                            th:value="*{username}"
+                            type="text"
+                            name="username"
+                            id="username"
+                            autocomplete="username"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                </div>
+            </div>
+
+            <!-- full block input: col-span-full -->
+            <div class="md:m-0 col-span-full">
+                <label class="block text-sm font-medium text-gray-900">Email</label>
+                <div class="mt-2">
+                    <input
+                            th:value="*{email}"
+                            type="email"
+                            name="email"
+                            id="email"
+                            autocomplete="email"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                </div>
+            </div>
+
+            <div class="md:m-0 col-span-full">
+                <label for="select" class="block text-sm font-medium text-gray-900">Role</label>
+                <div class="mt-2">
+                    <select th:field="*{role}" style="-webkit-appearance: none;" id="select"
+                            name="select"
+                            class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                    >
+                        <option value="ROLE_USER" th:selected="${user.role == 'ROLE_USER'}">User</option>
+                        <option value="ROLE_ADMIN" th:selected="${user.role == 'ROLE_ADMIN'}">Admin</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="md:m-0 col-span-full flex flex-row justify-end items-center space-x-4">
+                <!-- content -->
+                <a th:if="${form != null}" th:href="@{'/admin/applications/' + ${form.id}}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Show applications</a>
+            </div>
+
+            <!-- submit or save -->
+            <div class="md:m-0 col-span-full flex flex-row justify-between border-t pt-4 space-x-4">
+                <input value="Delete" form="delete" type="submit" class="px-4 py-2 text-red-500 hover:bg-red-100 rounded-xl">
+                <div class="flex flex-row justify-end space-x-4">
+                    <a th:href="@{'/admin/users/' + *{id}}" type="button"
+                       class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                        Cancel
+                    </a>
+                    <button type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                        Save
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>User Create</title>
+</head>
+
+<body class="h-full">
+    <form th:object="${userRegistrationDTO}" method="post" th:action="@{/admin/users/create/handler}" layout:fragment="content">
+        <div class="bg-white rounded-xl border flex flex-col md:flex-row p-4 justify-start">
+
+            <div class="flex flex-col flex-1 mb-8">
+                <h1 class="font-semibold">
+                    User create
+                </h1>
+                <p class="text-gray-500">
+                    Description
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+
+                <!-- 2 columns in 1 row -->
+                <div class="md:m-0">
+                    <label class="block text-sm font-medium text-gray-900">Full name</label>
+                    <div class="mt-2">
+                        <input
+                                th:field="*{fullName}"
+                                type="text"
+                                name="fullName"
+                                id="fullName"
+                                autocomplete="fullName"
+                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('fullName')}"
+                              th:errors="*{fullName}"></span>
+                    </div>
+                </div>
+                <div class="md:m-0">
+                    <label class="block text-sm font-medium text-gray-900">Username</label>
+                    <div class="mt-2">
+                        <input
+                                th:field="*{username}"
+                                type="text"
+                                name="username"
+                                id="username"
+                                autocomplete="username"
+                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('username')}"
+                              th:errors="*{username}"></span>
+                    </div>
+                </div>
+
+                <!-- full block input: col-span-full -->
+                <div class="md:m-0 col-span-full">
+                    <label class="block text-sm font-medium text-gray-900">Email</label>
+                    <div class="mt-2">
+                        <input
+                                th:field="*{email}"
+                                type="email"
+                                name="email"
+                                id="email"
+                                autocomplete="email"
+                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('email')}"
+                              th:errors="*{email}"></span>
+                    </div>
+                </div>
+
+                <!-- full block input: col-span-full -->
+                <div class="md:m-0 col-span-full">
+                    <label class="block text-sm font-medium text-gray-900">Password</label>
+                    <div class="mt-2">
+                        <input
+                                th:field="*{password}"
+                                type="password"
+                                name="password"
+                                id="password"
+                                autocomplete="password"
+                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('password')}"
+                              th:errors="*{password}"></span>
+                    </div>
+                </div>
+
+                <!-- full block input: col-span-full -->
+                <div class="md:m-0 col-span-full">
+                    <label class="block text-sm font-medium text-gray-900">Password confirmation</label>
+                    <div class="mt-2">
+                        <input
+                                th:field="*{confirmPassword}"
+                                type="password"
+                                name="confirmPassword"
+                                id="confirmPassword"
+                                autocomplete="confirmPassword"
+                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                        <span class="text-xs text-red-500" th:if="${#fields.hasErrors('confirmPassword')}"
+                              th:errors="*{confirmPassword}"></span>
+                    </div>
+                </div>
+
+                <!-- submit or save -->
+                <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
+                    <a th:href="@{/admin/users}" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                        Cancel
+                    </a>
+                    <button type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                        Create
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

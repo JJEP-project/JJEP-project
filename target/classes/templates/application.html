@@ -1,0 +1,471 @@
+<!doctype html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>application</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div th:if="${param.error}" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-xl m-4"
+         role="alert">
+        <p class="font-bold">Application error</p>
+        <p th:text="${error} ?: 'Something went wrong. Please try again later'"></p>
+    </div>
+    <form method="post" th:action="@{/application-handler}" th:object="${formApplication}">
+        <div th:each="client: *{clients}">
+            <div class="flex flex-col md:flex-row p-4 justify-between">
+                <div class="flex flex-col flex-1 mb-8">
+                    <h1 class="font-semibold" th:text="${clientStat.index + 1 + '. Client'}">
+                        Client
+                    </h1>
+                    <p class="text-gray-500">
+                        Assets
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 flex-1">
+
+                    <div class="md:m-0">
+                        <label for="forename" class="block text-sm font-medium text-gray-900">Forename</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{clients[__${clientStat.index}__].forename}"
+                                    type="text"
+                                    name="forename"
+                                    id="forename"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="familyName" class="block text-sm font-medium text-gray-900">Family name</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{clients[__${clientStat.index}__].familyName}"
+                                    type="text"
+                                    name="familyName"
+                                    id="familyName"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="marital-status" class="block text-sm font-medium text-gray-900">Marital Status</label>
+                        <div class="mt-2">
+                            <select
+                                    th:field="*{clients[__${clientStat.index}__].maritalStatus}"
+                                    style="-webkit-appearance: none;"
+                                    id="marital-status" name="select"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                            >
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                                <option value="Single">Single</option>
+                                <option value="Engaged">Engaged</option>
+                                <option value="Widow">Widow</option>
+                                <option value="Widower">Widower</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="dateOfBirth" class="block text-sm font-medium text-gray-900">Date Of Birth</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{clients[__${clientStat.index}__].dateOfBirth}"
+                                    type="text"
+                                    name="dateOfBirth"
+                                    id="dateOfBirth"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                                    placeholder="YYYY-MM-DD"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="iht" class="block text-sm font-medium text-gray-900">UK Domicile for
+                            IHT?</label>
+                        <div class="mt-2">
+                            <select
+                                    th:field="*{clients[__${clientStat.index}__].isUkIht}"
+                                    style="-webkit-appearance: none;"
+                                    id="iht" name="select"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                            >
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="nrb" class="block text-sm font-medium text-gray-900">Was the deceased's
+                            spouse's NRB used?</label>
+                        <div class="mt-2">
+                            <select
+                                    th:field="*{clients[__${clientStat.index}__].isSpouseNrb}"
+                                    style="-webkit-appearance: none;"
+                                    id="nrb" name="select"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                            >
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="lpa" class="block text-sm font-medium text-gray-900">LPA in place?</label>
+                        <div class="mt-2">
+                            <select
+                                    th:field="*{clients[__${clientStat.index}__].isLpa}"
+                                    style="-webkit-appearance: none;"
+                                    id="lpa" name="select"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                            >
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div
+                            class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">
+                        <a th:if="${clientStat.index == 1 and #strings.equals(param.doubledClients, 'true')}"
+                           th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children + 1})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+                        <a th:if="${clientStat.index == 0 and #strings.equals(param.doubledClients, 'true')}"
+                           th:href="@{/application(doubledClients=true, client1children=${client1children + 1}, client2children=${client2children})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+                        <a th:if="${clientStat.index == 0 and #strings.equals(param.doubledClients, 'false')}"
+                           th:href="@{/application(doubledClients=false, client1children=${client1children + 1}, client2children=${client2children})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+                        <a th:if="!${param.doubledClients}"
+                           th:href="@{/application(doubledClients=false, client1children=${client1children + 1}, client2children=${client2children})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>
+                        <a th:if="!${param.doubledClients}"
+                           th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more client</a>
+                        <a th:if="${#strings.equals(param.doubledClients, 'false')}"
+                           th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more client</a>
+                        <a th:if="${clientStat.index == 1 and #strings.equals(param.doubledClients, 'true')}"
+                           th:href="@{/application(doubledClients=false, client1children=${client1children}, client2children=${client2children - client2children})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove client</a>
+                    </div>
+
+                    <!-- submit or save -->
+                    <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
+                    </div>
+                </div>
+            </div>
+
+            <div th:each="child : *{clients[__${clientStat.index}__].children}"
+                 class="flex flex-col md:flex-row p-4 justify-between">
+                <div class="flex flex-col flex-1 mb-8">
+                    <h1 class="font-semibold" th:text="${childStat.index + 1 + '. Child'}">
+                        Child
+                    </h1>
+                    <p class="text-gray-500" th:text="${clientStat.index + 1 + ' Client'}">
+                        Assets
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 flex-1">
+
+                    <div class="md:m-0">
+                        <label for="childName" class="block text-sm font-medium text-gray-900">Name</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{clients[__${clientStat.index}__].children[__${childStat.index}__].name}"
+                                    type="text"
+                                    name="childName"
+                                    id="childName"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="childDateOfBirth" class="block text-sm font-medium text-gray-900">Date of birth</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{clients[__${clientStat.index}__].children[__${childStat.index}__].dateOfBirth}"
+                                    type="text"
+                                    name="childDateOfBirth"
+                                    id="childDateOfBirth"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                                    placeholder="YYYY-MM-DD"
+                            >
+                        </div>
+                    </div>
+                    <div class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">
+                        <a th:if="${clientStat.index == 0 and client1children >= 1 and #strings.equals(param.doubledClients, 'true')}"
+                           th:href="@{/application(doubledClients=true, client1children=${client1children - 1}, client2children=${client2children})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>
+                        <a th:if="${client1children >= 1 and #strings.equals(param.doubledClients, 'false')}"
+                           th:href="@{/application(doubledClients=false, client1children=${client1children - 1}, client2children=${client2children})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>
+                        <a th:if="${clientStat.index == 1 and client2children >= 1 and #strings.equals(param.doubledClients, 'true')}"
+                           th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children - 1})}"
+                           class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>
+                    </div>
+
+                    <!-- submit or save -->
+                    <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="flex flex-col md:flex-row p-4 justify-between">
+
+                <div class="flex flex-col flex-1 mb-8">
+                    <h1 class="font-semibold">
+                        Joint
+                    </h1>
+                    <p class="text-gray-500">
+                        Assets
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 flex-1">
+
+                    <div class="md:m-0">
+                        <label for="property" class="block text-sm font-medium text-gray-900">Primary Property</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{primaryProperty}"
+                                    type="number"
+                                    name="property"
+                                    id="property"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="uk-property" class="block text-sm font-medium text-gray-900">UK Holiday Home</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{ukHolidayHome}"
+                                    type="number"
+                                    name="uk-property"
+                                    id="uk-property"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="btl-property" class="block text-sm font-medium text-gray-900">BTL Property</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{btlProperty}"
+                                    type="number"
+                                    name="btl-property"
+                                    id="btl-property"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="foreign-property" class="block text-sm font-medium text-gray-900">Foreign
+                            Property</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{foreignProperty}"
+                                    type="number"
+                                    name="foreign-property"
+                                    id="foreign-property"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0 col-span-full">
+                        <label for="foreign-will" class="block text-sm font-medium text-gray-900">Foreign Will</label>
+                        <div class="mt-2">
+                            <select
+                                    th:field="*{foreignWill}"
+                                    style="-webkit-appearance: none;"
+                                    id="foreign-will" name="select"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                            >
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="investment" class="block text-sm font-medium text-gray-900">Investment</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{investment}"
+                                    type="number"
+                                    name="investment"
+                                    id="investment"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="savings-cash" class="block text-sm font-medium text-gray-900">Savings & Cash</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{savingsCash}"
+                                    type="number"
+                                    name="savings-cash"
+                                    id="savings-cash"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life
+                            Cover</label>
+                        <div class="mt-2">
+                            <input
+                                    th:field="*{personalLifeCover}"
+                                    type="number"
+                                    name="personal-live-cover"
+                                    id="personal-live-cover"
+                                    autocomplete="name"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                    min="0"
+                                    max="3.4028235E38"
+                                    required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="md:m-0">
+                        <label for="trust" class="block text-sm font-medium text-gray-900">Already in trust?</label>
+                        <div class="mt-2">
+                            <div class="mt-2">
+                                <select
+                                        th:field="*{trust}"
+                                        style="-webkit-appearance: none;"
+                                        id="trust"
+                                        name="select"
+                                        class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                                >
+                                    <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:m-0 col-span-full">
+                        <label for="blood-protection" class="block text-sm font-medium text-gray-900">Blood
+                            Protection</label>
+                        <div class="mt-2">
+                            <select
+                                    th:field="*{isBloodProtection}"
+                                    style="-webkit-appearance: none;"
+                                    id="blood-protection" name="select"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                            >
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="md:m-0 col-span-full">
+                        <label for="generation-iht" class="block text-sm font-medium text-gray-900">Generation
+                            IHT</label>
+                        <div class="mt-2">
+                            <select
+                                    th:field="*{isGenerationIht}"
+                                    style="-webkit-appearance: none;"
+                                    id="generation-iht" name="select"
+                                    class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
+                            >
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="md:m-0 col-span-full">
+                        <label for="notes" class="block text-sm font-medium text-gray-900">Notes (Optional)</label>
+                        <div class="mt-2">
+                        <textarea
+                                th:field="*{notes}"
+                                id="notes"
+                                name="about"
+                                rows="3"
+                                class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- submit or save -->
+        <div class="md:m-0 col-span-full flex flex-row justify-end border-t p-4 space-x-4">
+            <button type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                Cancel
+            </button>
+            <button type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                Submit
+            </button>
+        </div>
+    </form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin-layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Home</title>
+</head>
+
+<body class="h-full">
+  <div layout:fragment="content">
+    <!-- Replace content -->
+    <div>
+      <div class="flex flex-col md:flex-row justify-between flex-nowrap md:space-x-4">
+        <div th:if="${applicationsCount}" class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+          <h3>Total applications</h3>
+          <span class="text-2xl font-bold" th:text="${applicationsCount}"></span>
+        </div>
+        <div th:if="${newApplicationsLastWeek}" class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+          <h3>New Applications</h3>
+          <span class="text-2xl font-bold" th:text="${newApplicationsLastWeek}"></span>
+        </div>
+        <div th:if="${usersCount}" class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+          <h3>Total Users</h3>
+          <span class="text-2xl font-bold" th:text="${usersCount}"></span>
+        </div>
+        <div th:if="${newUsersLastWeek}" class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+          <h3>New Users</h3>
+          <span class="text-2xl font-bold" th:text="${newUsersLastWeek}"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+      <div class="flex flex-row justify-between items-center">
+        <h3 class="text-xl">Applications</h3>
+        <a th:href="@{/admin/applications}" class="text-link rounded-xl transition duration-200 hover:text-link-hover hover:bg-link-back_hover py-2 px-3 hover:cursor-pointer">View
+          All</a>
+      </div>
+
+      <!-- Users -->
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full divide-y">
+          <thead class="h-10">
+          <tr>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">ID</div>
+            </th>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Username</div>
+            </th>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Created at</div>
+            </th>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Updated at</div>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="divide-y">
+          <tr th:each="form: ${forms}" class="h-10">
+            <td th:text="${form.id}">
+
+            </td>
+            <td th:text="${form.user.username}">
+
+            </td>
+            <td th:text="${#temporals.format(form.createdAt, 'yyyy-MM-dd HH:mm')}">
+
+            </td>
+            <td th:text="${#temporals.format(form.updatedAt, 'yyyy-MM-dd HH:mm')}">
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+      <div class="flex flex-row justify-between items-center">
+        <h3 class="text-xl">Users</h3>
+        <a th:href="@{/admin/users}" class="text-link rounded-xl transition duration-200 hover:text-link-hover hover:bg-link-back_hover py-2 px-3 hover:cursor-pointer">View
+          All</a>
+      </div>
+
+      <!-- Users -->
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full divide-y">
+          <thead class="h-10">
+          <tr>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Full name</div>
+            </th>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Username</div>
+            </th>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Email</div>
+            </th>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Role</div>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="divide-y">
+            <tr th:each="user: ${users}" class="h-10">
+              <td th:text="${user.fullName}">
+
+              </td>
+              <td th:text="${user.username}">
+
+              </td>
+              <td th:text="${user.email}">
+
+              </td>
+              <td th:switch="${user.role.toString()}">
+                <span class="bg-green-500 py-1 px-2 rounded-full text-white" th:case="'ROLE_ADMIN'">Admin</span>
+                <span class="bg-sky-500 py-1 px-2 rounded-full text-white" th:case="'ROLE_USER'">User</span>
+                <span class="bg-gray-600 py-1 px-2 rounded-full text-white" th:case="*">Anon</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="bg-white rounded-xl border w-full p-3 text-sm flex flex-col space-y-4 my-4">
+      <div class="flex flex-row justify-between items-center">
+        <h3 class="text-xl">Activity</h3>
+        <a th:href="@{/admin/activities}" class="text-link rounded-xl transition duration-200 hover:text-link-hover hover:bg-link-back_hover py-2 px-3 hover:cursor-pointer">View
+          All</a>
+      </div>
+
+      <!-- activity -->
+      <div class="overflow-x-auto">
+        <table class="table-auto w-full divide-y">
+          <thead class="h-10">
+          <tr>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Message</div>
+            </th>
+            <th class="whitespace-nowrap">
+              <div class="font-medium text-left">Date</div>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="divide-y">
+          <tr th:each="activity: ${activities}" class="h-10">
+            <td>
+              <a
+                      th:href="@{'/admin/users/' + ${activity.User.id}}"
+                      th:text="${activity.User.username + ' '}"
+                      class="text-link cursor-pointer"
+              >
+              </a>
+              <span
+                      th:text="${activity.activityMessage}"
+              >
+              </span>
+            </td>
+            <td th:text="${#temporals.format(activity.activityDate, 'yyyy-MM-dd HH:mm')}">
+
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <!-- /End replace -->
+  </div>
+</body>
+
+</html>

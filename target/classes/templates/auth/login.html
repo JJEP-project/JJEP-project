@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorate="~{_layout.html}"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title>
+        login
+    </title>
+</head>
+<body>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8" layout:fragment="content">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Login to your
+            account</h2>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+        <div th:if="${param.error}" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-xl" role="alert">
+            <p class="font-bold">Login error</p>
+            <p>Invalid username or password.</p>
+        </div>
+
+        <div th:if="${param.logout}" class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded-xl" role="alert">
+            <p class="font-bold">Success</p>
+            <p>You have successfully logout.</p>
+        </div>
+
+        <form class="space-y-4" th:object="${loginForm}" method="post" th:action="@{/login}">
+            <label for="username" class="block text-sm font-medium text-gray-900">Username</label>
+            <div class="mt-2">
+                <input
+                        th:field="*{username}"
+                        type="text"
+                        name="username"
+                        id="username"
+                        autocomplete="name"
+                        class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                <span class="text-xs text-red-500" th:if="${#fields.hasErrors('username')}"
+                      th:errors="*{username}"></span>
+            </div>
+
+            <label for="password" class="block text-sm font-medium text-gray-900">Password</label>
+            <div class="mt-2">
+                <input
+                        th:field="*{password}"
+                        type="password"
+                        name="password"
+                        id="password"
+                        autocomplete="password"
+                        class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full">
+                <span class="text-xs text-red-500" th:if="${#fields.hasErrors('password')}"
+                      th:errors="*{password}"></span>
+            </div>
+
+            <div>
+                <button type="submit"
+                        class="mt-4 px-4 w-full py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                    Submit
+                </button>
+            </div>
+        </form>
+
+        <p class="mt-10 text-center text-sm text-gray-500">
+            You don't have account?
+            <a th:href="@{/register}" class="font-semibold leading-6 text-link hover:text-link-hover">Register here</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

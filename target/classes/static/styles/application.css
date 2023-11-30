@@ -1,0 +1,10 @@
+.client-container {
+  width: 33.33%;
+  float: left;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.client-container h1 {
+  text-align: center;
+}

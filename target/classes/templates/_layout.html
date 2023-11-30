@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script th:src="@{/js/tailwind.config.js}"></script>
+    <link rel="stylesheet" th:href="@{/styles/global.css}">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+    <title>JJEP</title>
+</head>
+<body>
+<!-- navbar -->
+<nav class="px-8 md:px-auto">
+    <div class="md:h-16 h-28 mx-auto md:px-4 container flex items-center justify-between flex-wrap md:flex-nowrap">
+        <!-- Logo -->
+        <div class="text-primary text-xl font-semibold md:order-1 flex-1">
+            <img src="/img/logo.png" alt="logo" class="h-12">
+        </div>
+        <div class="order-3 w-full md:w-auto md:order-2">
+            <ul class="flex flex-wrap justify-between items-center">
+                <!-- Max 4 items with limited symbols -->
+                <!-- active link class: bg-link-back_hover text-link -->
+                <li><a class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" th:href="@{/}">Home</a></li>
+                <li><a class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" th:href="@{/applications}">Application</a></li>
+                <li><a class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" th:href="@{/playground}">Playground</a>
+                </li>
+            </ul>
+        </div>
+        <div class="order-2 md:order-3">
+            <!-- Only admin can see "Admin" button -->
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"
+               class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                Admin
+            </a>
+            <!-- auth user -->
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}"
+               class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                Logout
+            </a>
+            <!-- not auth user -->
+            <a sec:authorize="!isAuthenticated()" th:href="@{/register}" type="button"
+               class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+                Sign up
+            </a>
+            <a sec:authorize="!isAuthenticated()" th:href="@{/login}"
+               class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+                Login
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- container -->
+
+<div th:if="${successMessage}" class="container transition-all m-4" id="alert">
+    <div class="lg:w-1/2 w-4/5 shadow-xl top-4 left-1 right-1 mx-auto fixed z-50">
+        <div class="relative py-3 pl-4 pr-10 leading-normal text-green-700 bg-green-100 rounded-lg" role="alert">
+            <p th:text="${successMessage}"></p>
+            <button class="absolute inset-y-0 right-0 flex items-center mr-4" onclick="hideAlert()">
+                <svg class="w-4 h-4 fill-current" role="button" viewBox="0 0 20 20">
+                    <path
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd" fill-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<div class="container mx-auto min-h-screen">
+    <div layout:fragment="content"></div>
+</div>
+<footer class="bg-gradient-to-r from-primary to-black text-white p-12 lg:p-20 rounded-t-[40px] flex flex-col divide-y">
+    <div class="pb-12">
+        <h6 class="text-2xl">Contact us</h6>
+        <div class="flex flex-col justify-start items-start pt-6 gap-1">
+            <p>
+                Address: 1234 Street Name, City Name, England
+            </p>
+            <p>
+                Phone: <a href="tel:+44 234 567 890">
+                +1 234 567 890
+            </a>
+            </p>
+            <p>
+                Email: <a href="mailto:test@test.com">
+                test@test.com
+            </a>
+            </p>
+        </div>
+    </div>
+    <div class="flex flex-row justify-between items-center pt-12 border-t border-white/10">
+        <h5 class="font-bold text-md lg:text-xl">
+            JJEP .
+        </h5>
+        <p>© JJEP Agency Inc. 2023</p>
+    </div>
+</footer>
+
+<script>
+    let alert = document.getElementById("alert");
+
+    const hideAlert = () => {
+        if (alert.style.display === "none") {
+            alert.style.display = "block";
+        } else {
+            alert.style.display = "none";
+        }
+    }
+
+    setTimeout(function () {
+        alert.style.display = "none";
+    }, 5000);
+</script>
+</body>
+</html>

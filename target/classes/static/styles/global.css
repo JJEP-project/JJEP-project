@@ -1,0 +1,39 @@
+/* save the code */
+
+#sidebar {
+    --tw-translate-x: -100%;
+}
+
+#menu-close-icon {
+    display: none;
+}
+
+#menu-open:checked ~ #sidebar {
+    --tw-translate-x: 0;
+}
+
+#menu-open:checked ~ * #mobile-menu-button {
+    background-color: rgba(31, 41, 55, 0);
+}
+
+#menu-open:checked ~ * #menu-open-icon {
+    display: none;
+}
+
+#menu-open:checked ~ * #menu-close-icon {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    #sidebar {
+        --tw-translate-x: 0;
+    }
+}
+
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+.font-home {
+    font-family: 'Work Sans', sans-serif;
+}
