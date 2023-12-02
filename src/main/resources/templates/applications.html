@@ -24,7 +24,7 @@
             </div>
             
             <div class="flex flex-col space-y-2 flex-1">
-                <div th:if="${app}" class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
+                <a th:href="@{'/applications/' + ${app.id}}" th:if="${app}" class="flex flex-row justify-between p-4 border rounded-xl hover:border-gray-400 hover:cursor-pointer items-center">
                     <h3 th:text="'#' + ${app.id}">Id</h3>
                     <div class="flex flex-col justify center items-end">
                         <h5 class="text-sm">
@@ -37,7 +37,7 @@
                         </h5>
                         <p th:text="${#temporals.format(app.createdAt, 'yyyy-MM-dd')}" class="text-xs text-gray-500">Date</p>
                     </div>
-                </div>
+                </a>
 
                 <div th:unless="${app}" class="border rounded-xl py-24 px-8 text-center">
                     <h3 class="font-semibold">No results found</h3>
