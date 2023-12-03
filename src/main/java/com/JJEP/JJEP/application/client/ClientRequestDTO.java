@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
+// annotations from lombok to remove boilerplate code
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Data

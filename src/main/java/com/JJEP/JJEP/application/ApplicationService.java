@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @Service
 public class ApplicationService implements IApplicationService{
+    // composition
     private final IApplicationRepository applicationRepository;
     private final ModelMapper modelMapper;
     private final ClientService clientService;
@@ -76,6 +77,7 @@ public class ApplicationService implements IApplicationService{
     @Transactional
     @Override
     public void updateApplication(long id, ApplicationResponseDTO applicationResponseDTO) {
+        // try to fetch existing application
         Optional<Application> existingApplicationOptional = applicationRepository.findById(id);
         if (existingApplicationOptional.isEmpty()) {
             throw new ApplicationNotFoundException("Application not found");
@@ -87,6 +89,7 @@ public class ApplicationService implements IApplicationService{
         // because we updated existingApplication, we can save it with updates
         applicationRepository.updateById(id, existingApplication);
 
+        //create activity
         UserResponseDTO authUser = userService.getAuthenticatedUser();
         activityService.saveActivity(ActivityRequestDTO
                 .builder()
@@ -99,12 +102,16 @@ public class ApplicationService implements IApplicationService{
     @Override
     @Transactional
     public void saveApplication(ApplicationRequestDTO applicationRequestDTO) {
+        // firstly map applicationRequestDTO to Application entity
         Application application = modelMapper.map(applicationRequestDTO, Application.class);
+        // save application to database, represent user_application table
         Application applicationSaved = applicationRepository.save(application);
+        // save clients of the application
         List<ClientRequestDTO> clientRequestDTOS = applicationRequestDTO.getClients();
         if (!clientRequestDTOS.isEmpty()) {
             for (ClientRequestDTO clientRequestDTO : clientRequestDTOS) {
                 clientRequestDTO.setApplicationId(applicationSaved.getId());
+                // when saving client, it will also save children of the client because of set cascade type
                 clientService.saveClient(clientRequestDTO);
             }
         }

@@ -12,6 +12,7 @@ import java.util.Optional;
 
 public interface IApplicationRepository extends JpaRepository<Application, Long> {
 
+    // custom query to update the application fields in user_application table
     @Modifying
     @Query("""
             UPDATE\s

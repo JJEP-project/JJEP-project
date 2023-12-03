@@ -10,10 +10,12 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+// annotations from lombok to remove boilerplate code
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+// annotations from JPA to map Java objects to database tables
 @Entity
 @Table(name="child")
 public class Child {

@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
+// annotations from lombok to remove boilerplate code
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Data
