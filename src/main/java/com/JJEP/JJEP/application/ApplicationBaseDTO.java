@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+// annotations from lombok to remove boilerplate code
 @Data
 @SuperBuilder
 @NoArgsConstructor

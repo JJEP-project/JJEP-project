@@ -6,6 +6,7 @@ import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import java.util.List;
 
 public interface IApplicationAnalyzer {
+    // formatted strings are used in the report
     String personalLifeCoverGood = "No obvious life cover issues for %s";
     String personalLifeCoverConcern = """
             You have told us that %s has £"%.2f" in personal life cover that may not be directed into trust.

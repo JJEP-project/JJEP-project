@@ -7,6 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
+// annotations from lombok to remove boilerplate code
 @Data
 @SuperBuilder
 @NoArgsConstructor

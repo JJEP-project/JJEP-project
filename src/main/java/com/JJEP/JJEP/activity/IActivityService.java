@@ -1,7 +1,5 @@
 package com.JJEP.JJEP.activity;
 
-import com.JJEP.JJEP.application.ApplicationResponseDTO;
-
 import java.util.List;
 
 public interface IActivityService {

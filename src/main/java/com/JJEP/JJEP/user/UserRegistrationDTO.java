@@ -5,6 +5,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.validation.constraints.Size;
 
+// annotations from lombok to remove boilerplate code
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @Data

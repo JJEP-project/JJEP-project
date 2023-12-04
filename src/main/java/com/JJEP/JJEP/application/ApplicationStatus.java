@@ -1,5 +1,6 @@
 package com.JJEP.JJEP.application;
 
+// enum is used to represent a fixed number of possible values for the status of an application
 public enum ApplicationStatus {
     REQUESTED(0),
     IN_PROGRESS(1),

@@ -15,6 +15,7 @@ public interface IUserRepository extends JpaRepository<User, Long> {
     Optional<User> findByUsername(String username);
     Optional<User> findByEmail(String email);
 
+    // custom query to update the user fields in user table
     @Modifying
     @Query("UPDATE User u SET u.username = :#{#user.username}, u.fullName = :#{#user.fullName}, u.email = :#{#user.email} WHERE u.id = :id")
     void updateById(@Param("id") Long id, @Param("user") User user);

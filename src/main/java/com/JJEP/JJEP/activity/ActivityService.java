@@ -17,10 +17,14 @@ public class ActivityService implements IActivityService {
     private final IActivityRepository activityRepository;
     private final ModelMapper modelMapper;
 
+    // autowired is used to inject the dependency automatically without instantiating in constructor
     @Autowired
+    // lazy annotation is used to delay the initialization of the dependency until it is needed
+    // so recursive dependency can be resolved
     @Lazy
     UserService userService;
 
+    // instantiate the classes which cannot be autowired
     public ActivityService(IActivityRepository activityRepository, ModelMapper modelMapper) {
         this.activityRepository = activityRepository;
         this.modelMapper = modelMapper;
@@ -34,6 +38,7 @@ public class ActivityService implements IActivityService {
 
     @Override
     public void saveActivity(ActivityRequestDTO activity) {
+        // map the activity request DTO to activity entity
         Activity activityToSave = modelMapper.map(activity, Activity.class);
         activityRepository.save(activityToSave);
     }
@@ -89,7 +94,9 @@ public class ActivityService implements IActivityService {
         LocalDateTime oneWeekAgo = LocalDateTime.now().minusWeeks(1);
         activityRepository.deleteByActivityDateBefore(oneWeekAgo);
 
+        // authenticated user is required to get id of the user to deleted activities
         UserResponseDTO authUser = userService.getAuthenticatedUser();
+        // create an activity to keep track of the actions
         saveActivity(ActivityRequestDTO
                 .builder()
                 .userId(authUser.getId())
