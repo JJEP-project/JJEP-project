@@ -156,13 +156,13 @@ public class ApplicationController {
     }
 
     @PostMapping("/applications/{id}/update")
-    public String updateApplication(@PathVariable long id, ApplicationResponseDTO form, ClientResponseDTO clientForm, ChildResponseDTO childForm) {
+    public String updateApplication(@PathVariable long id, ApplicationResponseDTO form) {
 
 
         try {
             applicationService.updateApplication(id, form);
-            clientService.updateClient(clientForm.getId(), clientForm);
-            childService.updateChild(childForm.getId(), childForm);
+//            clientService.updateClient(clientForm.getId(), clientForm);
+//            childService.updateChild(childForm.getId(), childForm);
             return "redirect:/applications/{id}";
         } catch (Exception e) {
             return "redirect:/admin/users/{id}/edit?error";

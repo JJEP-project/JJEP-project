@@ -242,7 +242,7 @@
                     <label for="property" class="block text-sm font-medium text-gray-900">Primary Property</label>
                     <div class="mt-2">
                         <input
-                                th:value="${form.primaryProperty}"
+                                th:field="${form.primaryProperty}"
                                 type="number"
                                 name="property"
                                 id="property"
@@ -259,7 +259,7 @@
                     <label for="uk-property" class="block text-sm font-medium text-gray-900">UK Holiday Home</label>
                     <div class="mt-2">
                         <input
-                                th:value="${form.ukHolidayHome}"
+                                th:field="${form.ukHolidayHome}"
                                 type="number"
                                 name="uk-property"
                                 id="uk-property"
@@ -276,7 +276,7 @@
                     <label for="btl-property" class="block text-sm font-medium text-gray-900">BTL Property</label>
                     <div class="mt-2">
                         <input
-                                th:value="${form.btlProperty}"
+                                th:field="${form.btlProperty}"
                                 type="number"
                                 name="btl-property"
                                 id="btl-property"
@@ -293,7 +293,7 @@
                     <label for="foreign-property" class="block text-sm font-medium text-gray-900">Foreign Property</label>
                     <div class="mt-2">
                         <input
-                                th:value="${form.foreignProperty}"
+                                th:field="${form.foreignProperty}"
                                 type="number"
                                 name="foreign-property"
                                 id="foreign-property"
@@ -310,7 +310,7 @@
                     <label for="foreign-will" class="block text-sm font-medium text-gray-900">Foreign Will</label>
                     <div class="mt-2">
                         <select
-                                th:value="${form.foreignWill}"
+                                th:field="${form.foreignWill}"
                                 style="-webkit-appearance: none;"
                                 id="foreign-will" name="select"
                                 class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
@@ -326,7 +326,7 @@
                     <label for="investment" class="block text-sm font-medium text-gray-900">Investment</label>
                     <div class="mt-2">
                         <input
-                                th:value="${form.investment}"
+                                th:field="${form.investment}"
                                 type="number"
                                 name="investment"
                                 id="investment"
@@ -343,7 +343,7 @@
                     <label for="savings-cash" class="block text-sm font-medium text-gray-900">Savings & Cash</label>
                     <div class="mt-2">
                         <input
-                                th:value="${form.savingsCash}"
+                                th:field="${form.savingsCash}"
                                 type="number"
                                 name="savings-cash"
                                 id="savings-cash"
@@ -360,7 +360,7 @@
                     <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
                     <div class="mt-2">
                         <input
-                                th:value="${form.personalLifeCover}"
+                                th:field="${form.personalLifeCover}"
                                 type="number"
                                 name="personal-live-cover"
                                 id="personal-live-cover"
@@ -378,7 +378,7 @@
                     <div class="mt-2">
                         <div class="mt-2">
                             <select
-                                    th:value="${form.trust}"
+                                    th:field="${form.trust}"
                                     style="-webkit-appearance: none;"
                                     id="trust"
                                     name="select"
@@ -396,7 +396,7 @@
                     <label for="blood-protection" class="block text-sm font-medium text-gray-900">Blood Protection</label>
                     <div class="mt-2">
                         <select
-                                th:value="${form.isBloodProtection}"
+                                th:field="${form.isBloodProtection}"
                                 style="-webkit-appearance: none;"
                                 id="blood-protection" name="select"
                                 class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
@@ -412,7 +412,7 @@
                     <label for="generation-iht" class="block text-sm font-medium text-gray-900">Generation IHT</label>
                     <div class="mt-2">
                         <select
-                                th:value="${form.isGenerationIht}"
+                                th:field="${form.isGenerationIht}"
                                 style="-webkit-appearance: none;"
                                 id="generation-iht" name="select"
                                 class="border border-gray-300 px-4 py-2 rounded-xl focus:outline-primary block w-full"
