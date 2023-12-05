@@ -138,38 +138,4 @@ public class ApplicationController {
 
     }
 
-    @GetMapping("/applications/{id}/edit")
-    public String editUserDetails(@PathVariable long id, Model model) {
-
-        UserResponseDTO authUser = userService.getAuthenticatedUser();
-        model.addAttribute("authUser", authUser);
-
-
-        try {
-            ApplicationResponseDTO form = applicationService.findApplicationByUserId(authUser.getId());
-            model.addAttribute("form", form);
-        } catch (ApplicationNotFoundException e) {
-
-        }
-
-        return "application-edit";
-
-    }
-
-    @PostMapping("/applications/{id}/update")
-    public String updateApplication(@PathVariable long id, ApplicationResponseDTO form) {
-
-
-        try {
-            applicationService.updateApplication(id, form);
-//            clientService.updateClient(clientForm.getId(), clientForm);
-//            childService.updateChild(childForm.getId(), childForm);
-            return "redirect:/applications/{id}";
-        } catch (Exception e) {
-            return "redirect:/admin/users/{id}/edit?error";
-        }
-
-
-    }
-
 }
