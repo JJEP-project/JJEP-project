@@ -36,7 +36,16 @@ public interface IApplicationRepository extends JpaRepository<Application, Long>
             """)
     void updateById(@Param("id") Long id, @Param("application") Application application);
 
-
+    @Modifying
+    @Query("""
+            UPDATE\s
+                Application a\s
+            SET\s
+                a.status = :status
+            WHERE\s
+                a.id = :id
+            """)
+    void updateStatusById(long id, int status);
     @Query("SELECT COUNT(a) FROM Application a WHERE date_trunc('week', a.createdAt) = date_trunc('week', current_date)")
     long countNewApplicationsLastWeek();
 

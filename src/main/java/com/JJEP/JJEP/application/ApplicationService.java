@@ -196,4 +196,18 @@ public class ApplicationService implements IApplicationService{
         return applicationsDTO;
     }
 
+    @Override
+    @Transactional
+    public void updateApplicationStatus(long id, Integer status) {
+        applicationRepository.updateStatusById(id, status);
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        activityService.saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(authUser.getId())
+                .activityMessage("Has updated an application status")
+                .build()
+        );
+    }
+
 }
