@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
+//Controller class responsible for error handling
 @Controller
 public class ErrorController implements org.springframework.boot.web.servlet.error.ErrorController {
 

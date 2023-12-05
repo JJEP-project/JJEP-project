@@ -28,6 +28,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+//Controller class responsible for handling application-related requests
 @Controller
 public class ApplicationController {
     @Autowired

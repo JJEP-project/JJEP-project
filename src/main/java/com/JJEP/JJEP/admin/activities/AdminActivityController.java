@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-
+//Controller class for handling administrative tasks related to activities
 @Controller
 public class AdminActivityController {
 

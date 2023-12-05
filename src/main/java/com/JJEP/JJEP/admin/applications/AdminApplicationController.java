@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
+//Controller class for handling administrative tasks related to applications
 @Controller
 public class AdminApplicationController {
 

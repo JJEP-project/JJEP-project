@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
-
+//Controller class for handling administrative tasks related to users
 @Controller
 public class AdminUserController {
 
