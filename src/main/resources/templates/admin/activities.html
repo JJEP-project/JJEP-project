@@ -42,7 +42,7 @@
           </tr>
           </thead>
           <tbody class="divide-y">
-          <tr class="h-10" th:each="activity: ${activities}">
+          <tr th:if="${activities}" class="h-10" th:each="activity: ${activities}">
             <td th:text="${activity.id}">
 
             </td>

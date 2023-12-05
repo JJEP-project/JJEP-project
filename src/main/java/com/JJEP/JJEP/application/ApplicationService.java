@@ -64,7 +64,7 @@ public class ApplicationService implements IApplicationService{
         List<ApplicationResponseDTO> applicationResponseDTOS = new ArrayList<>();
 
         if (applications.isEmpty()) {
-            throw new ApplicationNotFoundException("No applications found");
+            return null;
         }
 
         for (Application application : applications) {
@@ -94,7 +94,7 @@ public class ApplicationService implements IApplicationService{
         activityService.saveActivity(ActivityRequestDTO
                 .builder()
                 .userId(authUser.getId())
-                .activityMessage("Has updated an application")
+                .activityMessage("Has updated an application with id " + id)
                 .build()
         );
     }
