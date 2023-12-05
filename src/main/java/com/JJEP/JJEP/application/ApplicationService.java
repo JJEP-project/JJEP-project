@@ -104,12 +104,14 @@ public class ApplicationService implements IApplicationService{
     public void saveApplication(ApplicationRequestDTO applicationRequestDTO) {
         // firstly map applicationRequestDTO to Application entity
         Application application = modelMapper.map(applicationRequestDTO, Application.class);
+        application.setId(null);
         // save application to database, represent user_application table
         Application applicationSaved = applicationRepository.save(application);
         // save clients of the application
         List<ClientRequestDTO> clientRequestDTOS = applicationRequestDTO.getClients();
         if (!clientRequestDTOS.isEmpty()) {
             for (ClientRequestDTO clientRequestDTO : clientRequestDTOS) {
+                clientRequestDTO.setId(null);
                 clientRequestDTO.setApplicationId(applicationSaved.getId());
                 // when saving client, it will also save children of the client because of set cascade type
                 clientService.saveClient(clientRequestDTO);
