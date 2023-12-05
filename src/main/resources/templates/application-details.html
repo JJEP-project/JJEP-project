@@ -1,0 +1,257 @@
+<!doctype html>
+<html class="h-full" lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{_layout.html}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <title>application</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+  <div th:if="${param.error}" class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-xl m-4" role="alert">
+    <p class="font-bold">Application error</p>
+    <p th:text="${error} ?: 'Something went wrong. Please try again later'"></p>
+  </div>
+  <!--  th:if="${#strings.equals(param.doubledClients, 'true')}"-->
+  <form>
+    <div th:each="client : ${form.clients}">
+      <div class="flex flex-col md:flex-row p-4 justify-start">
+        <div class="flex flex-col flex-1 mb-8">
+          <h1 class="font-semibold">
+            Client
+          </h1>
+          <p class="text-gray-500">
+            Assets
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+
+          <div class="md:m-0">
+            <label for="familyName" class="block text-sm font-medium text-gray-900">Family name</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${client.familyName}"></h3>
+            </div>
+          </div>
+
+          <div class="md:m-0">
+            <label for="property" class="block text-sm font-medium text-gray-900">Forename</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${client.forename}"></h3>
+            </div>
+          </div>
+
+          <div class="md:m-0">
+            <label for="property" class="block text-sm font-medium text-gray-900">Marital Status</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${client.maritalStatus}"></h3>
+            </div>
+          </div>
+
+          <div class="md:m-0">
+            <label for="property" class="block text-sm font-medium text-gray-900">Date Of Birth</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${client.dateOfBirth}"></h3>
+            </div>
+          </div>
+
+          <div class="md:m-0">
+            <label for="property" class="block text-sm font-medium text-gray-900">UK Domicile for IHT?</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${client.isUkIht}"></h3>
+            </div>
+          </div>
+
+          <div class="md:m-0">
+            <label for="property" class="block text-sm font-medium text-gray-900">Was the deceased's spouse's NRB used?</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${client.isSpouseNrb}"></h3>
+            </div>
+          </div>
+
+          <div class="md:m-0">
+            <label for="property" class="block text-sm font-medium text-gray-900">LPA in place?</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${client.isLpa}"></h3>
+            </div>
+          </div>
+
+<!--          <div-->
+<!--                  class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">-->
+<!--            &lt;!&ndash;      GAVNO CODE      &ndash;&gt;-->
+<!--            <a th:if="${clientStat.index == 1 and #strings.equals(param.doubledClients, 'true')}" th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children + 1})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>-->
+<!--            <a th:if="${clientStat.index == 0 and #strings.equals(param.doubledClients, 'true')}" th:href="@{/application(doubledClients=true, client1children=${client1children + 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>-->
+<!--            <a th:if="${clientStat.index == 0 and #strings.equals(param.doubledClients, 'false')}" th:href="@{/application(doubledClients=false, client1children=${client1children + 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>-->
+<!--            <a th:if="!${param.doubledClients}" th:href="@{/application(doubledClients=false, client1children=${client1children + 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add child</a>-->
+<!--            <a th:if="!${param.doubledClients}" th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children})}"-->
+<!--               class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more client</a>-->
+<!--            <a th:if="${#strings.equals(param.doubledClients, 'false')}" th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children})}"-->
+<!--               class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Add one more client</a>-->
+<!--            <a th:if="${clientStat.index == 1 and #strings.equals(param.doubledClients, 'true')}" th:href="@{/application(doubledClients=false, client1children=${client1children}, client2children=${client2children - client2children})}"-->
+<!--               class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove client</a>-->
+<!--          </div>-->
+
+          <!-- submit or save -->
+          <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
+          </div>
+        </div>
+      </div>
+
+      <div th:each="child : ${client.children}" class="flex flex-col md:flex-row p-4 justify-start">
+        <div class="flex flex-col flex-1 mb-8">
+          <h1 class="font-semibold">
+            Child
+          </h1>
+          <p class="text-gray-500">
+
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+
+          <div class="md:m-0">
+            <label for="property" class="block text-sm font-medium text-gray-900">Name</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${child.name}"></h3>
+            </div>
+          </div>
+
+          <div class="md:m-0">
+            <label for="property" class="block text-sm font-medium text-gray-900">Date of birth</label>
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${child.dateOfBirth}"></h3>
+            </div>
+          </div>
+<!--          <div class="md:m-0 col-span-full flex flex-row justify-between items-center space-x-4">-->
+<!--            <a th:if="${clientStat.index == 0 and client1children >= 1 and #strings.equals(param.doubledClients, 'true')}" th:href="@{/application(doubledClients=true, client1children=${client1children - 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>-->
+<!--            <a th:if="${client1children >= 1 and #strings.equals(param.doubledClients, 'false')}" th:href="@{/application(doubledClients=false, client1children=${client1children - 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>-->
+<!--            <a th:if="${clientStat.index == 1 and client2children >= 1 and #strings.equals(param.doubledClients, 'true')}" th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children - 1})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>-->
+<!--          </div>-->
+
+
+          <!-- submit or save -->
+          <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row p-4 justify-start">
+
+      <div class="flex flex-col flex-1 mb-8">
+        <h1 class="font-semibold">
+          Joint
+        </h1>
+        <p class="text-gray-500">
+          Assets
+        </p>
+      </div>
+
+
+      <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+
+        <div class="md:m-0">
+          <label for="property" class="block text-sm font-medium text-gray-900">Primary Property</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.primaryProperty}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0">
+          <label for="uk-property" class="block text-sm font-medium text-gray-900">UK Holiday Home</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.ukHolidayHome}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0">
+          <label for="btl-property" class="block text-sm font-medium text-gray-900">BTL Property</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.btlProperty}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0">
+          <label for="foreign-property" class="block text-sm font-medium text-gray-900">Foreign Property</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.foreignProperty}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0 col-span-full">
+          <label for="foreign-will" class="block text-sm font-medium text-gray-900">Foreign Will</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.foreignWill}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0">
+          <label for="investment" class="block text-sm font-medium text-gray-900">Investment</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.investment}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0">
+          <label for="savings-cash" class="block text-sm font-medium text-gray-900">Savings & Cash</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.savingsCash}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0">
+          <label for="personal-live-cover" class="block text-sm font-medium text-gray-900">Personal Life Cover</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.personalLifeCover}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0">
+          <label for="trust" class="block text-sm font-medium text-gray-900">Already in trust?</label>
+          <div class="mt-2">
+            <div class="mt-2">
+              <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.trust}"></h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:m-0 col-span-full">
+          <label for="blood-protection" class="block text-sm font-medium text-gray-900">Blood Protection</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.isBloodProtection}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0 col-span-full">
+          <label for="generation-iht" class="block text-sm font-medium text-gray-900">Generation IHT</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.isGenerationIht}"></h3>
+          </div>
+        </div>
+
+        <div class="md:m-0 col-span-full">
+          <label for="notes" class="block text-sm font-medium text-gray-900">Notes (Optional)</label>
+          <div class="mt-2">
+            <h3 class="border border-gray-300 px-4 py-2 rounded-xl block w-full" th:text="${form.notes}"></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div>
+        <!-- submit or save -->
+        <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
+          <a th:href="@{/applications}" type="button" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl">
+            Back
+          </a>
+          <a th:href="@{'/applications/' + ${form.id} + '/edit'}" type="submit" class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl">
+            Edit
+          </a>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+</body>
+</html>

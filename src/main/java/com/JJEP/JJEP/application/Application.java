@@ -23,10 +23,10 @@ public class Application {
     private Long id;
 
     @Column(name = "is_blood_protection")
-    private boolean isBloodProtection;
+    private Boolean isBloodProtection;
 
     @Column(name = "is_generational_iht")
-    private boolean isGenerationIht;
+    private Boolean isGenerationIht;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
@@ -40,7 +40,7 @@ public class Application {
     private String notes;
 
     @Column(name = "primary_property")
-    private float primaryProperty;
+    private Float primaryProperty;
 
     @Column(name = "UK_holiday_home")
     private float ukHolidayHome;
