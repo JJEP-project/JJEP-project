@@ -24,7 +24,7 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+                <div class="grid grid-cols-2 gap-4 flex-1">
 
                     <div class="md:m-0">
                         <label for="familyName" class="block text-sm font-medium text-gray-900">Family name</label>
@@ -175,7 +175,7 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+                <div class="grid grid-cols-2 gap-4 flex-1">
 
                     <div class="md:m-0">
                         <label for="property" class="block text-sm font-medium text-gray-900">Name</label>
@@ -215,16 +215,11 @@
 <!--                        <a th:if="${client1children >= 1 and #strings.equals(param.doubledClients, 'false')}" th:href="@{/application(doubledClients=false, client1children=${client1children - 1}, client2children=${client2children})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>-->
 <!--                        <a th:if="${clientStat.index == 1 and client2children >= 1 and #strings.equals(param.doubledClients, 'true')}" th:href="@{/application(doubledClients=true, client1children=${client1children}, client2children=${client2children - 1})}" class="px-4 py-2 rounded-xl text-link hover:bg-link-back_hover">Remove child</a>-->
 <!--                    </div>-->
-
-
-                    <!-- submit or save -->
-                    <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
-                    </div>
                 </div>
             </div>
         </div>
 
-        <div>
+        <div class="flex flex-col md:flex-row p-4 justify-start">
 
             <div class="flex flex-col flex-1 mb-8">
                 <h1 class="font-semibold">
@@ -236,7 +231,7 @@
             </div>
 
 
-            <div class="grid grid-cols-2 gap-4 flex-1 lg:mr-32">
+            <div class="grid grid-cols-2 gap-4 flex-1">
 
                 <div class="md:m-0">
                     <label for="property" class="block text-sm font-medium text-gray-900">Primary Property</label>
@@ -439,7 +434,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="my-4">
             <div>
                 <!-- submit or save -->
                 <div class="md:m-0 col-span-full flex flex-row justify-end border-t pt-4 space-x-4">
