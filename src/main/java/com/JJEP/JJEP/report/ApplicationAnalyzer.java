@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+// service which allows to analyze some of the application data and return a basic report
 @Service
 public class ApplicationAnalyzer implements IApplicationAnalyzer{
     @Override

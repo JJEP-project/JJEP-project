@@ -14,6 +14,7 @@ public interface IActivityRepository extends JpaRepository<Activity, Long> {
 
     List<Activity> findTop5ByOrderByActivityDateDesc();
 
+    // transactional annotation is used to ensure consistency of the database
     @Transactional
     void deleteByUserId(long userId);
 

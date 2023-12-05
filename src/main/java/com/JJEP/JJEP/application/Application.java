@@ -11,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+// annotations from lombok to remove boilerplate code
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

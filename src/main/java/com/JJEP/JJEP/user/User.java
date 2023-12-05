@@ -16,6 +16,7 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+// annotations from lombok to remove boilerplate code
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

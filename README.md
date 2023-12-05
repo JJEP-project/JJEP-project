@@ -1,23 +1,24 @@
 
 # JJEP CRM System
 
-Description: A comprehensive Customer Relationship Management (CRM) system tailored for JJEP, built using Spring Boot for the backend and Thymeleaf for the frontend. The system leverages PostgreSQL as its database, delivering a beautiful and user-friendly UI design to enhance the overall user experience. Security is a top priority, with Spring Boot Security ensuring robust authentication and middleware services, making the application highly secure. User role-based authentication is implemented, granting admin users full access, regular users access to authenticated and guest sections, and guests restricted to guest-specific pages. The admin dashboard empowers administrators with full control over Create, Read, Update, and Delete (CRUD) operations. Key database models include Users, Applications (for storing form data), and Activity (to manage system activities).
+Small summary about project: Customer Relationship Management (CRM) system for JJEP, built using Spring Boot as a backend and Thymeleaf as a frontend. As database our choice PostgreSQL which deliveries complex database functionality. For making a beautiful and user-friendly UI design to make good user experience, we used tailwind css for styling reusable components, colors, theming website. Security is a top priority as we have we have chosen high level security with Spring Boot Security ensuring authentication and middleware services for making the application highly secure. Also we implemented User role-based authentication for granting admin users full access, regular users access to authenticated and guest sections, and for guests restricted some 
+specific pages. The admin dashboard allows administrators to full control of Create, Read, Update, and Delete (CRUD) operations for all entities. Key database models include Users, Applications (for storing form data), and Activity (to manage system activities). We used library called iText for generation PDF documents for playground page. After submitting user details to playground, data securely and immediately analyzes with custom algorithm and sends back to user.
 
 
-## Features
+## Key Features
 
-- Role-based authentication for admin, user, and guest access
-- Admin dashboard for full CRUD operations
-- Spring Boot Security for heightened protection
+- Role based authentication for admins, users, and guests
+- Admin dashboard for full access to system
+- Spring Boot Security for secure system
 - Beautiful and intuitive UI design
-- Database models: Users, Applications, and Activity
-
+- Custom algorithm
+- Generating PDF documents
 
 ## Tech Stack
 
 **Client:** Thymeleaf, Tailwind CSS CDN, JavaScript configs
 
-**Server:** Spring Boot, Spring Validation, Spring JDBC, Spring JPA, Spring Security, Lombok, Liquibase, PostgreSQL driver, Spring devtools
+**Server:** Spring Boot, Spring Validation, Spring JDBC, Spring JPA, Spring Security, Lombok, Liquibase, PostgreSQL driver, Spring devtools, iText
 
 **Database:** PostgreSQL
 

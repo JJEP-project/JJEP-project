@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 
 
 //This class represents a Data Transfer Object (DTO) for storing application-related data.
+// annotations from lombok to remove boilerplate code
 @Data
 @SuperBuilder
 @NoArgsConstructor

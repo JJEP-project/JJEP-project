@@ -2,7 +2,6 @@ package com.JJEP.JJEP.user;
 
 import com.JJEP.JJEP.activity.ActivityRequestDTO;
 import com.JJEP.JJEP.activity.ActivityService;
-import liquibase.pro.packaged.A;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -21,6 +20,7 @@ import java.util.*;
 
 @Service
 public class UserService implements IUserService {
+    // composition
     private final IUserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
@@ -33,6 +33,7 @@ public class UserService implements IUserService {
     public UserService(
             IUserRepository userRepository,
             ModelMapper modelMapper,
+            // lazy because of circular dependency
             @Lazy PasswordEncoder passwordEncoder
     ) {
         this.userRepository = userRepository;
@@ -76,6 +77,7 @@ public class UserService implements IUserService {
     @Override
     @Transactional
     public void updateUser(long id, UserRegistrationDTO userRegistrationDTO) {
+        // check if user exists
         Optional<User> existingUserOptional = userRepository.findById(id);
         if (existingUserOptional.isEmpty()) {
             throw new UserNotFoundException("User not found");
@@ -87,6 +89,7 @@ public class UserService implements IUserService {
         // because we updated existingUser, we need to save it
         userRepository.updateById(id, existingUser);
 
+        // create activity
         UserResponseDTO authUser = getAuthenticatedUser();
         activityService.saveActivity(ActivityRequestDTO
                 .builder()
@@ -99,7 +102,6 @@ public class UserService implements IUserService {
 
     @Override
     public void saveUser(UserRegistrationDTO userWithPasswordDTO) {
-        // temp solution
         try {
             User user = modelMapper.map(userWithPasswordDTO, User.class);
             user.setPassword(passwordEncoder.encode(user.getPassword()));

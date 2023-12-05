@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+// service annotation from spring framework to indicate that this class is a service, so it can be autowired
 @Service
 public class ChildService implements IChildService{
     private final IChildRepository childRepository;
@@ -24,6 +25,7 @@ public class ChildService implements IChildService{
 
     @Override
     public ChildResponseDTO findChildById(long id) {
+        // optional is a container object which may or may not contain a non-null value
         Optional<Child> child = childRepository.findById(id);
         if (child.isEmpty()) {
             throw new ChildNotFoundException("Child not found");
@@ -57,6 +59,7 @@ public class ChildService implements IChildService{
     }
 
     @Override
+    // @Transactional annotation from spring framework to make database operations consistent
     @Transactional
     public void updateChild(long id, ChildResponseDTO childResponseDTO) {
         Optional<Child> existingChildOptional = childRepository.findById(id);

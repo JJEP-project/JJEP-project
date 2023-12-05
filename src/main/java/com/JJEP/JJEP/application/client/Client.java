@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+// annotations from lombok to remove boilerplate code
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
