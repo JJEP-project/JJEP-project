@@ -40,6 +40,7 @@ public class ActivityService implements IActivityService {
     public void saveActivity(ActivityRequestDTO activity) {
         // map the activity request DTO to activity entity
         Activity activityToSave = modelMapper.map(activity, Activity.class);
+        activityToSave.setId(null);
         activityRepository.save(activityToSave);
     }
 
