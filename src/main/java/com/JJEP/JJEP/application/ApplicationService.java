@@ -205,7 +205,7 @@ public class ApplicationService implements IApplicationService{
         activityService.saveActivity(ActivityRequestDTO
                 .builder()
                 .userId(authUser.getId())
-                .activityMessage("Has updated an application status")
+                .activityMessage("Has updated an application status of application with id " + id)
                 .build()
         );
     }

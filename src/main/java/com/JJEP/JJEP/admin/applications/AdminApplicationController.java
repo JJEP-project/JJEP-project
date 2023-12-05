@@ -62,12 +62,12 @@ public class AdminApplicationController {
     }
 
     @PostMapping("/admin/applications/{id}/change-status")
-    public String changeApplicationStatus(@PathVariable Long id, ApplicationResponseDTO form) {
+    public String changeApplicationStatus(@PathVariable Long id, @RequestParam Integer status) {
         
 
 
         try {
-            applicationService.updateApplication(id, form);
+            applicationService.updateApplicationStatus(id, status);
             return "redirect:/admin/applications/{id}";
         } catch (Exception e) {
             return "redirect:/admin/applications/{id}/change-status?error";
