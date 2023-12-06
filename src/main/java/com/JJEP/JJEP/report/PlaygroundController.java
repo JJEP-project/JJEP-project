@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+//Controller class responsible for handling playground requests
 @Controller
 public class PlaygroundController {
 

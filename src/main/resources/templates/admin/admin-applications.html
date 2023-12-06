@@ -19,10 +19,6 @@
                         <a th:href="@{/admin/applications?sortBy=oldest}" class="px-4 py-2 text-primary hover:bg-gray-100 rounded-xl" type="button">
                             Sort Oldest
                         </a>
-                        <button class="px-4 py-2 bg-primary text-white hover:bg-primary-hover rounded-xl"
-                                type="submit">
-                            Add Application
-                        </button>
                     </div>
                 </div>
 
@@ -72,12 +68,9 @@
                             <td th:case="*" class="text-red-500">Undefined</td>
                             <td>
                                 <div class="flex flex-row space-x-2">
-                                    <button class="bg-blue-500 py-1 px-2 rounded-full text-white">
-                                        Edit
-                                    </button>
-                                    <button class="bg-red-500 py-1 px-2 rounded-full text-white">
-                                        Delete
-                                    </button>
+                                    <a th:href="@{'/admin/applications/' + ${form.id}}" class="bg-blue-500 py-1 px-2 rounded-full text-white">
+                                        Show
+                                    </a>
                                 </div>
                             </td>
                         </tr>

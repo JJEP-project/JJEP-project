@@ -1,13 +1,14 @@
 package com.JJEP.JJEP.Controllers;
 
-import com.JJEP.JJEP.application.ApplicationBaseDTO;
-import com.JJEP.JJEP.application.ApplicationRequestDTO;
-import com.JJEP.JJEP.application.ApplicationResponseDTO;
-import com.JJEP.JJEP.application.IApplicationService;
+import com.JJEP.JJEP.application.*;
 import com.JJEP.JJEP.application.client.ClientRequestDTO;
+import com.JJEP.JJEP.application.client.ClientResponseDTO;
+import com.JJEP.JJEP.application.client.ClientService;
+import com.JJEP.JJEP.application.client.IClientService;
 import com.JJEP.JJEP.application.client.child.Child;
 import com.JJEP.JJEP.application.client.child.ChildRequestDTO;
 import com.JJEP.JJEP.application.client.child.ChildResponseDTO;
+import com.JJEP.JJEP.application.client.child.ChildService;
 import com.JJEP.JJEP.user.UserResponseDTO;
 import com.JJEP.JJEP.user.UserService;
 
@@ -27,10 +28,17 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+//Controller class responsible for handling application-related requests
 @Controller
 public class ApplicationController {
     @Autowired
-    IApplicationService applicationService;
+    ApplicationService applicationService;
+
+    @Autowired
+    ClientService clientService;
+
+    @Autowired
+    ChildService childService;
 
     @Autowired
     UserService userService;
@@ -111,4 +119,23 @@ public class ApplicationController {
             }
         });
     }
+
+    @GetMapping("/applications/{id}")
+    public String applicationDetails(@PathVariable long id, Model model) {
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        model.addAttribute("authUser", authUser);
+
+
+        try {
+            ApplicationResponseDTO form = applicationService.findApplicationByUserId(authUser.getId());
+            model.addAttribute("form", form);
+        } catch (ApplicationNotFoundException e) {
+
+        }
+
+        return "application-details";
+
+    }
+
 }

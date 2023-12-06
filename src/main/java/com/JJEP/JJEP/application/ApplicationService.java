@@ -64,7 +64,7 @@ public class ApplicationService implements IApplicationService{
         List<ApplicationResponseDTO> applicationResponseDTOS = new ArrayList<>();
 
         if (applications.isEmpty()) {
-            throw new ApplicationNotFoundException("No applications found");
+            return null;
         }
 
         for (Application application : applications) {
@@ -94,7 +94,7 @@ public class ApplicationService implements IApplicationService{
         activityService.saveActivity(ActivityRequestDTO
                 .builder()
                 .userId(authUser.getId())
-                .activityMessage("Has updated an application")
+                .activityMessage("Has updated an application with id " + id)
                 .build()
         );
     }
@@ -194,6 +194,20 @@ public class ApplicationService implements IApplicationService{
             applicationsDTO.add(modelMapper.map(application, ApplicationResponseDTO.class));
         }
         return applicationsDTO;
+    }
+
+    @Override
+    @Transactional
+    public void updateApplicationStatus(long id, Integer status) {
+        applicationRepository.updateStatusById(id, status);
+
+        UserResponseDTO authUser = userService.getAuthenticatedUser();
+        activityService.saveActivity(ActivityRequestDTO
+                .builder()
+                .userId(authUser.getId())
+                .activityMessage("Has updated an application status of application with id " + id)
+                .build()
+        );
     }
 
 }

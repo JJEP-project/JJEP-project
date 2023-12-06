@@ -57,7 +57,7 @@
           </tr>
           </thead>
           <tbody class="divide-y">
-          <tr th:each="form: ${forms}" class="h-10">
+          <tr th:if="${forms}" th:each="form: ${forms}" class="h-10">
             <td th:text="${form.id}">
 
             </td>
@@ -103,7 +103,7 @@
           </tr>
           </thead>
           <tbody class="divide-y">
-            <tr th:each="user: ${users}" class="h-10">
+            <tr th:if="${users}" th:each="user: ${users}" class="h-10">
               <td th:text="${user.fullName}">
 
               </td>
@@ -146,7 +146,7 @@
           </tr>
           </thead>
           <tbody class="divide-y">
-          <tr th:each="activity: ${activities}" class="h-10">
+          <tr th:if="${activities}" th:each="activity: ${activities}" class="h-10">
             <td>
               <a
                       th:href="@{'/admin/users/' + ${activity.User.id}}"

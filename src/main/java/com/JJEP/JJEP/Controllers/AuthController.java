@@ -14,23 +14,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
+//This class represents the controller for handling authentication-related requests
 @Controller
 public class AuthController {
     @Autowired
     UserService userService;
 
+    //This method handles the GET request for the login page
     @GetMapping("/login")
     public String login(Model model) {
         model.addAttribute("loginForm", new LoginForm());
         return "auth/login";
     }
 
+    //This method handles the GET request for the registration page
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("userRegistrationDTO", new UserRegistrationDTO());
         return "auth/register";
     }
 
+    //This method handles the POST request for the login page
     @PostMapping("/login-handler")
     public String loginHandler(@ModelAttribute("loginForm") @Valid LoginForm loginForm, BindingResult result) {
         if (result.hasErrors()) {
@@ -40,6 +44,7 @@ public class AuthController {
         return "redirect:/";
     }
 
+    //This method handles the POST request for the registration page
     @PostMapping("/register-handler")
     public String regiserHandler(@ModelAttribute("userRegistrationDTO") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         if (result.hasErrors()) {

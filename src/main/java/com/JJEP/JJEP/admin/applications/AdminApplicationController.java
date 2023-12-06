@@ -1,6 +1,7 @@
 package com.JJEP.JJEP.admin.applications;
 
 import com.JJEP.JJEP.application.Application;
+import com.JJEP.JJEP.application.ApplicationRequestDTO;
 import com.JJEP.JJEP.application.ApplicationResponseDTO;
 import com.JJEP.JJEP.application.ApplicationService;
 import com.JJEP.JJEP.user.UserResponseDTO;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+//Controller class for handling administrative tasks related to applications
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class AdminApplicationController {
@@ -42,7 +46,7 @@ public class AdminApplicationController {
     }
 
     @GetMapping("/admin/applications/{id}")
-    public String getApplicationDetails(@PathVariable int id, Model model) {
+    public String getApplicationDetails(@PathVariable Long id, Model model) {
 
         UserResponseDTO authUser = userService.getAuthenticatedUser();
         model.addAttribute("authUser", authUser);
@@ -56,5 +60,21 @@ public class AdminApplicationController {
         return "admin/application-details";
 
     }
+
+    @PostMapping("/admin/applications/{id}/change-status")
+    public String changeApplicationStatus(@PathVariable Long id, @RequestParam Integer status) {
+        
+
+
+        try {
+            applicationService.updateApplicationStatus(id, status);
+            return "redirect:/admin/applications/{id}";
+        } catch (Exception e) {
+            return "redirect:/admin/applications/{id}/change-status?error";
+        }
+        
+        
+    }
+    
 
 }

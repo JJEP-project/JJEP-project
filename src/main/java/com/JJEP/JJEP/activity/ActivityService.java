@@ -61,7 +61,7 @@ public class ActivityService implements IActivityService {
         List<ActivityResponseDTO> activityResponseDTOS = new ArrayList<>();
 
         if (activities.isEmpty()) {
-            throw new ActivityNotFoundException("No activities found");
+            return null;
         }
 
         for (Activity activity : activities) {
@@ -77,7 +77,7 @@ public class ActivityService implements IActivityService {
         List<ActivityResponseDTO> activityResponseDTOS = new ArrayList<>();
 
         if (activities.isEmpty()) {
-            throw new ActivityNotFoundException("No activities found");
+            return null;
         }
 
         for (Activity activity : activities) {

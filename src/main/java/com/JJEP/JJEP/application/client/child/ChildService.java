@@ -39,7 +39,7 @@ public class ChildService implements IChildService{
         List<ChildResponseDTO> childResponseDTOS = new ArrayList<>();
 
         if (children.isEmpty()) {
-            throw new ChildNotFoundException("No children found");
+            return null;
         }
         for (Child child: children) {
             childResponseDTOS.add(modelMapper.map(child, ChildResponseDTO.class));
